@@ -1,7 +1,7 @@
-use rusqlite::{Connection, Result};
-use std::error::Error;
 use reqwest::Client;
+use rusqlite::{Connection, Result};
 use serde::{Deserialize, Serialize};
+use std::error::Error;
 use tokio;
 
 type QuizTuple = (i32, String, String);
@@ -14,19 +14,13 @@ struct BardRequest {
 
 #[derive(Deserialize, Debug)]
 struct BardResponse {
-   content: String,
+    content: String,
 }
 
 fn read_quiz_questions() -> Result<Vec<QuizTuple>, Box<dyn Error>> {
     let conn = Connection::open("quiz_questions.db")?;
     let mut stmt = conn.prepare("SELECT id, prompt, question FROM quiz")?;
-    let rows = stmt.query_map([], |row| {
-        Ok((
-            row.get(0)?,
-            row.get(1)?,
-            row.get(2)?,
-        ))
-    })?;
+    let rows = stmt.query_map([], |row| Ok((row.get(0)?, row.get(1)?, row.get(2)?)))?;
     let mut quiz_tuples = Vec::new();
     for row_result in rows {
         let row = row_result?;
@@ -35,7 +29,12 @@ fn read_quiz_questions() -> Result<Vec<QuizTuple>, Box<dyn Error>> {
     Ok(quiz_tuples)
 }
 
-async fn bard_coherence_score(client: &Client, session_id: &str, prompt: &str, question: &str) -> Result<String, Box<dyn Error>> {
+async fn bard_coherence_score(
+    client: &Client,
+    session_id: &str,
+    prompt: &str,
+    question: &str,
+) -> Result<String, Box<dyn Error>> {
     let request = BardRequest {
         session_id: session_id.to_string(),
         message: format!("Your output should exactly match this format: [your coherence percent score]%. Do not explain your reasoning and do not include the questions/answers in your response. This is the prompt: \"{}\" and response \"{}\"", prompt, question),
@@ -55,7 +54,7 @@ async fn bard_coherence_score(client: &Client, session_id: &str, prompt: &str, q
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
     let client = Client::new();
-    let session_id = "WAiwu6AMkKqE1rjkw3ZkRqS1iQ-uqf06lRceK-C9DrLtMnFw6xwYgi689V8yHTp6Ve7OtQ."; // You should replace "your-session-id" with your actual session id
+    let session_id = "your_session_id";
     let quiz_tuples = read_quiz_questions()?;
     for quiz in &quiz_tuples {
         //println!("ID: {}", quiz.0);
