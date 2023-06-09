@@ -1,0 +1,17 @@
+[package]
+name = "RustyGen"
+version = "0.1.0"
+edition = "2021"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
+indoc = "2.0.1"
+itertools = "0.10.5"
+openai_api_rust = "0.1.8"
+regex = "1.8.1"
+requestty = "0.5.0"
+rusqlite = "0.29.0"
+rustyline = "11.0.0"
+serde_json = "1.0.96"
+textwrap = "0.16.0"

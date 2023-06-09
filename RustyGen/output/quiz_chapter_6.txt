@@ -1,0 +1,94 @@
+1. Question: According to the text, what question might a psychopharmacologist investigate regarding the administration of drugs?
+
+Possible Answers: 
+a) How long do the effects of a drug last? 
+b) Can a drug's chemical structure be changed to prolong its effects? 
+c) Would taking medicine in a certain way improve the drug's ability to act on the brain? 
+d) All of the above.
+
+Key: d
+2. Question: Which of the following is an example of a semisynthetic drug?
+
+Possible Answers:
+a) Cocaine
+b) Methadone
+c) Opium
+d) LSD
+
+Key: b
+3. Question: What is the difference between opioids that are semisynthetic, synthetic, and natural?
+
+Possible Answers:
+a) Natural opioids are safer to use than synthetic or semisynthetic opioids
+b) Synthetic opioids act on different types of opioid receptors
+c) Semisynthetic opioids bind to opioid receptors more effectively than natural opioids
+d) Despite overall affinity for binding to opioid receptors, biological and psychological effects may still differ
+
+Key: d
+4. Question: What does pharmacokinetics study in pharmacology?
+
+Possible Answers: 
+a) The chemical properties of drugs
+b) The therapeutic effects of drugs
+c) How drugs are manufactured
+d) How drugs are absorbed, distributed, metabolized, and excreted by the body
+
+Key: d
+5. Question: Which pharmacokinetic parameter represents the total exposure of the body to a drug over time?
+
+Possible Answers:
+a. Cmax
+b. AUC
+c. Clearance
+d. Dose
+
+Key: b
+6. Question: Which factor makes the intravenous route of administration the quickest route but also might have the shortest length of action in the body?
+
+Possible Answers:
+a) The fear of needles
+b) The length of time it takes to administer the drug
+c) The training required to administer IV injections
+d) The drug's short half-life
+
+Key: d
+7. Question: Which of the following is NOT a factor affecting the speed of drug absorption?
+Possible Answers: 
+a) Route of administration
+b) Lipid solubility and ionisation
+c) Level of blood circulation in the absorption area
+d) Concentration gradient at the absorption site
+Key: c
+8. Question: Which of the following is true about drugs that are weak acids or bases?
+Possible Answers: 
+A. They become more lipid soluble when they are ionized.
+B. They are more ionized in more acidic solutions.
+C. They are more ionized in more basic solutions.
+D. They cannot cross cell membranes.
+Key: C
+9. Question: What is the mechanism of action of Disulfiram in treating alcohol use disorder?
+
+Possible Answers:
+a) It blocks the action of acetaldehyde in the body
+b) It increases levels of aldehyde dehydrogenase in the body
+c) It metabolizes acetaldehyde into acetic acid
+d) It blocks the action of aldehyde dehydrogenase, resulting in increased levels of acetaldehyde in the body
+
+Key: d
+10. Question: According to the passage, what impacts alcohol metabolism?
+Possible Answers: 
+a) Gender, age, and genetics 
+b) Genetics and chronic drinking 
+c) Age and individual variation 
+d) Gender, age, and chronic drinking 
+Key: d
+11. Question: What are the two general kinds of drugs that bind to receptors discussed in the text?
+
+Possible Answers: 
+
+a. Agonists and stimulants 
+b. Antagonists and inhibitors 
+c. Agonists and antagonists
+d. Neurotransmitters and enzymes 
+
+Key: c

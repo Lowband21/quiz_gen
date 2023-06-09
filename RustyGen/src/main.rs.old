@@ -1,0 +1,144 @@
+use itertools::Itertools;
+use openai_api_rust::chat::*;
+use openai_api_rust::*;
+use regex::Regex;
+use rustyline::error::ReadlineError;
+use rustyline::{history::MemHistory, Editor};
+use serde_json;
+use std::fs::OpenOptions;
+use std::io::prelude::*;
+use std::time::SystemTime;
+use textwrap::fill;
+
+fn log_api_call(prompt: &str, api_parameters: &str) {
+    let log_message = format!(
+        "{}: Prompt: {}, API parameters: {}",
+        SystemTime::now()
+            .duration_since(SystemTime::UNIX_EPOCH)
+            .unwrap()
+            .as_secs(),
+        prompt,
+        api_parameters
+    );
+
+    let mut file = OpenOptions::new()
+        .append(true)
+        .create(true)
+        .open("openai_api_logs.log")
+        .unwrap();
+    writeln!(file, "{}", log_message).unwrap();
+}
+
+fn preprocess_content(content: &str) -> Vec<String> {
+    let re_whitespace = Regex::new(r"\s+").unwrap();
+    let re_special_chars = Regex::new(r"[^0-9a-zA-Z.,;:?!]+").unwrap();
+    let content = re_whitespace.replace_all(content, " ");
+    let content = re_special_chars.replace_all(&content, " ");
+    let sections = content
+        .split(". ")
+        .map(|s| s.to_string())
+        .collect::<Vec<_>>();
+    sections
+}
+
+fn question_difficulty(difficulty_level: &str) -> u8 {
+    match difficulty_level {
+        "easy" => 1,
+        "medium" => 2,
+        "hard" => 3,
+        _ => 1,
+    }
+}
+
+fn generate_question(openai: &OpenAI, prompt: &str) -> String {
+    let api_parameters = ChatBody {
+        model: "gpt-3.5-turbo".to_string(),
+        max_tokens: Some(1000),
+        temperature: Some(0.8),
+        top_p: Some(1.0),
+        n: None,
+        stream: None,
+        stop: None,
+        presence_penalty: Some(0.0),
+        frequency_penalty: Some(0.0),
+        logit_bias: None,
+        user: None,
+        messages: vec![
+            Message {
+                role: Role::System,
+                content: "You are a helpful assistant that generates quiz questions.".to_string(),
+            },
+            Message {
+                role: Role::User,
+                content: prompt.to_string(),
+            },
+        ],
+    };
+
+    let response = openai.chat_completion_create(&api_parameters).unwrap();
+    let question = response.choices[0]
+        .message
+        .as_ref()
+        .unwrap()
+        .content
+        .clone();
+
+    // Log the API call
+    log_api_call(prompt, &serde_json::to_string(&api_parameters).unwrap());
+
+    question
+}
+
+fn generate_quiz_questions(
+    openai: &OpenAI,
+    parsed_content: &[String],
+    question_type: &str,
+    difficulty_level: &str,
+) -> Vec<String> {
+    let mut questions = Vec::new();
+    for (idx, section) in parsed_content.iter().enumerate() {
+        let prompt = format!(
+            "Create a {} question with difficulty {} about the following text: {} in the format \"#### Question:[]\n#### Answers:[]\n#### Key:[] \"",
+            question_type, difficulty_level, section
+        );
+        let question = generate_question(openai, &prompt);
+        questions.push(format!("{}. {}", idx + 1, question));
+    }
+
+    questions
+}
+
+fn main() {
+    // Load API key from environment OPENAI_API_KEY.
+    // You can also hardcode through `Auth::new(<your_api_key>)`, but it is not recommended.
+    let auth = Auth::from_env().unwrap();
+    let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
+
+    let mut rl = rustyline::DefaultEditor::new().unwrap();
+    let content = rl
+        .readline("Enter the text you want to generate questions for: ")
+        .unwrap();
+
+    let question_type = rl
+        .readline("Choose a question type (multiple_choice or short_response): ")
+        .unwrap()
+        .to_lowercase();
+
+    let difficulty_level = rl
+        .readline("Choose the difficulty level (easy, medium, or hard): ")
+        .unwrap()
+        .to_lowercase();
+
+    let preprocessed_content = preprocess_content(&content);
+    let quiz_questions = generate_quiz_questions(
+        &openai,
+        &preprocessed_content,
+        &question_type,
+        &difficulty_level,
+    );
+
+    println!("\nGenerated quiz questions:");
+    for question in quiz_questions {
+        println!("{}", question);
+    }
+}
