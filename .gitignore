@@ -3,3 +3,5 @@
 EvalAI/target/
 
 RustyGen/target/
+
+*.mp4
