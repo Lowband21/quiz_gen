@@ -1,0 +1,14 @@
+Question:
+What is the purpose of using nested loops to create a 2D list?
+Possible Answers:
+a. To create a list with exact contents in advance
+
+b. To create a more flexible list that can easily be modified
+
+c. To create a list with a fixed number of rows and columns
+
+d. To create a list with random contents
+Key:
+b
+------------------
+

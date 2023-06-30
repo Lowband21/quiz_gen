@@ -1,7 +1,5 @@
 /target
 
-EvalAI/target/
-
-RustyGen/target/
-
+evaluator/target/
+rusty_gen/target/
 *.mp4

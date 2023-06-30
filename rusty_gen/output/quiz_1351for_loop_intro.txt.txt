@@ -1,0 +1,9 @@
+1. Question: What does the general syntax of a for loop in Python look like?
+
+Possible Answers:
+a) for i in range, where i is any number that you want
+b) for i in range n, where n is any number that you want
+c) for range i, where i is any number that you want
+d) for i in n range, where n is any number that you want
+
+Key: b

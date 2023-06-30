@@ -1,0 +1,9 @@
+1. Question: What is the purpose of LiveShare in the installation process discussed in the text?
+
+Possible Answers: 
+a) To install DUDraw using pip3
+b) To open a graphics window
+c) To allow real-time collaboration
+d) To download and install VS Code
+
+Key: c

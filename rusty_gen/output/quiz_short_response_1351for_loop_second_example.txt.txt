@@ -1,0 +1,9 @@
+1. Question: How many squares does the modified program create in random positions?
+
+Possible Answers:
+a) 20 squares
+b) 30 squares
+c) 40 squares
+d) 50 squares
+
+Key: d

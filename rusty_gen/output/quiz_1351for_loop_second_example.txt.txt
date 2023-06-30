@@ -1,0 +1,10 @@
+1. Question: How many squares does the modified randomSquares.py program create?
+
+Possible Answers: 
+
+a) 20
+b) 30
+c) 40
+d) 50
+
+Key: d

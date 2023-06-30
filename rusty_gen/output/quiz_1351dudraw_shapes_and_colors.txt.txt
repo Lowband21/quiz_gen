@@ -1,0 +1,9 @@
+1. Question: What are the four parameters needed for the filled rectangle command in DUDraw?
+
+Possible Answers:
+a) X0, Y0, X1, Y1
+b) X1, Y1, X2, Y2
+c) X, Y, R, W
+d) X center, Y center, half width, half height
+
+Key: d

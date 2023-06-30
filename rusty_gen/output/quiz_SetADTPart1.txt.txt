@@ -1,0 +1,8 @@
+1. Question: According to the text, what is the definition of a set in the context of abstract data types?
+Possible Answers: 
+a) A collection of elements with no restrictions on their order and possible duplicates.
+b) A collection of elements with a strict order and no duplicates allowed.
+c) A collection of elements with no restrictions on their order, but no duplicates allowed.
+d) A collection of elements with no restrictions on their order and no duplicate elements allowed.
+
+Key: d

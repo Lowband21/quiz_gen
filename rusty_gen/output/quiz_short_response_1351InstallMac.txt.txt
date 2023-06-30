@@ -1,0 +1,9 @@
+1. Question: What is the purpose of downloading the Python software mentioned in the text?
+
+Possible Answers:
+a) To edit and run Python programs
+b) To access the Canvas page with instructions
+c) To learn about the Python programming language
+d) To organize files and folders
+
+Key: a

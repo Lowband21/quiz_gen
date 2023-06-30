@@ -1,0 +1,7 @@
+1. Question: What happens to the center point of the green rectangle when the house is stretched?
+Possible Answers:
+a) It stays the same
+b) It shifts to the right and down
+c) It shifts to the left and up
+d) It rotates clockwise
+Key: b

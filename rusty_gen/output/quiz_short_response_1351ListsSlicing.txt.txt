@@ -1,0 +1,9 @@
+1. Question: What is the output of the expression "month_names[-2]"?
+
+Possible Answers:
+a) 93
+b) 81
+c) November
+d) December
+
+Key: d
