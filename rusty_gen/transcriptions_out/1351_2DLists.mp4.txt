@@ -1,0 +1,95 @@
+[0 - 720]:  Let's look at the important programming concept of two-dimensional lists.
+[720 - 1168]:  We think of regular lists in Python as linear storage of multiple values.
+[1168 - 1856]:  For example, I could have a variable called list1d that stores these five values.
+[1856 - 2376]:  But sometimes you want to have two-dimensional lists, and in Python this is possible.
+[2376 - 2772]:  A two-dimensional list is a matrix or a grid of values.
+[2772 - 3428]:  So here I have an example of a variable called list2d that holds the following grid or matrix
+[3428 - 3608]:  of values.
+[3608 - 3976]:  First, why do we even need 2D lists?
+[3976 - 4216]:  Let me give you several examples.
+[4216 - 4632]:  Many games require storage of information in two dimensions.
+[4632 - 4992]:  And writing a computer program in Python to implement any of the following games would
+[4992 - 5236]:  likely use a 2D list.
+[5236 - 5336]:  The first is tic-tac-toe.
+[5336 - 5968]:  I can have a two-dimensional list, and each of these nine elements would store either
+[5968 - 6288]:  an x, an o, or a blank.
+[6288 - 6388]:  Another example is chess.
+[6388 - 7120]:  I've got a grid where I would store in each of those positions what piece is currently
+[7120 - 7488]:  sitting in that position.
+[7488 - 7632]:  This is a game you might have seen.
+[7632 - 7780]:  It's called Connect Four.
+[7780 - 8576]:  I could also store in a 2D list whether I want a yellow or a red checker or none in
+[8576 - 8828]:  that position.
+[8828 - 9080]:  Battleship is another example.
+[9080 - 10124]:  A maze you can store as a 2D grid or matrix or a 2D list of either dark wall or white
+[10124 - 10392]:  open space.
+[10392 - 10820]:  Candy Crush, Minesweeper, and 2048.
+[10820 - 11292]:  These are all examples where a 2D list would be very helpful.
+[11292 - 11476]:  Another example is digital images.
+[11476 - 11720]:  These can also be stored in 2D lists.
+[11720 - 12088]:  For example, here's a painting you might be familiar with.
+[12088 - 12756]:  What if I say, just look at this tiny upper left-hand corner of it and blow it up?
+[12756 - 13088]:  If this image is stored digitally, it might look like that.
+[13088 - 13484]:  Let me again take a tiny little corner and blow it up.
+[13484 - 14140]:  When I do that, you can see that actually there are just tiny squares of different colors
+[14140 - 14344]:  making up that image.
+[14344 - 14756]:  If I go back to the original, the picture that I'm showing you on the left is just this
+[14756 - 15270]:  very uppermost corner.
+[15270 - 15992]:  These little squares of color are called pixels, which is short for picture elements.
+[15992 - 16536]:  What that means is that an image can be stored as a 2D grid or 2D list of colors.
+[16536 - 17452]:  In Python, we use 2D lists or a list of lists to implement this.
+[17452 - 17598]:  Here's a couple more examples.
+[17598 - 18008]:  Sometimes information is just best organized in a grid.
+[18008 - 18108]:  Here's one example.
+[18108 - 18612]:  I've got some temperature measurements at different times that I've collected from different
+[18612 - 18848]:  sensors.
+[18848 - 19092]:  Or here's another one, average monthly heating bill.
+[19092 - 19568]:  I've got different quarters of the year and different apartments, and I just have a record
+[19568 - 19760]:  of the bills that were paid.
+[19760 - 20152]:  I'm sure if you sit down and think about it, you can come up with dozens of other examples
+[20152 - 20488]:  like this.
+[20488 - 20848]:  How do we create 2D lists in Python?
+[20848 - 21020]:  There are multiple ways to do it.
+[21020 - 21372]:  One is called a list literal.
+[21372 - 21984]:  It's really similar to the way we learned to create regular lists with a list literal.
+[21984 - 22448]:  So let's say I've got my average monthly heating bill example, and I want to store it as a
+[22448 - 22620]:  list.
+[22620 - 22720]:  Here's how I do that.
+[22720 - 23224]:  I create a variable called heating bill, and you can see because I have these two square
+[23224 - 23716]:  brackets, that means that what's inside is a list.
+[23716 - 24282]:  But it's a list of three items, each of which is itself a list.
+[24282 - 24796]:  So you can see that the first row here is a list because it has square brackets and
+[24796 - 24972]:  then four numbers.
+[24972 - 25564]:  And same for the next and the next row.
+[25564 - 26260]:  So this heating bill 2D list can be viewed as a list of lists.
+[26260 - 26540]:  The first element, heating bill at zero.
+[26540 - 27056]:  So remember when I put an index of zero, that means look at the first element in the list.
+[27056 - 27308]:  Well the list starts with this square bracket.
+[27308 - 27836]:  So the first element is right here and it itself is a list.
+[27836 - 28284]:  Same for heating bill at one, which is the second row.
+[28284 - 28744]:  And heating bill index two is the third row, which is itself a list.
+[28744 - 29304]:  So a list of lists is one way to create a 2D list.
+[29304 - 29738]:  Now this shows us how we can access individual elements in a 2D list.
+[29738 - 30098]:  So here's my list literal.
+[30098 - 30628]:  And since heating bill at zero, the first row, is itself a list, remember that I can
+[30628 - 31110]:  access each of the individual elements in that list.
+[31110 - 31794]:  So heating bill at zero is the whole first row.
+[31794 - 32960]:  But to get at the individual elements, heating bill at zero zero is the zeroth index in heating
+[32960 - 33152]:  bill at zero.
+[33152 - 33672]:  Heating bill at zero one says heating bill at zero, which is the first row, and then
+[33672 - 34708]:  access the index one element of that, and so on.
+[34708 - 35290]:  Now there is a completely different perspective, which is to say that when you access an element
+[35290 - 35818]:  in a 2D list, you have two indices, and the first index gives the row and the second gives
+[35818 - 35960]:  the column.
+[35960 - 36780]:  So for example, if I say I want to look at heating bill at index zero zero, that first
+[36780 - 37740]:  index zero refers to the row, whereas the second index refers to the column.
+[37740 - 38578]:  So the two together identify a single element in that 2D list.
+[38578 - 39236]:  Heating bill at two three says, look at the two, index two is the row that's shown, the
+[39236 - 40408]:  third row, and now I look at the index three column, which is the fourth column, and together
+[40408 - 40872]:  those identify a particular element.
+[40872 - 41100]:  Here's another example, heating bill at one two.
+[41100 - 41620]:  If I were you, I'd pause the video and make sure that I knew exactly how to figure out
+[41620 - 41914]:  which element that's identifying.
+[41914 - 42532]:  And here's the answer, the one means the second row, and index two means the index two or
+[42532 - 43200]:  third column, and so that heating bill at one two is accessing the element that's shown.
+[43200 - 44200]:  [BLANK_AUDIO]

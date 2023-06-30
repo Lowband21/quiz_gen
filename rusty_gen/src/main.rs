@@ -27,6 +27,10 @@ mod quiz {
     pub mod quiz_parser;
 }
 
+mod transcription {
+    pub mod whisper;
+}
+
 pub fn pretty_print(quiz_questions: Vec<QuizQuestion>) {
     println!("Trying to print");
     for (i, question) in quiz_questions.iter().enumerate() {
@@ -40,7 +44,13 @@ pub fn pretty_print(quiz_questions: Vec<QuizQuestion>) {
 fn select_operation_mode() -> String {
     let operation_mode_question = Question::select("operation_mode")
         .message("Choose an operation mode:")
-        .choices(vec!["generate", "parse", "quiz", "analysis"])
+        .choices(vec![
+            "generate",
+            "parse",
+            "quiz",
+            "analysis",
+            "transcription",
+        ])
         .build();
     let operation_mode_choice = &requestty::prompt_one(operation_mode_question).unwrap();
     operation_mode_choice.as_list_item().unwrap().clone().text
@@ -200,6 +210,9 @@ fn main() {
             eval::gpt::run();
             eval::similarity::similarity();
             eval::stat::run();
+        }
+        "transcription" => {
+            transcription::whisper::transcribe_all();
         }
         "generate" => {
             // Read directories from the "input" folder

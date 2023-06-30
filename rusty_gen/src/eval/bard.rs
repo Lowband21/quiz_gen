@@ -51,8 +51,7 @@ async fn bard_coherence_score(
     Ok(response.content)
 }
 
-#[tokio::main]
-async fn run() -> Result<(), Box<dyn Error>> {
+pub async fn run() -> Result<(), Box<dyn Error>> {
     let client = Client::new();
     let session_id = "your_session_id";
     let quiz_tuples = read_quiz_questions()?;

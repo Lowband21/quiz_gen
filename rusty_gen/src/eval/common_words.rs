@@ -27,7 +27,7 @@ fn count_common_words(prompt: &str, question: &str) -> f64 {
     (common_words.len() as f64 / total_unique_words as f64) * 100.0
 }
 
-fn run() -> Result<(), Box<dyn Error>> {
+pub fn run() -> Result<(), Box<dyn Error>> {
     let quiz_tuples = read_quiz_questions()?;
     for quiz in &quiz_tuples {
         let common_word_percent = count_common_words(&quiz.1, &quiz.2);

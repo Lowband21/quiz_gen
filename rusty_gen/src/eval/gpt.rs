@@ -52,8 +52,7 @@ async fn gpt_coherence_score(
         .clone())
 }
 
-#[tokio::main]
-async fn run() -> Result<(), Box<dyn Error>> {
+pub async fn run() -> Result<(), Box<dyn Error>> {
     let auth = Auth::from_env().unwrap();
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let quiz_tuples = read_quiz_questions()?;

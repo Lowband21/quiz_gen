@@ -1,4 +1,6 @@
 /Archive
 evaluator/target/
 rusty_gen/target/
+*.bin
 *.mp4
+*.wav

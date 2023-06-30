@@ -103,7 +103,7 @@ fn semantic_similarity(text1: &str, text2: &str) -> f32 {
     unimplemented!(); // Semantic similarity cannot be calculated without machine learning libraries
 }
 
-fn run() -> Result<(), Box<dyn Error>> {
+pub fn run() -> Result<(), Box<dyn Error>> {
     let quiz_tuples = read_quiz_questions()?;
     for (i, quiz) in quiz_tuples.iter().enumerate() {
         let common_word_count = count_common_words(&quiz.1, &quiz.2);
