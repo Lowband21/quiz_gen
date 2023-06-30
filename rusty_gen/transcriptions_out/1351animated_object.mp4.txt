@@ -1,0 +1,39 @@
+ I'm going to show you a way to combine our scalable positional drawings with animation.
+ So I'm going to open up a couple files here.
+ The first one is a completion of program that I showed you a couple of classes ago.
+ And it's a house, but it's a house where I can put the position anywhere and the size
+ I can determine by passing parameters.
+ So I showed you how to do this in a previous video.
+ And what I'm looking at right now is the completed version of that.
+ And it's similar to a project that you are doing with your own drawings.
+ So here's the function that I've written that will create the house in a particular position
+ and with a particular size.
+ And here's the main program where I just set up the canvas and then I draw houses at several
+ positions with several sizes.
+ I'll run this just to show you that this works.
+ So I've completed my positional, both scalable drawing.
+ And now that I have that function, what I'm going to do is go to my animation, the simplest
+ animation.
+ And I'm going to modify it slightly to show that I can animate a house now instead of
+ just a circle.
+ So this is the code from the previous video.
+ And if I run this, you'll see it's a circle moving across the screen.
+ What I'm going to do is I'm going to copy and paste this scalable positionable house
+ and I'm going to use it in this animation.
+ So everything's going to be the same in my program.
+ I've got a X center, Y center, but instead of calling it X center, I'm going to start
+ that as X position and Y position.
+ And that's the position that I'm going to put the house.
+ I have my animation loop, repeated loop that clears the background, redraws the frame,
+ which is a circle.
+ I'm about to change that.
+ Display and then move the position of the house.
+ So all I'm going to do to change this program is right here, instead of do you draw that
+ filled circle, I'm going to call my draw house method with the X position, Y position and
+ size.
+ And I'm going to make the size, I'll make it 0.2 by 0.2.
+ When I run this program, instead of having a circle that's moving across the canvas,
+ I'm going to have a house.
+ I had to do very little to create this animation.
+ It feels almost like magic, but the power was combining pieces of code that I'd already
+ written, including this positionable, scalable version of a house.

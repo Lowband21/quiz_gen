@@ -22,7 +22,8 @@ pub fn transcribe_all() {
         let entry = entry.unwrap();
         let audio_file = entry.path().to_str().unwrap().to_string();
         // Create a params object
-        let params = FullParams::new(SamplingStrategy::Greedy { best_of: 1 });
+        let mut params = FullParams::new(SamplingStrategy::Greedy { best_of: 1 });
+        params.set_n_threads(32);
 
         // Read the audio file into a buffer (assuming it's a 32-bit floating point sample rate)
         let audio_data: Vec<f32> = read_audio_file(&audio_file);
@@ -76,6 +77,7 @@ fn read_audio_file(file_path: &str) -> Vec<f32> {
             let output = Command::new("ffmpeg")
                 .arg("-i")
                 .arg(file_path)
+                .arg("-y") // Overwrite output
                 .arg("-vn") // No video
                 .arg("-acodec") // Audio codec
                 .arg("pcm_s16le") // PCM 16 bit little endian format (compatible with WavReader)
