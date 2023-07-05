@@ -212,7 +212,22 @@ fn main() {
             eval::stat::run();
         }
         "transcription" => {
-            transcription::whisper::transcribe_all();
+            let gpu_or_cpu = Question::select("difficulty_level")
+                .message("Select a method of running whisper:")
+                .choices(vec!["CPU (Rust)", "GPU (Python)"])
+                .build();
+
+            let gpu_or_cpu = &requestty::prompt_one(gpu_or_cpu).unwrap();
+
+            match gpu_or_cpu.as_list_item().unwrap().clone().text.as_str() {
+                "CPU (Rust)" => {
+                    transcription::whisper::transcribe_all();
+                }
+                "GPU (Python)" => {
+                    transcription::whisper::py_whisper();
+                }
+                _ => panic!("Impossible choice"),
+            }
         }
         "generate" => {
             // Read directories from the "input" folder

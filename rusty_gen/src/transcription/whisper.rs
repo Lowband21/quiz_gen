@@ -107,3 +107,45 @@ fn read_audio_file(file_path: &str) -> Vec<f32> {
 
     samples
 }
+
+use std::io::BufReader;
+use std::process::Stdio;
+
+pub fn py_whisper() {
+    // Define commands for Unix-like and Windows systems
+    let (command, script_file, arg) = if cfg!(target_os = "windows") {
+        ("cmd", "run_whisper.bat", Some("/C"))
+    } else {
+        ("bash", "run_whisper.sh", None)
+    };
+
+    // Create the command
+    let mut command = Command::new(command);
+    if let Some(arg) = arg {
+        command.arg(arg);
+    }
+    let mut child = command
+        .arg(script_file)
+        .stdout(Stdio::piped())
+        .spawn()
+        .expect("Failed to execute command");
+
+    // Create a BufReader for the stdout
+    let reader = BufReader::new(child.stdout.take().expect("Failed to capture stdout"));
+
+    // Read stdout line by line
+    for line in reader.lines() {
+        match line {
+            Ok(line) => println!("{}", line),
+            Err(err) => eprintln!("Failed to read line: {}", err),
+        }
+    }
+
+    // Check if the child process has finished successfully
+    let output = child.wait().expect("Failed to wait on child");
+    if output.success() {
+        println!("Script executed successfully");
+    } else {
+        eprintln!("Script failed");
+    }
+}
