@@ -1,9 +1,7 @@
-1. Question: What is the purpose of using a nested for loop to create a 2D list?
-
+1. Question: What is the purpose of using a loop to fill a 2D list instead of a list literal?
 Possible Answers:
-a) To fill the list with a predetermined set of values
-b) To create the list using a more efficient and compact code
-c) To allow for user input to populate the list
-d) To dynamically generate the list based on certain conditions
-
-Key: d
+a) To make the code more efficient and faster
+b) To allow for flexibility in creating a list with unknown contents in advance
+c) To make the code more readable and easier to understand
+d) To avoid errors and ensure accurate data entry
+Key: b

@@ -6,6 +6,7 @@ use gen::explanation_gen::generate_explanations;
 use gen::quiz_gen::*;
 use openai_api_rust::*;
 use requestty::Question;
+use std::error::Error;
 use std::fs;
 use std::path::{Path, PathBuf};
 
@@ -67,33 +68,24 @@ fn select_directory(directories: Vec<String>) -> String {
 }
 
 // Function to read files from a directory
-fn read_files(directory_path: &Path) -> Result<Vec<String>, Box<dyn std::error::Error>> {
-    // Try to read the directory and handle error if it fails
-    let read_dir = fs::read_dir(directory_path).map_err(|e| {
-        eprintln!("Failed to read directory {:?}: {}", directory_path, e);
-        e
-    })?;
+fn read_files(directory_path: &Path) -> Result<Vec<String>, Box<dyn Error>> {
+    let mut files = Vec::new();
 
-    // Try to read each file in the directory and collect to Vec
-    let files: Vec<String> = read_dir
-        .filter_map(|entry| {
-            match entry {
-                Ok(d) => {
-                    // Check if the directory entry is a file
-                    if d.file_type().map(|ft| ft.is_file()).unwrap_or(false) {
-                        Some(d.file_name().to_string_lossy().into_owned())
-                    } else {
-                        println!("{:?} is not a file, skipping", d.file_name());
-                        None
-                    }
-                }
-                Err(e) => {
-                    eprintln!("Failed to read directory entry: {}", e);
-                    None
-                }
-            }
-        })
-        .collect();
+    // Use WalkDir to recursively get all files in the directory
+    for entry in WalkDir::new(directory_path) {
+        let entry = entry?;
+
+        // Check if the entry is a file
+        if entry.file_type().is_file() {
+            // Get the file name as a string and push it to the vector
+            let file_name = entry
+                .path()
+                .to_str()
+                .ok_or("Failed to read file name")?
+                .to_string();
+            files.push(file_name);
+        }
+    }
 
     // Print debug info
     println!("Found files: {:?}", files);
@@ -289,9 +281,7 @@ fn main() {
 
             // Generate content for each selected file
             for file in selected_files {
-                let file_path = Path::new("input")
-                    .join(directory_name.clone())
-                    .join(file.clone());
+                let file_path = Path::new(file.as_str());
                 println!("File Path {:?}:", file_path);
                 let content = fs::read_to_string(file_path).unwrap();
 
@@ -309,17 +299,24 @@ fn main() {
                             )
                             .unwrap();
                             // Write the output content to the file
+                            let output_string = format!(
+                                "{}",
+                                file.trim_end_matches(".md").trim_end_matches(".txt"),
+                            );
+
+                            let split_strings: Vec<_> = output_string.split('/').collect();
                             let output_file_name = format!(
                                 "{}_{}_{}",
                                 generation_mode,
                                 question_type,
-                                file.trim_end_matches(".md").trim_end_matches(".txt"),
+                                split_strings.last().unwrap_or(&"")
                             );
+
                             let output_file_ext = format!("_{}.txt", i);
 
                             let output_file_path = save_processed(
                                 processed_content,
-                                output_file_name,
+                                output_file_name.to_string(),
                                 output_file_ext,
                             );
                             let (quiz_questions, success_rate) =
@@ -397,36 +394,39 @@ fn parse_files_and_output(selected_files: Vec<String>, input_dir: &str, output_d
     // Prepare the output directory
     let output_dir = prepare_output_dir(output_dir);
 
-    // Get a recursive iterator of all files in the input directory
-    let walker = WalkDir::new(input_dir).into_iter();
-
     // Parse each selected file
-    for entry in walker.filter_map(|e| e.ok()) {
-        // Check if the current entry is a file and matches one of the selected files
-        if entry.file_type().is_file()
-            && selected_files.contains(&entry.file_name().to_string_lossy().into_owned())
-        {
-            let file_path = entry.path();
-            println!("File Path: {:?}", file_path);
-            let (quiz_questions, success_rate) = parse_quiz_file(file_path).unwrap();
-            pretty_print(quiz_questions.clone());
-            println!("The failure rate was {}", success_rate);
+    for file in selected_files {
+        let file_path = Path::new(&file);
+        println!("File Path: {:?}", file_path);
+        let (quiz_questions, success_rate) = parse_quiz_file(file_path).unwrap();
+        pretty_print(quiz_questions.clone());
+        println!("The failure rate was {}", success_rate);
 
-            // Write the questions, answers, and keys to a file
-            let mut output_content = String::new();
-            for question in quiz_questions {
-                output_content.push_str(&format!(
-                    "Question:\n{}\nPossible Answers:\n{}\nKey:\n{}\n------------------\n\n",
-                    question.question.trim(),
-                    question.answer.trim(),
-                    question.key
-                ));
-            }
-
-            let output_file_name = entry.file_name().to_string_lossy().into_owned();
-            fs::write(output_dir.join(output_file_name), output_content)
-                .expect("Unable to write file");
+        // Write the questions, answers, and keys to a file
+        let mut output_content = String::new();
+        for question in quiz_questions {
+            output_content.push_str(&format!(
+                "Question:\n{}\nPossible Answers:\n{}\nKey:\n{}\n------------------\n\n",
+                question.question.trim(),
+                question.answer.trim(),
+                question.key
+            ));
         }
+
+        // Derive the output directory path without the file name
+        let output_dir_path = output_dir.join(
+            Path::new(&file.trim_start_matches("output/"))
+                .parent()
+                .unwrap(),
+        );
+        prepare_output_dir(&output_dir_path.to_str().unwrap());
+
+        println!("{:?}", &file.trim_start_matches("output/"));
+        fs::write(
+            output_dir.join(&file.trim_start_matches("output/")),
+            output_content,
+        )
+        .expect("Unable to write file");
     }
 }
 

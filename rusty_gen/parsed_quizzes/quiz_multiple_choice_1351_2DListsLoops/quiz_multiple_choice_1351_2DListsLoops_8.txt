@@ -1,0 +1,11 @@
+Question:
+What is the purpose of using a nested for loop in the given code?
+Possible Answers:
+a) To create a 2D list with known contents
+b) To create a 1D list with unknown contents
+c) To append values to an existing 2D list
+d) To initialize a 2D list with specific values
+Key:
+d
+------------------
+

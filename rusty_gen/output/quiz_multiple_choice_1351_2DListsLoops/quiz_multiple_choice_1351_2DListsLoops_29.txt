@@ -1,0 +1,7 @@
+1. Question: How can you create a 2D list using a nested for loop instead of a list literal?
+Possible Answers: 
+a) By using the append() method inside a for loop to add elements to each row
+b) By using the extend() method inside a for loop to add elements to each row
+c) By using the insert() method inside a for loop to add elements to each row
+d) By using the remove() method inside a for loop to add elements to each row
+Key: a

@@ -1,0 +1,11 @@
+Question:
+What are the four parameters required by the filled rectangle command in DUDraw to draw a rectangle?
+Possible Answers:
+a) x and y values for the center of the rectangle, followed by the half width and half height of the rectangle.
+b) x and y values for the top left coordinate of the rectangle, followed by the width and height of the rectangle.
+c) x and y values for the bottom left coordinate of the rectangle, followed by the width and height of the rectangle.
+d) x and y values for the center of the rectangle, followed by the full width and full height of the rectangle.
+Key:
+a
+------------------
+

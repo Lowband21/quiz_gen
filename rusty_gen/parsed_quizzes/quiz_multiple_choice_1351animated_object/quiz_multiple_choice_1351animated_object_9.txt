@@ -1,0 +1,11 @@
+Question:
+What type of drawing is being combined with animation in the given text?
+Possible Answers:
+a) Circle
+b) House
+c) Square
+d) Triangle
+Key:
+b
+------------------
+

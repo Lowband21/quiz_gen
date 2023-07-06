@@ -2,7 +2,7 @@
 
 # Array of URLs
 urls=("https://cs.du.edu/~ftl/videos1353/" "https://cs.du.edu/~ftl/videos1351/")
-
+cd ./input
 # Loop through all URLs
 for base_url in "${urls[@]}"; do
     # Get the webpage and extract the file URLs

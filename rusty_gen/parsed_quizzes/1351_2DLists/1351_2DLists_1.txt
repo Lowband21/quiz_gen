@@ -1,0 +1,11 @@
+Question:
+In Python, why would you use a 2D list?
+Possible Answers:
+a) To store information in a linear manner
+b) To implement games like tic tac toe or chess
+c) To store digital images as pixels
+d) To organize temperature measurements or bills
+Key:
+b
+------------------
+

@@ -1,0 +1,11 @@
+Question:
+What is the purpose of creating a new class to represent iterator objects that will traverse through your data?
+Possible Answers:
+a) To make the traversal of the data structure more efficient
+b) To store the current location for an iterator for an iteration
+c) To create a new data structure
+d) To make the data structure iterable
+Key:
+b
+------------------
+

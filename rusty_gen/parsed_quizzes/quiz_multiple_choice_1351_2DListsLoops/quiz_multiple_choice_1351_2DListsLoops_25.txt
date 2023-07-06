@@ -1,0 +1,11 @@
+Question:
+How does the code in the given text create a 2D list with four rows and three columns?
+Possible Answers:
+a) By using a nested for loop to append zeros into each row
+b) By using a list literal to directly define the 2D list
+c) By using list comprehension to initialize the 2D list
+d) By getting input from the user and loading the numbers into the list
+Key:
+a
+------------------
+

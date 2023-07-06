@@ -1,0 +1,121 @@
+Question:
+What is one reason for the rapid advances in biological psychology?
+Possible Answers:
+a) Increased interest in the field
+b) Technological progress
+c) Collaboration with other scientific disciplines
+d) Funding from government agencies
+Key:
+b
+------------------
+
+Question:
+Who is often referred to as the father of neuroscience?
+Possible Answers:
+a) Fig 1.1
+b) The hippocampus
+c) Cajal
+d) Synapses
+Key:
+c
+------------------
+
+Question:
+According to the text, which ancient Greek philosopher believed that the heart was responsible for organizing behavior and thought?
+Possible Answers:
+a) Socrates
+b) Plato
+c) Aristotle
+d) Pythagoras
+Key:
+c
+------------------
+
+Question:
+According to the text, which early Greek writers believed that the brain played a more important role in the mind?
+Possible Answers:
+a) Plato and Aristotle
+b) Galen and Hippocrates
+c) Ibn Sina and Avicenna
+d) William James and Sarah Garfinkel
+Key:
+b
+------------------
+
+Question:
+During the post Reformation Europe, what became a subject of great controversy in the relationship between the mind and body?
+Possible Answers:
+a) The existence of God
+b) The nature of the soul
+c) The concept of free will
+d) The origin of life
+Key:
+b
+------------------
+
+Question:
+What did Descartes argue was the one thing we can be certain of?
+Possible Answers:
+a) Our reasoning about the external world is correct
+b) Most of our own experiences are not simply dreams
+c) I am consciously aware, therefore I know that I must exist
+d) Mind and body interact through the pineal gland
+Key:
+c
+------------------
+
+Question:
+According to Descartes, how are the animal spirits able to open the entry of the pore in the skin?
+Possible Answers:
+a) By pulling the little thread cc
+b) By pulling the other end of a cord
+c) By flowing into the cavity F
+d) By connecting to the muscles by nerves
+Key:
+a
+------------------
+
+Question:
+Who is credited with confirming that electrical stimulation of a frog sciatic nerve could produce contractions in the muscles of a dissected frog leg?
+Possible Answers:
+a) Stephen Hales
+b) Luigi Galvani
+c) Hermann von Helmholtz
+d) Giovanni Aldini
+Key:
+b
+------------------
+
+Question:
+Who is often associated with the phenomenon of Pavlovian conditioning?
+Possible Answers:
+a) Little Albert
+b) Ivan Pavlov
+c) Magendie
+d) Fig 1.8
+Key:
+b
+------------------
+
+Question:
+: According to Burrhus Skinner, what are the three terms involved in the simplest contingencies of behavior?
+Possible Answers:
+a) Stimulus, response, and deprivation
+b) Stimulus, response, and reinforcer
+c) Stimulus, deprivation, and reinforcer
+d) Response, deprivation, and reinforcer
+Key:
+b
+------------------
+
+Question:
+: Who argued for a close relationship between the study of psychology and physiology in his book "The Organisation of Behavior"?
+Possible Answers:
+a) Donald Hebb
+b) Richard Brown
+c) B.F. Skinner
+d) Carla Schatz
+Key:
+a
+------------------
+

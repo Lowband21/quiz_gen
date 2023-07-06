@@ -1,0 +1,7 @@
+1. Question: What is an advantage of using a nested for loop to create a 2D list?
+Possible Answers:
+a) It allows for more flexibility in creating the list.
+b) It is faster than using a list literal.
+c) It requires less code to write.
+d) It allows for easier debugging.
+Key: a

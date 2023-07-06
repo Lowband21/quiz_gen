@@ -1,0 +1,11 @@
+Question:
+What is the purpose of using a nested for loop to fill a 2D list?
+Possible Answers:
+a) To create a more compact and efficient code
+b) To allow for user input in filling the list
+c) To dynamically create the list based on unknown contents
+d) To demonstrate the use of list comprehension
+Key:
+c
+------------------
+

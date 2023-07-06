@@ -1,0 +1,7 @@
+1. Question: How can you create a 2D list using a nested for loop?
+Possible Answers:
+a) By using a list literal and specifying the values of each element in the list in advance.
+b) By using a loop to fill the list with the desired values.
+c) By using the list comprehension feature in Python.
+d) By appending each row and column individually to the list.
+Key: b

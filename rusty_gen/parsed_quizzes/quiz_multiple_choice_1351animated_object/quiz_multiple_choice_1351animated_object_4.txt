@@ -1,0 +1,11 @@
+Question:
+What did the author modify in the animation code to incorporate a house instead of a circle?
+Possible Answers:
+a) X center and Y center
+b) X position and Y position
+c) Size and position
+d) Display and move functions
+Key:
+b
+------------------
+

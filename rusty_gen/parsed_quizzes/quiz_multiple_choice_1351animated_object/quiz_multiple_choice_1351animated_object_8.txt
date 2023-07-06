@@ -1,0 +1,11 @@
+Question:
+What is the purpose of the function mentioned in the text?
+Possible Answers:
+a) To create a house at a specific position and size
+b) To modify an animation code
+c) To clear the background in the animation loop
+d) To show the completed version of a program
+Key:
+a
+------------------
+

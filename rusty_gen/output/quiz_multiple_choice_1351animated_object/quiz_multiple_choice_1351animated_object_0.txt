@@ -1,0 +1,7 @@
+1. Question: What does the author modify in the animation code to animate a house instead of a circle?
+Possible Answers:
+a) The X center and Y center variables
+b) The X position and Y position variables
+c) The size variable
+d) The drawHouse method
+Key: b

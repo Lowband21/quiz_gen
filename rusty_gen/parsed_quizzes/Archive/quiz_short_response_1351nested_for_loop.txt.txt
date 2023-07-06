@@ -1,0 +1,11 @@
+Question:
+What is the purpose of using nested for loops in the given program?
+Possible Answers:
+a) To output a rectangle of stars with a flexible number of rows and columns
+b) To output a rectangle of stars with a fixed number of rows and columns
+c) To output a triangle of stars with a fixed number of rows
+d) To output a triangle of stars with a flexible number of rows
+Key:
+a
+------------------
+

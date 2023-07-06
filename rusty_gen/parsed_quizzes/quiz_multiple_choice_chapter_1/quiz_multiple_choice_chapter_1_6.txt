@@ -1,0 +1,121 @@
+Question:
+What is one reason for the rapid advances in biological psychology?
+Possible Answers:
+a) The development of more effective treatments for conditions such as depression or anxiety
+b) The relationship between brain and mind
+c) The technological progress that has provided tools to study brain processes
+d) The detailed structures of nerve cells in the brain
+Key:
+c
+------------------
+
+Question:
+Who is often referred to as the father of neuroscience?
+Possible Answers:
+a) Fig 1.1
+b) Cajal
+c) Pyramidal cells
+d) The hippocampus
+Key:
+b
+------------------
+
+Question:
+According to the text, which ancient Greek philosopher believed that the heart was crucial in organizing behavior and thought?
+Possible Answers:
+a) Socrates
+b) Plato
+c) Aristotle
+d) Hippocrates
+Key:
+c
+------------------
+
+Question:
+According to the text, which ancient Greek philosopher believed that the heart was the seat of the mind?
+Possible Answers:
+a) Plato
+b) Aristotle
+c) Hippocrates
+d) Galen
+Key:
+a
+------------------
+
+Question:
+In post Reformation Europe, the relationship between the mind and body became a subject of controversy. Which philosopher is associated with the concept of mind-body dualism?
+Possible Answers:
+a) Galen
+b) Ibn Sina
+c) Hippocrates
+d) Descartes
+Key:
+d
+------------------
+
+Question:
+What did Descartes argue was the one thing we can be certain of?
+Possible Answers:
+a) Our reasoning about the external world
+b) Our own experiences
+c) Our consciousness
+d) Our dreams
+Key:
+c
+------------------
+
+Question:
+According to Descartes, what is the function of the animal spirits in the body?
+Possible Answers:
+a) To open the pores in the skin
+b) To carry the blood to the muscles
+c) To translate intentions into behavior
+d) To connect the nerves to the muscles
+Key:
+c
+------------------
+
+Question:
+Who conducted the early version of Galvani's frog leg experiment in 1791?
+Possible Answers:
+a) Mary Shelley
+b) Giovanni Aldini
+c) Luigi Galvani
+d) Hermann von Helmholtz
+Key:
+c
+------------------
+
+Question:
+Who is often associated with the phenomenon of Pavlovian conditioning?
+Possible Answers:
+a) Little Albert
+b) Ivan Pavlov
+c) Magendie
+d) Fig 1.8
+Key:
+b
+------------------
+
+Question:
+: According to Skinner, what is unnecessary to understand behavior?
+Possible Answers:
+a) Cognitive levels of explanation
+b) Physiological levels of explanation
+c) Conceptual levels of explanation
+d) All of the above
+Key:
+d
+------------------
+
+Question:
+: Who argued for a close relationship between the study of psychology and physiology in his book "The Organisation of Behavior"?
+Possible Answers:
+a) Richard Brown
+b) Donald Hebb
+c) B.F. Skinner
+d) Carla Schatz
+Key:
+b
+------------------
+

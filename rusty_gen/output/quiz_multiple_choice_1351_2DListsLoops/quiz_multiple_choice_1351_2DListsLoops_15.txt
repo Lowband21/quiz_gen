@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using a nested for loop in this code?
+
+Possible Answers:
+a) To create an empty list called "temperature"
+b) To append three zeros into a new row variable
+c) To iterate through each column value and append it into a new row variable
+d) To create a list with four rows, each containing three zeros
+
+Key: d

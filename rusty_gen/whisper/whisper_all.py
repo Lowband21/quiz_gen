@@ -5,7 +5,7 @@ from pathlib import Path
 import whisper
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-model = whisper.load_model("small.en").to(DEVICE)
+model = whisper.load_model("medium.en").to(DEVICE)
 
 def transcribe_file(model, file, plain):
     dir = "/home/lowband/dev/quiz_gen/rusty_gen/whisper"

@@ -1,0 +1,11 @@
+Question:
+How do you access the individual elements in a list in Python?
+Possible Answers:
+a) By using the len function
+b) By using the append method
+c) By using the index numbers
+d) By using the print statement
+Key:
+c
+------------------
+

@@ -1,0 +1,11 @@
+Question:
+What is the purpose of the function described in the text?
+Possible Answers:
+a) To create a scalable and positionable house
+b) To animate a circle moving across the screen
+c) To modify a previous animation program
+d) To combine pieces of code to create an animation
+Key:
+a
+------------------
+

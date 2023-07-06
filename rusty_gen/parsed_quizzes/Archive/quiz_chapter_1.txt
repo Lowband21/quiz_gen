@@ -1,0 +1,124 @@
+Question:
+Who were some of the scientists that were describing the detailed structures of nerve cells in the brain in the late nineteenth century?
+Possible Answers:
+a) Marie Curie and Albert Einstein
+b) Charles Darwin and Isaac Newton
+c) Santiago Ramón y Cajal and Camillo Golgi
+d) Thomas Edison and Nikola Tesla
+Key:
+c
+------------------
+
+Question:
+Who is often referred to as the father of neuroscience and made crucial theoretical advances in the understanding of the nervous system?
+Possible Answers:
+a) Charles Sherrington
+b) Santiago Ramón y Cajal
+c) Roger Sperry
+d) Eric Kandel
+Key:
+b
+------------------
+
+Question:
+What techniques permit modulation of the activity of groups of nerve cells with identified functions for a short period of time before allowing them to return to normal functioning?
+Possible Answers:
+a) None of the above
+b) Crude methods that involve permanently destroying several hundred thousand nerve cells
+c) Techniques to record the activity of one cell at a time
+d) Advanced techniques that permit modulation of the activity of groups of nerve cells with identified functions for a short period of time before allowing them to return to normal functioning
+Key:
+d
+------------------
+
+Question:
+According to the text, which of the following ancient Greek writers gave the brain a more important role in the functioning of the mind?
+Possible Answers:
+a) Aristotle
+b) Galen
+c) Plato
+d) Hippocrates
+Key:
+b
+------------------
+
+Question:
+During the Reformation era, what became a subject of great controversy regarding the relationship between the mind and body?
+Possible Answers:
+a) The existence of the soul
+b) The nature of consciousness
+c) The distinction between mental and physical states
+d) The role of emotions in decision-making
+Key:
+c
+------------------
+
+Question:
+What did Descartes suggest as the possible interaction point between the mind and body?
+Possible Answers:
+a. Corpus Callosum
+b. Spinal Cord
+c. Cerebellum
+d. Pineal Gland
+Key:
+d
+------------------
+
+Question:
+According to Descartes' theory, how do animal spirits flow into the muscles that serve to pull the foot back from the fire?
+Possible Answers:
+a. The animal spirits flow through the pores of the skin
+
+b. The animal spirits flow directly from the ventricles of the brain
+
+c. The animal spirits flow through the blood vessels
+
+d. The animal spirits flow through the nerves
+Key:
+a
+------------------
+
+Question:
+Who first suggested that the mechanism envisaged by Descartes might be electrical, rather than fluid, in nature?
+Possible Answers:
+a) Stephen Hales
+b) Luigi Galvani
+c) Hermann von Helmholtz
+d) Giovanni Aldini
+Key:
+a
+------------------
+
+Question:
+Which physiologist was the first to describe the phenomenon of pairing a stimulus with a response leading to a conditioned response, before Pavlov?
+Possible Answers:
+a. Magendie
+b. Little Albert
+c. Nobel
+d. Russian
+Key:
+a
+------------------
+
+Question:
+: According to Skinner in his book The Behaviour of Organisms, what is unnecessary to understand behavior?
+Possible Answers:
+a. Stimulus
+b. Response
+c. Cognitive processes
+d. Reinforcer
+Key:
+c
+------------------
+
+Question:
+: Who argued for a close relationship between the study of psychology and physiology in The Organisation of Behavior?
+Possible Answers:
+a. Helmholtz
+b. Skinner
+c. Hebb
+d. Tanzi
+Key:
+c
+------------------
+

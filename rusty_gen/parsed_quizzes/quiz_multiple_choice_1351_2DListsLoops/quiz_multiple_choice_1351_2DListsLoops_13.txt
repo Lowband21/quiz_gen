@@ -1,0 +1,11 @@
+Question:
+What is the purpose of using a nested for loop in this code?
+Possible Answers:
+a) To create a list literal with exact contents
+b) To fill a 2D list with zeros
+c) To initialize a 2D list with user input
+d) To demonstrate the use of list comprehension
+Key:
+b
+------------------
+

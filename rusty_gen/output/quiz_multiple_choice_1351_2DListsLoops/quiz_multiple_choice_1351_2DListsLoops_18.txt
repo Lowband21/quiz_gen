@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using a nested for loop to fill a 2D list instead of using a list literal?
+
+Possible Answers:
+a) To create a more flexible and scalable code.
+b) To make the code more compact and efficient.
+c) To allow for user input in the creation of the list.
+d) To demonstrate the use of list comprehension in Python.
+
+Key: a

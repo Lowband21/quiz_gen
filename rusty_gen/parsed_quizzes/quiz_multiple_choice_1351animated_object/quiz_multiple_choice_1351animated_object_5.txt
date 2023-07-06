@@ -1,0 +1,11 @@
+Question:
+What method did the author use to create an animation with a house instead of a circle?
+Possible Answers:
+a) Copy and paste the scalable positionable house.
+b) Modify the code from the previous video.
+c) Call the drawHouse method with the X position, Y position, and size.
+d) Clear the background and redraw the frame with a house.
+Key:
+b
+------------------
+

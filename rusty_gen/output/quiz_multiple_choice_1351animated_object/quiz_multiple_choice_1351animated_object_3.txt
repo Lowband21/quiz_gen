@@ -1,0 +1,9 @@
+1. Question: What does the author demonstrate in this text?
+
+Possible Answers:
+a) How to create a scalable positional drawing
+b) How to animate a circle
+c) How to combine scalable positional drawings with animation
+d) How to modify a completed program
+
+Key: c

@@ -1,0 +1,9 @@
+1. Question: What does the author describe as the power behind creating the animation?
+
+Possible Answers:
+a) Combining pieces of code that had already been written
+b) Copying and pasting code from previous projects
+c) Modifying the code for a circle animation
+d) Creating a scalable version of a house drawing
+
+Key: a

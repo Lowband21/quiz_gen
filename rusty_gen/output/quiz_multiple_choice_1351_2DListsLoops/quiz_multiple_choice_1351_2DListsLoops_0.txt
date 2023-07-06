@@ -1,9 +1,7 @@
-1. Question: What is the advantage of using a loop to fill a 2D list instead of using a list literal?
-
+1. Question: How can you create a 2D list using a nested for loop?
 Possible Answers:
-a) It allows for more flexibility in creating the list.
-b) It saves time and reduces the amount of code needed.
-c) It ensures that the list is filled with the correct values.
-d) It makes the code easier to understand and debug.
-
-Key: a
+a) By using a list literal
+b) By using the append() method
+c) By using a list comprehension
+d) By using a while loop
+Key: c

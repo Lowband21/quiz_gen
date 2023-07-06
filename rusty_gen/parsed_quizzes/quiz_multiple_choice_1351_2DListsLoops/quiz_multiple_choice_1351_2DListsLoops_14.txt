@@ -1,0 +1,11 @@
+Question:
+How can you create a 2D list if you don't know the exact contents in advance?
+Possible Answers:
+a) By using a list literal
+b) By using a nested for loop
+c) By using list comprehension
+d) None of the above
+Key:
+b
+------------------
+

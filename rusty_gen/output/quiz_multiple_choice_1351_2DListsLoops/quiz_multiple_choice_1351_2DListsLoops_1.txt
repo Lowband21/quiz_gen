@@ -1,9 +1,9 @@
-1. Question: What method is used to create a 2D list when the exact contents are not known in advance?
+1. Question: What is the advantage of using a nested for loop to create a 2D list instead of using a list literal?
 
 Possible Answers:
-a) list literal
-b) nested for loop
-c) list comprehension
-d) input from the user
+a) It allows for more flexibility in creating larger lists with varying dimensions.
+b) It improves the efficiency of the code by reducing the number of lines.
+c) It simplifies the debugging process by allowing step-by-step execution.
+d) It provides a more compact way to write the code using list comprehension.
 
-Key: b
+Key: a

@@ -1,9 +1,9 @@
-1. Question: How can a 2D list be created if the exact contents are not known in advance?
+1. Question: What is the purpose of using a nested for loop to fill a 2D list?
 
 Possible Answers:
-a) By using a list literal
-b) By using a nested for loop
-c) By using list comprehension
-d) By inputting values from the user
+a) To create a list with an unknown number of rows and columns.
+b) To create a list with a fixed number of rows and columns.
+c) To create a list with a variable number of rows and a fixed number of columns.
+d) To create a list with a fixed number of rows and a variable number of columns.
 
 Key: b

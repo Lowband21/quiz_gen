@@ -1,0 +1,11 @@
+Question:
+What modifications were made to the code in order to animate a house instead of a circle?
+Possible Answers:
+a) The X position was changed to X center.
+b) The Y position was changed to Y center.
+c) The drawHouse method was called instead of the duDraw.filledCircle method.
+d) The size of the house was set to 0.2 by 0.2.
+Key:
+c
+------------------
+

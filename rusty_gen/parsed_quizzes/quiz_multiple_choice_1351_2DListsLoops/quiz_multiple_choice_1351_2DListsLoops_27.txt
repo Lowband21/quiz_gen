@@ -1,0 +1,11 @@
+Question:
+What method is used in the provided code to create a 2D list using a nested for loop?
+Possible Answers:
+a) list comprehension
+b) list literal
+c) input function
+d) append function
+Key:
+b
+------------------
+

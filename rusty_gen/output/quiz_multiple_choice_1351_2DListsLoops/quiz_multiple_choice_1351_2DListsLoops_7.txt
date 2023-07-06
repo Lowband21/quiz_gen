@@ -1,7 +1,9 @@
-1. Question: How can you create a 2D list using a nested for loop?
-Possible Answers: 
-a) By using a list literal
-b) By using a while loop
-c) By using a for loop with a range of values
-d) By using a list comprehension
-Key: d
+1. Question: What is the purpose of using a nested for loop to fill a 2D list?
+
+Possible Answers:
+a) To ensure that the list is filled with the exact contents in advance
+b) To create a more flexible way of filling the list, especially when the contents are unknown
+c) To simplify the code and make it more readable
+d) To demonstrate the use of list comprehension in Python
+
+Key: b

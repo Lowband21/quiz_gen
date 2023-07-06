@@ -1,0 +1,11 @@
+Question:
+How many rows and columns are in the "temperature" list after the code is executed?
+Possible Answers:
+a) 2 rows, 3 columns
+b) 3 rows, 3 columns
+c) 4 rows, 3 columns
+d) 4 rows, 4 columns
+Key:
+c
+------------------
+

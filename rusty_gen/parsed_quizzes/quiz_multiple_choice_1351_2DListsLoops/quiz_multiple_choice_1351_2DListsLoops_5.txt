@@ -1,0 +1,11 @@
+Question:
+How many rows and columns are in the list "temperature"?
+Possible Answers:
+a) 2 rows and 3 columns
+b) 3 rows and 4 columns
+c) 4 rows and 3 columns
+d) 15 rows and 20 columns
+Key:
+c
+------------------
+

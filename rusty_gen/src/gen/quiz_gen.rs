@@ -42,9 +42,9 @@ pub fn preprocess_content(content: &str) -> Vec<String> {
 pub fn generate_question(openai: &OpenAI, prompt: &str) -> String {
     let api_parameters = ChatBody {
         model: "gpt-3.5-turbo".to_string(),
-        max_tokens: Some(1000),
-        temperature: Some(0.8),
-        top_p: Some(1.0),
+        max_tokens: Some(200),
+        temperature: Some(0.6),
+        top_p: Some(0.9),
         n: None,
         stream: None,
         stop: None,

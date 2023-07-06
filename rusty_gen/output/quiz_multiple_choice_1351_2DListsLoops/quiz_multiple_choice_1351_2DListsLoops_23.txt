@@ -1,0 +1,7 @@
+1. Question: In the given text, what is the purpose of using a nested for loop?
+Possible Answers: 
+a) To create a list literal with unknown contents
+b) To append zeros into a new row for each iteration of the outer loop
+c) To load the temperature list with four rows, each consisting of three zeros
+d) To initialize a 2D list with user-inputted values instead of zeros
+Key: b
