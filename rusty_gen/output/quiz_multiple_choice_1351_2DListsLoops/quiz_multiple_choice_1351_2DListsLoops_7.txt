@@ -1,0 +1,7 @@
+1. Question: How can you create a 2D list using a nested for loop?
+Possible Answers: 
+a) By using a list literal
+b) By using a while loop
+c) By using a for loop with a range of values
+d) By using a list comprehension
+Key: d

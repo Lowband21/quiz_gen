@@ -7,23 +7,46 @@ use std::env;
 use std::fs;
 use std::io::prelude::*;
 
+use num_cpus;
+
 use whisper_rs::{FullParams, SamplingStrategy, WhisperContext};
 
-pub fn transcribe_all() {
+pub fn transcribe_all(model_size: String) {
     //let path_to_model = env::args().nth(1).unwrap();
 
     // Load a context and model
-    let ctx = WhisperContext::new("ggml-large.bin").expect("failed to load model");
+    if !Path::new(format!("ggml-{}.bin", model_size).as_str()).exists() {
+        let bash_script_path = "download_model.sh";
+        match Command::new("bash")
+            .arg(bash_script_path)
+            .arg(model_size.clone())
+            .status()
+        {
+            Ok(status) => println!("Exited with status: {}", status),
+            Err(err) => println!("Failed to execute script: {}", err),
+        }
+    }
+    let ctx = WhisperContext::new(format!("ggml-{}.bin", model_size).as_str())
+        .expect("failed to load model");
+
+    // Create directory if it doesn't exist
+    match fs::create_dir_all("whisper/input") {
+        Ok(_) => println!("Input directory created successfully."),
+        Err(err) => println!("Error creating input directory: {}", err),
+    }
 
     // Get all the files in the input directory
-    let entries = fs::read_dir("./transcriptions_in").unwrap();
+    let entries = fs::read_dir("whisper/input").unwrap();
 
     for entry in entries {
         let entry = entry.unwrap();
         let audio_file = entry.path().to_str().unwrap().to_string();
         // Create a params object
         let mut params = FullParams::new(SamplingStrategy::Greedy { best_of: 1 });
-        params.set_n_threads(32);
+
+        let num_threads = num_cpus::get();
+        println!("Setting number of cpu threads to {}", num_threads);
+        params.set_n_threads(num_threads.try_into().unwrap());
 
         // Read the audio file into a buffer (assuming it's a 32-bit floating point sample rate)
         let audio_data: Vec<f32> = read_audio_file(&audio_file);
@@ -56,9 +79,15 @@ pub fn transcribe_all() {
             result += &format!("{}\n", segment);
         }
 
+        // Create directory if it doesn't exist
+        match fs::create_dir_all("whisper/output") {
+            Ok(_) => println!("Output directory created successfully."),
+            Err(err) => println!("Error creating output directory: {}", err),
+        }
+
         // Write the result to a file in the output directory
         let output_file = format!(
-            "./transcriptions_out/{}.txt",
+            "./whisper/output/{}.txt",
             entry.file_name().to_str().unwrap()
         );
         let mut file = File::create(output_file).expect("unable to create file");
@@ -112,6 +141,20 @@ use std::io::BufReader;
 use std::process::Stdio;
 
 pub fn py_whisper() {
+    // Create input and output directories if they 't exist
+    match fs::create_dir_all("whisper/input") {
+        Ok(_) => println!("Input directory created successfully."),
+        Err(err) => println!("Error creating input directory: {}", err),
+    }
+    match fs::create_dir_all("whisper/output/Audios") {
+        Ok(_) => println!("Output directory created successfully."),
+        Err(err) => println!("Error creating output directory: {}", err),
+    }
+    match fs::create_dir_all("whisper/output/Transcriptions") {
+        Ok(_) => println!("Output directory created successfully."),
+        Err(err) => println!("Error creating output directory: {}", err),
+    }
+
     // Define commands for Unix-like and Windows systems
     let (command, script_file, arg) = if cfg!(target_os = "windows") {
         ("cmd", "run_whisper.bat", Some("/C"))

@@ -1,0 +1,9 @@
+1. Question: What method is used to create a 2D list when the exact contents are not known in advance?
+
+Possible Answers:
+a) list literal
+b) nested for loop
+c) list comprehension
+d) input from the user
+
+Key: b

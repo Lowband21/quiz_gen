@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using a nested for loop in the code?
+
+Possible Answers:
+a) To create a list with four rows and three columns using a list literal
+b) To append a new row into the temperature list four times
+c) To create a flexible code that can generate a list with any number of rows and columns
+d) To allow the user to input values for each element in the list
+
+Key: c

@@ -22,6 +22,8 @@ rust-bert = "0.20.0"
 hound = "3.5.0"
 whisper-rs = "0.8.0"
 pyo3 = "0.19.0"
+num_cpus = "1.16.0"
+walkdir = "2.3.3"
 
 [dependencies.rusqlite]
 version = "0.29.0"

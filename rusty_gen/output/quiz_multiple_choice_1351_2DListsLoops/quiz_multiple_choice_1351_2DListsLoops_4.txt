@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using a nested for loop in this code?
+
+Possible Answers:
+a) To create a 2D list with a known set of values.
+b) To append zeros to each row of the temperature variable.
+c) To allow the user to input values for the 2D list.
+d) To demonstrate the use of list comprehension in Python.
+
+Key: b

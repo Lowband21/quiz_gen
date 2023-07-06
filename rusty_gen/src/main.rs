@@ -188,6 +188,16 @@ fn select_generation_mode() -> String {
     generation_mode_choice.as_list_item().unwrap().clone().text
 }
 
+// Function to select difficulty level
+fn select_n_gen() -> i64 {
+    let n_gen_question = Question::int("n_gen")
+        .message("Choose a number of questions to generate per block of content:")
+        .build();
+
+    let n_gen_choice = &requestty::prompt_one(n_gen_question).unwrap();
+    n_gen_choice.clone().try_into_int().unwrap()
+}
+
 // Function to prepare output directory
 fn prepare_output_dir(path: &str) -> PathBuf {
     let output_dir = Path::new(path);
@@ -221,7 +231,24 @@ fn main() {
 
             match gpu_or_cpu.as_list_item().unwrap().clone().text.as_str() {
                 "CPU (Rust)" => {
-                    transcription::whisper::transcribe_all();
+                    let model_size_question = Question::select("model_size")
+                        .message("Select a model size:")
+                        .choices(vec![
+                            "tiny",
+                            "tiny.en",
+                            "base",
+                            "base.en",
+                            "small",
+                            "small.en",
+                            "medium",
+                            "medium.en",
+                            "large-v1",
+                            "large",
+                        ])
+                        .build();
+                    let model_size_answer = &requestty::prompt_one(model_size_question).unwrap();
+                    let model_size = model_size_answer.as_list_item().unwrap().clone().text;
+                    transcription::whisper::transcribe_all(model_size);
                 }
                 "GPU (Python)" => {
                     transcription::whisper::py_whisper();
@@ -258,6 +285,8 @@ fn main() {
                 question_type = select_question_type();
             }
 
+            let n_gen = select_n_gen();
+
             // Generate content for each selected file
             for file in selected_files {
                 let file_path = Path::new("input")
@@ -267,41 +296,57 @@ fn main() {
                 let content = fs::read_to_string(file_path).unwrap();
 
                 let preprocessed_content = preprocess_content(&content);
-                let processed_content: Vec<String>;
 
-                // Determine the generation mode and generate content accordingly
-                match generation_mode.as_str() {
-                    "quiz" => {
-                        processed_content = generate_quiz_questions(
-                            &openai,
-                            &preprocessed_content,
-                            &question_type,
-                            &difficulty_level,
-                        )
-                        .unwrap();
-                        // Write the output content to the file
-                        let output_file_name = format!(
-                            "{}_{}_{}.txt",
-                            generation_mode,
-                            question_type,
-                            file.trim_end_matches(".md")
-                        );
-                        let output_file_path = save_processed(processed_content, output_file_name);
-                        let (quiz_questions, success_rate) =
-                            parse_quiz_file(output_file_path.as_path()).unwrap();
+                for i in 0..n_gen {
+                    // Determine the generation mode and generate content accordingly
+                    match generation_mode.as_str() {
+                        "quiz" => {
+                            let processed_content = generate_quiz_questions(
+                                &openai,
+                                &preprocessed_content,
+                                &question_type,
+                                &difficulty_level,
+                            )
+                            .unwrap();
+                            // Write the output content to the file
+                            let output_file_name = format!(
+                                "{}_{}_{}",
+                                generation_mode,
+                                question_type,
+                                file.trim_end_matches(".md").trim_end_matches(".txt"),
+                            );
+                            let output_file_ext = format!("_{}.txt", i);
 
-                        pretty_print(quiz_questions);
-                        println!("The failure rate was {}", success_rate);
+                            let output_file_path = save_processed(
+                                processed_content,
+                                output_file_name,
+                                output_file_ext,
+                            );
+                            let (quiz_questions, success_rate) =
+                                parse_quiz_file(output_file_path.as_path()).unwrap();
+
+                            pretty_print(quiz_questions);
+                            println!("The failure rate was {}", success_rate);
+                        }
+                        "explanation" => {
+                            let processed_content =
+                                generate_explanations(&openai, &preprocessed_content);
+                            // Write the output content to the file
+                            let output_file_name = format!(
+                                "{}_{}",
+                                generation_mode,
+                                file.trim_end_matches(".md").trim_end_matches(".txt")
+                            );
+                            let output_file_ext = format!("_{}.txt", i);
+                            let _output_file_path = save_processed(
+                                processed_content,
+                                output_file_name,
+                                output_file_ext,
+                            );
+                            todo!("Parse explanation output");
+                        }
+                        _ => panic!("Invalid generation mode selected"),
                     }
-                    "explanation" => {
-                        processed_content = generate_explanations(&openai, &preprocessed_content);
-                        // Write the output content to the file
-                        let output_file_name =
-                            format!("{}_{}.txt", generation_mode, file.trim_end_matches(".md"));
-                        let _output_file_path = save_processed(processed_content, output_file_name);
-                        todo!("Parse explanation output");
-                    }
-                    _ => panic!("Invalid generation mode selected"),
                 }
             }
         }
@@ -326,9 +371,13 @@ fn main() {
     }
 }
 
-fn save_processed(processed_content: Vec<String>, output_file_name: String) -> PathBuf {
+fn save_processed(
+    processed_content: Vec<String>,
+    output_file_name: String,
+    output_file_ext: String,
+) -> PathBuf {
     // Prepare the output directory
-    let output_dir = prepare_output_dir("output");
+    let output_dir = prepare_output_dir(format!("output/{}", output_file_name).as_str());
 
     // Prepare the content to be written to the file
     let mut output_content = String::new();
@@ -336,34 +385,48 @@ fn save_processed(processed_content: Vec<String>, output_file_name: String) -> P
         output_content.push_str(&format!("{}\n", item));
     }
 
-    let output_file_path = output_dir.join(output_file_name);
+    let output_file_path = output_dir.join(format!("{}{}", output_file_name, output_file_ext));
+    println!("{:?}", output_file_path);
     fs::write(&output_file_path, output_content).expect("Unable to write file");
     output_file_path
 }
+
+use walkdir::WalkDir;
+
 fn parse_files_and_output(selected_files: Vec<String>, input_dir: &str, output_dir: &str) {
     // Prepare the output directory
     let output_dir = prepare_output_dir(output_dir);
 
+    // Get a recursive iterator of all files in the input directory
+    let walker = WalkDir::new(input_dir).into_iter();
+
     // Parse each selected file
-    for file in selected_files {
-        let file_path = Path::new(input_dir).join(&file);
-        println!("File Path: {:?}", file_path);
-        let (quiz_questions, success_rate) = parse_quiz_file(file_path.as_path()).unwrap();
-        pretty_print(quiz_questions.clone());
-        println!("The failure rate was {}", success_rate);
+    for entry in walker.filter_map(|e| e.ok()) {
+        // Check if the current entry is a file and matches one of the selected files
+        if entry.file_type().is_file()
+            && selected_files.contains(&entry.file_name().to_string_lossy().into_owned())
+        {
+            let file_path = entry.path();
+            println!("File Path: {:?}", file_path);
+            let (quiz_questions, success_rate) = parse_quiz_file(file_path).unwrap();
+            pretty_print(quiz_questions.clone());
+            println!("The failure rate was {}", success_rate);
 
-        // Write the questions, answers, and keys to a file
-        let mut output_content = String::new();
-        for question in quiz_questions {
-            output_content.push_str(&format!(
-                "Question:\n{}\nPossible Answers:\n{}\nKey:\n{}\n------------------\n\n",
-                question.question.trim(),
-                question.answer.trim(),
-                question.key
-            ));
+            // Write the questions, answers, and keys to a file
+            let mut output_content = String::new();
+            for question in quiz_questions {
+                output_content.push_str(&format!(
+                    "Question:\n{}\nPossible Answers:\n{}\nKey:\n{}\n------------------\n\n",
+                    question.question.trim(),
+                    question.answer.trim(),
+                    question.key
+                ));
+            }
+
+            let output_file_name = entry.file_name().to_string_lossy().into_owned();
+            fs::write(output_dir.join(output_file_name), output_content)
+                .expect("Unable to write file");
         }
-
-        fs::write(output_dir.join(&file), output_content).expect("Unable to write file");
     }
 }
 
