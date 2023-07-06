@@ -1,0 +1,85 @@
+1. Question: What is the function of the nervous system?
+Possible Answers: 
+a) To take in information from the outside world and our bodies
+b) To generate patterns of muscle contractions
+c) To detect visual information about light
+d) To perform computations on inputs and generate outputs
+Key: a
+2. Question: What are the two main components of the nervous system?
+
+Possible Answers:
+a) Brain and spinal nerves
+b) Central nervous system and peripheral nervous system
+c) Cranial nerves and spinal cord
+d) Neurons and nerves
+
+Key: b
+3. Question: Which division of the nervous system is responsible for controlling involuntary bodily functions?
+Possible Answers:
+a) Central nervous system
+b) Peripheral nervous system
+c) Somatic nervous system
+d) Autonomic nervous system
+Key: d
+4. Question: Which division of the nervous system deals with interactions with the external environment and controls voluntary and involuntary movements?
+Possible Answers:
+a) Autonomic nervous system
+b) Central nervous system
+c) Peripheral nervous system
+d) Somatic nervous system
+Key: d
+5. Question: Which part of the nervous system do somatic sensory neurons synapse for the first time in?
+
+Possible Answers:
+a) Peripheral somatic nervous system
+b) Central nervous system
+c) Spinal cord
+d) Brainstem
+
+Key: b
+6. Question: What term is used to describe the specific regions of the skin that sensory information from nerves entering the spinal cord at specific segments carry?
+Possible Answers: 
+a) Synapses
+b) Dermatomes
+c) Ganglia
+d) Axons
+Key: b
+7. Question: Which division of the autonomic nervous system is responsible for regulating motility and secretion of hormones in the gastrointestinal system?
+
+Possible Answers:
+a) Sympathetic nervous system
+b) Parasympathetic nervous system
+c) Enteric nervous system
+d) Somatic nervous system
+
+Key: c
+8. Question: Which neurotransmitter is used by the postganglionic neurons of the sympathetic division of the autonomic nervous system?
+Possible Answers: 
+a) Acetylcholine
+b) Noradrenaline
+c) Norepinephrine
+d) Epinephrine
+Key: b
+9. Question: Which neurotransmitter is released by sympathetic motor neurons?
+Possible Answers:
+a) Acetylcholine
+b) Norepinephrine
+c) Noradrenaline
+d) Dopamine
+Key: b
+10. Question: In most animals, the dorsal brain is aligned with the back of the animal. However, in humans, the top of our head points in a different direction to our back. What is the term used to describe the direction in which the top of our head points?
+
+Possible Answers:
+a) Medial
+b) Lateral
+c) Anterior
+d) Superior
+
+Key: d
+11. Question: How many cervical segments are there in the spinal cord?
+Possible Answers:
+a) 4
+b) 6
+c) 8
+d) 10
+Key: c

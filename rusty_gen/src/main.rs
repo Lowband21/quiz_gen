@@ -432,9 +432,10 @@ fn parse_files_and_output(selected_files: Vec<String>, input_dir: &str, output_d
 
 fn run_quiz(selected_files: Vec<String>, quiz_dir: &str) -> Result<(), Box<dyn std::error::Error>> {
     for i in selected_files {
-        let quiz_file_path = Path::new(quiz_dir).join(i);
+        println!("{:?}", i);
+        //let quiz_file_path = Path::new(quiz_dir).join(i);
         // Run the quiz for each selected file
-        quiz(quiz_file_path)?;
+        quiz(Path::new(i.as_str()).to_path_buf())?;
     }
     Ok(())
 }

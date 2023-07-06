@@ -1,0 +1,121 @@
+Question:
+What is the main function of the nervous system?
+Possible Answers:
+a) To generate patterns of muscle contractions
+b) To detect information from the outside world and our bodies
+c) To perform computations and generate outputs
+d) To enable us to successfully exist and interact with the world
+Key:
+b
+------------------
+
+Question:
+Which structures make up the central nervous system (CNS)?
+Possible Answers:
+a) Neurons and nerves
+b) Brain and spinal cord
+c) Cranial nerves and spinal nerves
+d) Network of neurons and nerves
+Key:
+b
+------------------
+
+Question:
+Which division of the peripheral nervous system is responsible for controlling involuntary bodily functions?
+Possible Answers:
+a) Somatic nervous system
+b) Sympathetic nervous system
+c) Parasympathetic nervous system
+d) Enteric nervous system
+Key:
+c
+------------------
+
+Question:
+What is the main function of the somatic nervous system?
+Possible Answers:
+a) Sensing the external environment and generating voluntary movements
+b) Controlling involuntary movements and reflexes
+c) Initiating complex decision making processes in the brain
+d) Activating motor neurons to contract muscles
+Key:
+a
+------------------
+
+Question:
+What is the region of skin innervated by afferents from a given spinal nerve called?
+Possible Answers:
+a) Dermatome
+b) Myotome
+c) Axon
+d) Cranial nerve
+Key:
+a
+------------------
+
+Question:
+What term is used to describe the specific regions of the skin that sensory information is carried from by nerves entering the spinal cord at specific segments?
+Possible Answers:
+a) Dermatomes
+b) Motor parts
+c) Dorsal roots
+d) Afferents
+Key:
+a
+------------------
+
+Question:
+Which division of the autonomic nervous system is responsible for regulating motility and secretion of hormones in the gastrointestinal system?
+Possible Answers:
+a) Sympathetic division
+b) Parasympathetic division
+c) Enteric division
+d) Somatic division
+Key:
+c
+------------------
+
+Question:
+Which neurotransmitter is used by the postganglionic neurons of the sympathetic division of the autonomic nervous system?
+Possible Answers:
+a) Acetylcholine
+b) Noradrenaline
+c) Epinephrine
+d) Norepinephrine
+Key:
+b
+------------------
+
+Question:
+Which neurotransmitter is released by preganglionic neurons and parasympathetic motor neurons?
+Possible Answers:
+a) Acetylcholine
+b) Noradrenaline
+c) Dopamine
+d) Serotonin
+Key:
+a
+------------------
+
+Question:
+: Which term is used to describe the location of a structure in the brain that is closer to the midline?
+Possible Answers:
+a) Medial
+b) Lateral
+c) Rostral
+d) Caudal
+Key:
+a
+------------------
+
+Question:
+: How many cervical segments are found towards the head in the spinal cord?
+Possible Answers:
+a) 4
+b) 6
+c) 8
+d) 10
+Key:
+c
+------------------
+
