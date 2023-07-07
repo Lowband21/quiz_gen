@@ -1,9 +1,0 @@
-1. Question: What is the branching factor of a binary tree and how many children can a node have at most?
-
-Possible Answers:
-a) Branching factor of 3, at most 3 children per node
-b) Branching factor of 2, at most 2 children per node
-c) Branching factor of 4, at most 4 children per node
-d) Branching factor of 5, at most 5 children per node
-
-Key: b

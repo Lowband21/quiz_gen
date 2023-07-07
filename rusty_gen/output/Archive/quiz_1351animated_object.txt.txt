@@ -1,9 +1,0 @@
-1. Question: What did the author modify in the simplest animation code?
-
-Possible Answers:
-a. Modified the canvas dimensions
-b. Modified the X and Y centers of the circle
-c. Modified the color of the circle
-d. Modified the code to animate a house instead of a circle
-
-Key: d

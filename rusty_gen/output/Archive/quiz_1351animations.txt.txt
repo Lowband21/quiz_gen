@@ -1,9 +1,0 @@
-1. Question: What is the purpose of the while loop in this animation program?
-
-Possible Answers:
-a) To repeatedly redraw the circle with a new background color.
-b) To display the animation for a fixed period of time.
-c) To move the circle across the canvas to create the illusion of movement.
-d) To create an infinite loop that can only be stopped by closing the window.
-
-Key: d

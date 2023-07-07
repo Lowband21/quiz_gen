@@ -1,6 +1,5 @@
-/Archive
-evaluator/target/
-rusty_gen/target/
+Archive
+target
 *.bin
 *.mp4
 *.wav

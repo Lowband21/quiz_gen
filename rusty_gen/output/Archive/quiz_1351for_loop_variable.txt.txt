@@ -1,9 +1,0 @@
-1. Question: What does the expression "range n" mean in Python?
-
-Possible Answers:
-a) It produces a sequence of n integers starting from 0.
-b) It produces a sequence of n integers starting from 1.
-c) It produces a sequence of integers from 0 up to n.
-d) It produces a sequence of integers from 1 up to n.
-
-Key: c

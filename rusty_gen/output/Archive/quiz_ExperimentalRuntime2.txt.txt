@@ -1,7 +1,0 @@
-1. Question: What is the difference in behavior between appending elements at the end of a Python list and inserting elements at the beginning of a Python list as the size of the list increases?
-Possible Answers: 
-a) The time for appending and inserting increases linearly as the size of the list increases.
-b) The time for appending and inserting increases at the same rate as the size of the list increases.
-c) The time for appending and inserting increases more quickly than linearly as the size of the list increases.
-d) The time for appending and inserting does not increase as the size of the list increases.
-Key: c

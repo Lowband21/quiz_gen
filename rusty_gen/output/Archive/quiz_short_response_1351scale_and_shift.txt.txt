@@ -1,7 +1,0 @@
-1. Question: What are the two transformations that are being practiced in this example?
-Possible Answers:
-a) Shifting and scaling
-b) Rotating and reflecting
-c) Translating and rotating
-d) Stretching and squeezing
-Key: a

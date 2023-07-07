@@ -1,9 +1,0 @@
-1. Question: What is the main difference between traversing elements in a linear data structure and traversing elements in a tree?
-
-Possible Answers:
-a) Linear data structures have a hierarchical structure, while trees have a linear structure.
-b) Traversing a list is very straightforward, while traversing a tree requires a systematic process.
-c) Trees have a next and a prev pointer, while linear structures do not.
-d) Arrays can only be traversed in one direction, while trees can be traversed both forwards and backwards.
-
-Key: b

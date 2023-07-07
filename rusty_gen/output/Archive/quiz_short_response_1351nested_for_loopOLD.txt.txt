@@ -1,7 +1,0 @@
-1. Question: How can the number of rows and columns in the output be easily changed?
-Possible Answers:
-a) By altering the values in the stars.py program.
-b) By adjusting the range in the inner for loop.
-c) By using the input statement to prompt the user for the desired number of rows and columns.
-d) By indenting the outer for loop one more level.
-Key: c

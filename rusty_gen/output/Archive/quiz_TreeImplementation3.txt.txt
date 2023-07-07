@@ -1,9 +1,0 @@
-1. Question: According to the implementation discussed in the text, what happens when a user tries to add a root to a BinaryTree that already has a root?
-
-Possible Answers: 
-a) The existing root is overwritten with the new root
-b) A new root is added and becomes the parent of the existing root
-c) An exception is raised with the error message "Root already exists"
-d) The method adds the new root as a child of the existing root
-
-Key: c
