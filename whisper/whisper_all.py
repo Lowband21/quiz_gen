@@ -8,13 +8,12 @@ DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 model = whisper.load_model("medium.en").to(DEVICE)
 
 def transcribe_file(model, file, plain):
-    dir = "/home/lowband/dev/quiz_gen/rusty_gen/whisper"
+    dir = os.getcwd()
     inf = "/input/"
     outf  = "/output/"
     in_path = dir + inf + file
     print(f"Transcribing file: {in_path}\n")
 
-    output_directory = in_path
     result = model.transcribe(in_path, verbose = False, language = "en")
 
     if plain:
