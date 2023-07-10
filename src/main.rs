@@ -207,11 +207,11 @@ fn main() {
 
     match operation_mode.as_str() {
         "analysis" => {
-            eval::bard::run();
-            eval::common_words::run();
+            //eval::bard::run();
             eval::gpt::run();
-            eval::similarity::similarity();
-            eval::stat::run();
+            //eval::common_words::run();
+            //eval::similarity::similarity();
+            //eval::stat::run();
         }
         "transcription" => {
             let gpu_or_cpu = Question::select("difficulty_level")

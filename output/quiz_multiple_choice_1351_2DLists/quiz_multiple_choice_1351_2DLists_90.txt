@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using two-dimensional lists in programming?
+
+Possible Answers:
+a) To store information in a linear format
+b) To represent a matrix or grid of values
+c) To organize information in a single dimension
+d) To simplify the implementation of computer programs
+
+Key: b

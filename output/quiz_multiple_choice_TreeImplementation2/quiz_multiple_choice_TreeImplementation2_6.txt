@@ -1,0 +1,7 @@
+1. Question: What is the depth of the node with contents "Pat" in the binary tree?
+Possible Answers:
+a) 0
+b) 1
+c) 2
+d) 3
+Key: a

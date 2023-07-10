@@ -1,0 +1,9 @@
+1. Question: What is the alternative method to String.index that returns a negative 1 if the substring is not found instead of raising an exception?
+
+Possible Answers:
+a) String.count
+b) String.replace
+c) String.find
+d) String.rstrip
+
+Key: c

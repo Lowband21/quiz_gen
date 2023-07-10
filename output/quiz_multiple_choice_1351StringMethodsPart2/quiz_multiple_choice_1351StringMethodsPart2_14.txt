@@ -1,0 +1,9 @@
+1. Question: What is the alternative to the string method index() if the substring is not found in the string?
+
+Possible Answers:
+a) The method raises a ValueError exception.
+b) The method returns -1.
+c) The method returns None.
+d) The method raises a TypeError exception.
+
+Key: b

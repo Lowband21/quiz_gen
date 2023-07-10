@@ -1,0 +1,9 @@
+1. Question: What is the difference between the methods `index` and `find` in Python?
+
+Possible Answers:
+a) The `index` method raises an exception if the substring is not found, while the `find` method returns -1.
+b) The `index` method returns -1 if the substring is not found, while the `find` method raises an exception.
+c) Both the `index` and `find` methods return -1 if the substring is not found.
+d) Both the `index` and `find` methods raise an exception if the substring is not found.
+
+Key: a

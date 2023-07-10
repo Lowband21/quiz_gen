@@ -1,0 +1,7 @@
+1. Question: What is the order in which nodes are visited in an in-order traversal of a binary tree?
+Possible Answers:
+a) Pre-order, Post-order, In-order
+b) Post-order, Pre-order, In-order
+c) In-order, Pre-order, Post-order
+d) In-order, Post-order, Pre-order
+Key: c

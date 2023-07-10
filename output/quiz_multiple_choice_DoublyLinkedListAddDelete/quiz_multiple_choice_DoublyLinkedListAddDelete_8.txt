@@ -1,0 +1,7 @@
+1. Question: What is the purpose of a sentinel node in a doubly linked list?
+Possible Answers: 
+a) To mark the beginning of the list
+b) To mark the end of the list
+c) To indicate the presence of errors in the list
+d) To store the value of the last inserted node
+Key: b

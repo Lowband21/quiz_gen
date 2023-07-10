@@ -1,0 +1,7 @@
+1. Question: What is the order in which nodes are visited in a pre-order traversal?
+Possible Answers: 
+a) Root, Left, Right
+b) Left, Root, Right
+c) Right, Root, Left
+d) Left, Right, Root
+Key: a

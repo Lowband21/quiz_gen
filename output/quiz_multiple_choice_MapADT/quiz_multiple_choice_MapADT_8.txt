@@ -1,0 +1,7 @@
+1. Question: What is the purpose of a MapADT?
+Possible Answers: 
+a) To store data in pairs of key-value
+b) To search for items in a data structure
+c) To count occurrences of words in a file
+d) To traverse through a list of keys and values
+Key: a

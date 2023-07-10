@@ -1,0 +1,7 @@
+1. Question: What type of traversal visits all nodes at a specific depth before proceeding to nodes at the next deeper level?
+Possible Answers: 
+a) Pre-order traversal
+b) Post-order traversal
+c) In-order traversal
+d) Breadth-first traversal
+Key: d

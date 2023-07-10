@@ -1,0 +1,7 @@
+1. Question: What are some examples of games that would likely use a 2D list for storage of information?
+Possible Answers: 
+a) Tic Tac Toe, Chess, and Connect Four
+b) Battleship, Candy Crush, and Minesweeper
+c) 2048, Tic Tac Toe, and Battleship
+d) Chess, Minesweeper, and Connect Four
+Key: a

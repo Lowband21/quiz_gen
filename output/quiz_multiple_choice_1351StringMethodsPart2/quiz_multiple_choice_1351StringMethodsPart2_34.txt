@@ -1,0 +1,9 @@
+1. Question: What does the string.index method do when the passed parameter sub is not found in the string?
+
+Possible Answers:
+a) Returns the index of the last location where the string sub is found in string
+b) Returns -1
+c) Raises a value error and crashes the program
+d) Returns None
+
+Key: c

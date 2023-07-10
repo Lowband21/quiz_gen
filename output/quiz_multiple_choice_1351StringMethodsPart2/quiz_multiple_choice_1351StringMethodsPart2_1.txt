@@ -1,0 +1,9 @@
+1. Question: What is the alternative method to String.index if the substring is not found in the string?
+
+Possible Answers:
+a) String.find
+b) String.replace
+c) String.count
+d) String.rstrip
+
+Key: a

@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the string method `index`?
+
+Possible Answers:
+a) It returns the index of the last location where a substring is found in a string.
+b) It raises an exception if the substring is not found in the string.
+c) It counts the number of times a substring appears in a string.
+d) It removes all trailing whitespace characters from a string.
+
+Key: b

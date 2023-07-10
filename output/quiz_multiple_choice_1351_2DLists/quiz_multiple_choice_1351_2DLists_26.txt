@@ -1,0 +1,9 @@
+1. Question: What is the benefit of using 2D lists in programming?
+
+Possible Answers:
+a) They allow for linear storage of multiple values
+b) They can be used to store information in two dimensions, such as in games or grids
+c) They make it easier to access individual elements in a list
+d) They are a more efficient way to store digital images
+
+Key: b

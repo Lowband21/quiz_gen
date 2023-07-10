@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using sentinel nodes in a doubly linked list implementation?
+
+Possible Answers:
+a) To store actual data in the list
+b) To point to the first and last true nodes in the list
+c) To simplify special cases when adding or removing nodes
+d) To traverse the list in both forward and reverse directions
+
+Key: c

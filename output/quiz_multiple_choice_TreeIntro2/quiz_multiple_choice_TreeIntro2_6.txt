@@ -1,0 +1,9 @@
+1. Question: What is the definition of node depth in a tree?
+
+Possible Answers:
+a) The maximum depth of all the nodes in the tree
+b) The number of ancestors a node has, not including itself
+c) The height of a node's subtree
+d) The maximum number of children among all the nodes
+
+Key: b

@@ -1,0 +1,9 @@
+1. Question: What is a common use case for two-dimensional lists in programming?
+
+Possible Answers:
+a) Storing temperature measurements at different times
+b) Storing monthly heating bills for different apartments
+c) Storing information for games like tic tac toe and chess
+d) Storing digital images as a grid of colors
+
+Key: c

@@ -1,0 +1,9 @@
+1. Question: What does a for loop in Python allow you to do?
+
+Possible Answers:
+a) Import duDraw and the random package
+b) Create random shapes on a canvas
+c) Repeat a block of code a specified number of times
+d) Display a window until the user closes it
+
+Key: c

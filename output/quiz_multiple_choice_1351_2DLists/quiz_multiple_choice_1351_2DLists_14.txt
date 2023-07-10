@@ -1,0 +1,9 @@
+1. Question: What is one reason why 2D lists are useful in programming?
+
+Possible Answers:
+a) They are necessary for storing images.
+b) They allow for the implementation of games like tic tac toe and chess.
+c) They make it easier to access individual elements in a list.
+d) They provide a way to organize temperature measurements. 
+
+Key: b

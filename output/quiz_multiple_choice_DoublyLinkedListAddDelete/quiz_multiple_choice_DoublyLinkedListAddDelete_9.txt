@@ -1,0 +1,7 @@
+1. Question: What is the purpose of sentinel nodes in a doubly linked list?
+Possible Answers:
+a) They store the values for the header and trailer nodes.
+b) They prevent errors in the contents of the memory.
+c) They help in the process of garbage collection.
+d) They serve as placeholders for new nodes to be inserted.
+Key: b

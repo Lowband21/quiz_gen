@@ -1,0 +1,9 @@
+1. Question: Which of the following games would likely use a 2D list in Python for implementing the storage of information?
+
+Possible Answers:
+a) Tic Tac Toe
+b) Checkers
+c) Chess
+d) Connect Four
+
+Key: a

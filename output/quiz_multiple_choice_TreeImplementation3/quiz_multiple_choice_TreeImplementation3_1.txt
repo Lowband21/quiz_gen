@@ -1,0 +1,7 @@
+1. Question: What does the BinaryTree constructor do?
+Possible Answers:
+a) Initializes the instance variables of the BinaryTree class
+b) Initializes the instance variables of the TreeNode class
+c) Adds a root node to the tree
+d) Adds a child node to the tree
+Key: a

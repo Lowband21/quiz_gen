@@ -1,0 +1,7 @@
+1. Question: What is the purpose of using for loops in Python?
+Possible Answers:
+a) To create random shapes on a canvas
+b) To repeat lines of code a specific number of times
+c) To import packages and libraries
+d) To draw rectangles and circles on a canvas
+Key: b

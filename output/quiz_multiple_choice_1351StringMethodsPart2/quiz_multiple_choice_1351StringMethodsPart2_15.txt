@@ -1,0 +1,7 @@
+1. Question: What does the `index` method of a string do when the specified substring is not found in the string?
+Possible Answers:
+a) It returns -1
+b) It raises a ValueError exception
+c) It returns an empty string
+d) It returns None
+Key: b

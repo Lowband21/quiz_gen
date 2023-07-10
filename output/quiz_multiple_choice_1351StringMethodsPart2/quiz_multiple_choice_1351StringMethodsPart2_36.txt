@@ -1,0 +1,9 @@
+1. Question: What is the difference between the `index` method and the `find` method for strings?
+
+Possible Answers:
+a) The `index` method returns the index of the first occurrence of a substring in a string, while the `find` method returns the index of the last occurrence.
+b) The `index` method raises an exception if the substring is not found, while the `find` method returns -1 in such cases.
+c) The `index` method only works for single characters, while the `find` method works for both single characters and substrings.
+d) The `index` method and the `find` method are the same and can be used interchangeably.
+
+Key: b

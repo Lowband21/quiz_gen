@@ -1,0 +1,9 @@
+1. Question: What is the alternative method to string.index that returns a negative 1 if the substring is not found in the string?
+
+Possible Answers:
+a) string.count
+b) string.replace
+c) string.rstrip
+d) string.find
+
+Key: d

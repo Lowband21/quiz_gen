@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the set abstract data type (ADT)?
+
+Possible Answers:
+a) To store elements in a specific order
+b) To allow for duplicate elements
+c) To provide an interface for interacting with a collection of objects
+d) To perform basic mathematical operations on sets
+
+Key: c

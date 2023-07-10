@@ -1,0 +1,7 @@
+1. Question: What is the order in which nodes are visited in a pre-order traversal of a tree?
+Possible Answers:
+a) First process the root node, then process the left child subtree, and finally process the right child subtree.
+b) First process the left child subtree, then process the root node, and finally process the right child subtree.
+c) First process the left child subtree, then process the right child subtree, and finally process the root node.
+d) First process the right child subtree, then process the left child subtree, and finally process the root node.
+Key: a

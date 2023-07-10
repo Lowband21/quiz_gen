@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using ArraySet in the given context?
+
+Possible Answers:
+a) To implement an ADT using an array
+b) To demonstrate the usage of dynamic arrays in Python
+c) To showcase the functionality of the add method in ArraySet
+d) To highlight the benefits of using a set data structure
+
+Key: a

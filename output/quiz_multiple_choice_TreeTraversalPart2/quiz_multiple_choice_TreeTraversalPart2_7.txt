@@ -1,0 +1,9 @@
+1. Question: Which traversal method visits the nodes by processing the root node in between the children?
+
+Possible Answers:
+a) Pre-order traversal
+b) Post-order traversal
+c) In-order traversal
+d) Breadth-first traversal
+
+Key: c

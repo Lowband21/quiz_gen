@@ -1,0 +1,9 @@
+1. Question: What are some examples of games or applications that would benefit from using a 2D list?
+
+Possible Answers:
+a) Tic Tac Toe, chess, Connect Four, Battleship, Candy Crush, Minesweeper, 2048, and digital images
+b) Tic Tac Toe, chess, Connect Four, Battleship, Candy Crush, Minesweeper, and 2048
+c) Tic Tac Toe, chess, Connect Four, Battleship, and digital images
+d) Tic Tac Toe, chess, Connect Four, and Battleship
+
+Key: a

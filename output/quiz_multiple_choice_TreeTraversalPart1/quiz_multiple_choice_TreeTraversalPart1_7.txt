@@ -1,0 +1,7 @@
+1. Question: Which type of traversal only works for binary trees?
+Possible Answers:
+a) Pre order traversal
+b) Post order traversal
+c) In order traversal
+d) Breadth first traversal
+Key: c

@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using 2D lists in programming?
+
+Possible Answers:
+a) To store information in a linear manner
+b) To create matrices or grids of values
+c) To access individual elements in a list
+d) To organize information in a grid-like structure
+
+Key: b

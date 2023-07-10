@@ -1,0 +1,7 @@
+1. Question: What are the four references that need to be fixed when inserting a node into a doubly linked list?
+Possible Answers:
+a) The next pointer and the prev pointer in the new node itself
+b) The next pointer and the prev pointer in the node on the right
+c) The next pointer in the node before and the prev pointer in the node after
+d) The next pointer in the node after and the prev pointer in the node before
+Key: a

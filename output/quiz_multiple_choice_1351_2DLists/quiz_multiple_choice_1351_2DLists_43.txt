@@ -1,0 +1,9 @@
+1. Question: What are some examples of games that would likely use a 2D list in their implementation?
+
+Possible Answers:
+a) Tic Tac Toe, chess, and Connect Four
+b) Battleship, maze, and Candy Crush
+c) Minesweeper, 2048, and digital images
+d) All of the above
+
+Key: d

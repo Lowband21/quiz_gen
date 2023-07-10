@@ -1,0 +1,9 @@
+1. Question: What method can be used to find the index of the first occurrence of a substring in a string, but returns -1 if the substring is not found?
+
+Possible Answers:
+a) String.index
+b) String.find
+c) String.count
+d) String.replace
+
+Key: b

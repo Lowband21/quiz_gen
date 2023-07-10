@@ -1,0 +1,9 @@
+1. Question: What is an example of an ordered tree?
+
+Possible Answers:
+a) Electronics R Us organizational chart
+b) Tree with just one node
+c) Empty tree
+d) List of sections in a book
+
+Key: d

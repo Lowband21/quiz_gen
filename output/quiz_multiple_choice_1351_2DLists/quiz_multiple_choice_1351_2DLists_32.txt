@@ -1,0 +1,9 @@
+1. Question: Why would a programmer need to use two-dimensional lists in Python?
+
+Possible Answers:
+a) Two-dimensional lists are necessary for storing information in games like tic tac toe and chess.
+b) Two-dimensional lists are used to store digital images.
+c) Two-dimensional lists are helpful for organizing information in a grid.
+d) All of the above.
+
+Key: d

@@ -1,0 +1,9 @@
+1. Question: What is the purpose of using sentinel nodes in a doubly linked list?
+
+Possible Answers:
+a) Sentinel nodes are used to store the actual data in the list.
+b) Sentinel nodes are used to simplify the implementation of special cases in the list.
+c) Sentinel nodes are used to improve the efficiency of traversing the list.
+d) Sentinel nodes are used to indicate the end of the list.
+
+Key: b

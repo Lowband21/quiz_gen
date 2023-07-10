@@ -1,0 +1,9 @@
+1. Question: What is the alternative method to the index method for finding the index of a substring in a string, if the substring is not found at all?
+
+Possible Answers:
+a) string.index
+b) string.search
+c) string.find
+d) string.locate
+
+Key: c

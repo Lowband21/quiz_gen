@@ -1,0 +1,9 @@
+1. Question: Why are 2D lists useful in programming?
+
+Possible Answers:
+a) They are used to store information in one dimension.
+b) They are used to store information in two dimensions.
+c) They are used to store information in three dimensions.
+d) They are used to store information in four dimensions.
+
+Key: b

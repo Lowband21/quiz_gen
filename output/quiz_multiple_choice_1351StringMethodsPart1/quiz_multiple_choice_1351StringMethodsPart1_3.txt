@@ -1,0 +1,9 @@
+1. Question: Which method in Python can be used to check if a string is all lowercase?
+
+Possible Answers:
+a) isLower
+b) is_lowercase
+c) islowercase
+d) is_all_lowercase
+
+Key: a

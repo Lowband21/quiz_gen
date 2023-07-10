@@ -1,0 +1,9 @@
+1. Question: Which string method can be used to find the index of the first occurrence of a substring in a string?
+
+Possible Answers:
+a) index
+b) find
+c) count
+d) replace
+
+Key: b

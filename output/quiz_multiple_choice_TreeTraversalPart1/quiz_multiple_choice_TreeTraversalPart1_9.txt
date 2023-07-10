@@ -1,0 +1,7 @@
+1. Question: Which of the following is NOT a type of depth first search used for traversing a tree?
+Possible Answers:
+a) Pre order traversal
+b) Post order traversal
+c) In order traversal
+d) Breadth first traversal
+Key: d

@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the `index` method in Python?
+
+Possible Answers:
+a) It returns the number of times a substring appears in a string.
+b) It replaces all occurrences of a substring with a new string.
+c) It removes all trailing whitespace characters from a string.
+d) It finds and returns the index of the first location where a substring is found in a string.
+
+Key: d

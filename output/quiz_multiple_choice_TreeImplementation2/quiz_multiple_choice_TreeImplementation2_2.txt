@@ -1,0 +1,7 @@
+1. Question: What is the height of the node with contents "Drew" in the binary tree?
+Possible Answers:
+a) 0
+b) 1
+c) 2
+d) 3
+Key: d

@@ -1,0 +1,9 @@
+1. Question: What does the method `string.index(sub)` do?
+
+Possible Answers:
+a) Returns the index of the first location where the string `sub` is found in `string`
+b) Returns a negative 1 if the string `sub` is not found in `string`
+c) Raises a value error if the string `sub` is not found in `string`
+d) Returns a boolean expression indicating whether the string `sub` is found within `string`
+
+Key: a

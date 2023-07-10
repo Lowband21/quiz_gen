@@ -1,0 +1,9 @@
+1. Question: Why do we need two-dimensional lists in programming?
+
+Possible Answers:
+a) To store information in one dimension
+b) To implement games and store game data
+c) To represent images as pixels
+d) To organize information in a grid
+
+Key: b

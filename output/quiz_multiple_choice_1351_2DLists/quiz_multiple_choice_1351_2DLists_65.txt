@@ -1,0 +1,9 @@
+1. Question: What is a two dimensional list in Python?
+
+Possible Answers:
+a) A matrix or grid of values
+b) A list with nested lists
+c) A list that stores information in two dimensions
+d) A list used for storing images
+
+Key: a

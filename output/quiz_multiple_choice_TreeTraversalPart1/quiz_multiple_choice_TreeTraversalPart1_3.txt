@@ -1,0 +1,7 @@
+1. Question: What is a pre order traversal in a tree?
+Possible Answers:
+a) Visiting each node in the order: root, left child, right child
+b) Visiting each node in the order: left child, root, right child
+c) Visiting each node in the order: left child, right child, root
+d) Visiting each node in the order: root, right child, left child
+Key: a

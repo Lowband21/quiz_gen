@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the set abstract data type?
+
+Possible Answers:
+a) To store data in a specific order
+b) To allow for duplicate elements in a collection
+c) To provide an interface for interacting with data
+d) To perform basic arithmetic operations on data
+
+Key: c

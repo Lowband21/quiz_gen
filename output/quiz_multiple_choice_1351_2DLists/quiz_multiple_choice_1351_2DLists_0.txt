@@ -1,0 +1,9 @@
+1. Question: Why are 2D lists necessary in programming?
+
+Possible Answers:
+a) They are required for storing information in games like tic-tac-toe and chess.
+b) They allow for organizing information in a grid-like structure.
+c) They are used to store digital images as a grid of colors.
+d) All of the above.
+
+Key: d

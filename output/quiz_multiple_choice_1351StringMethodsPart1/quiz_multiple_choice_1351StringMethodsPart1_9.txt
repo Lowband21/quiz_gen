@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the isLower method in Python's string type?
+
+Possible Answers:
+a) It converts a string to all lowercase letters.
+b) It determines if a string is all lowercase letters.
+c) It checks if a string ends with a specified value.
+d) It returns the lowercase version of a string.
+
+Key: b

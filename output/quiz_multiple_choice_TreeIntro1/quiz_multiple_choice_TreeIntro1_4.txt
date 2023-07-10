@@ -1,0 +1,9 @@
+1. Question: What is the definition of an ancestor in the context of trees?
+
+Possible Answers:
+a) A node that has no children
+b) A node that lies on a path connecting another node to the root
+c) A node that has a parent-child relationship with another node
+d) A node that is the root of the tree
+
+Key: b

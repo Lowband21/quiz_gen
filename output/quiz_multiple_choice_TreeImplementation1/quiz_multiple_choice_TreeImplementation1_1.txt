@@ -1,0 +1,9 @@
+1. Question: What is the purpose of the "TreeNode" utility class mentioned in the text?
+
+Possible Answers:
+a) To represent the values contained in each node of the binary tree.
+b) To define the structure of each node in the binary tree.
+c) To compute the depth and height of each node in the binary tree.
+d) To output the contents of the binary tree in various ways.
+
+Key: b

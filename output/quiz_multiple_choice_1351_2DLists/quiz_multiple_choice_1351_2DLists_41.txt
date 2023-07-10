@@ -1,0 +1,9 @@
+1. Question: What are some examples of games or applications that would likely use a two-dimensional list in Python?
+
+Possible Answers:
+a) Tic Tac Toe, Connect Four, Chess
+b) Candy Crush, Minesweeper, 2048
+c) Battleship, Maze, Digital Images
+d) All of the above
+
+Key: d

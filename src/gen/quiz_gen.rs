@@ -39,11 +39,13 @@ pub fn preprocess_content(content: &str) -> Vec<String> {
     sections
 }
 
-pub fn generate_question(openai: &OpenAI, prompt: &str) -> String {
+use std::error::Error;
+
+pub fn generate_question(openai: &OpenAI, prompt: &str) -> Result<String, Box<dyn Error>> {
     let api_parameters = ChatBody {
         model: "gpt-3.5-turbo".to_string(),
         max_tokens: Some(200),
-        temperature: Some(0.6),
+        temperature: Some(0.8),
         top_p: Some(0.9),
         n: None,
         stream: None,
@@ -64,18 +66,23 @@ pub fn generate_question(openai: &OpenAI, prompt: &str) -> String {
         ],
     };
 
-    let response = openai.chat_completion_create(&api_parameters).unwrap();
-    let question = response.choices[0]
-        .message
-        .as_ref()
-        .unwrap()
-        .content
-        .clone();
+    loop {
+        let response = openai.chat_completion_create(&api_parameters);
+        match response {
+            Ok(res) => {
+                let question = res.choices[0].message.as_ref().unwrap().content.clone();
 
-    // Log the API call
-    log_api_call(prompt, &serde_json::to_string(&api_parameters).unwrap());
+                // Log the API call
+                log_api_call(prompt, &serde_json::to_string(&api_parameters).unwrap());
 
-    question
+                return Ok(question);
+            }
+            Err(e) => {
+                eprintln!("Error: {}. Trying again...", e);
+                continue;
+            }
+        }
+    }
 }
 
 use rusqlite::{params, Connection, Result};
@@ -109,7 +116,7 @@ pub fn generate_quiz_questions(
             question_type, difficulty_level, section
 
         );
-        let question = generate_question(openai, &prompt);
+        let question = generate_question(openai, &prompt).unwrap();
         questions.push(format!("{}. {}", idx + 1, question));
         //println!("{}", format!("{}. {}", idx + 1, question));
 

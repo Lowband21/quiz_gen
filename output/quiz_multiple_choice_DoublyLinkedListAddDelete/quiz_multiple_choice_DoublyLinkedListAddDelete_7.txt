@@ -1,0 +1,9 @@
+1. Question: What is the purpose of sentinel nodes in a doubly linked list?
+
+Possible Answers:
+a) To mark the beginning and end of the list
+b) To store the values of the nodes
+c) To keep track of the number of nodes in the list
+d) To point to the previous node in the list
+
+Key: a

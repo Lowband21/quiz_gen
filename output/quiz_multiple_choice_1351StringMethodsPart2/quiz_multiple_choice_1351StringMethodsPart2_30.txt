@@ -1,0 +1,9 @@
+1. Question: Which string method can be used to find the index of the first occurrence of a substring within a string?
+
+Possible Answers:
+a) string.replace
+b) string.rstrip
+c) string.find
+d) string.split
+
+Key: c

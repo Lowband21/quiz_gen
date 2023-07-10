@@ -1,0 +1,9 @@
+1. Question: What does the `index` method of a string do if the substring is not found in the string?
+
+Possible Answers:
+a) Returns the index of the last occurrence of the substring
+b) Raises a value error and crashes the program
+c) Returns a negative 1
+d) Returns None
+
+Key: b

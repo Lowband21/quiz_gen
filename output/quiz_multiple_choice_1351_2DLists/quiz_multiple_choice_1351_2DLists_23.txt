@@ -1,0 +1,9 @@
+1. Question: Why do we need two-dimensional lists in programming?
+
+Possible Answers:
+a) Two-dimensional lists are required for storing information in games like tic tac toe and chess.
+b) Two-dimensional lists are used for storing digital images.
+c) Two-dimensional lists are useful for organizing data in grids.
+d) All of the above.
+
+Key: d

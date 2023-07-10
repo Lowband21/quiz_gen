@@ -7,7 +7,7 @@ import whisper
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 model = whisper.load_model("medium.en").to(DEVICE)
 
-def transcribe_file(model, file, plain):
+def transcribe_file(model, file):
     dir = os.getcwd()
     inf = "/input/"
     outf  = "/output/"
@@ -16,16 +16,15 @@ def transcribe_file(model, file, plain):
 
     result = model.transcribe(in_path, verbose = False, language = "en")
 
-    if plain:
-        out_audio_path = dir + outf + "Audios/" + file
-        out_text_path =  dir + outf + "Transcriptions/" + file[:-4] + ".txt"
-        print(f"\nCreating text file")
+    out_audio_path = dir + outf + "Audios/" + file
+    out_text_path =  dir + outf + "Transcriptions/" + file[:-4] + ".txt"
+    print(f"\nCreating text file")
 
-        with open(out_text_path, "w", encoding="utf-8") as txt:
-            txt.write(result["text"])
+    with open(out_text_path, "w", encoding="utf-8") as txt:
+        txt.write(result["text"])
 
-        os.rename(in_path, out_audio_path)
+    os.rename(in_path, out_audio_path)
     return result
 
 for file in os.listdir("./input"):
-    transcribe_file(model, file, True)
+    transcribe_file(model, file)

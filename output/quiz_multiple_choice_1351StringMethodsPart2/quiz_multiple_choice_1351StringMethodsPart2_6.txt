@@ -1,0 +1,9 @@
+1. Question: What does the `index` method do when the passed parameter is not found in the string?
+
+Possible Answers:
+a) It returns the index of the last location where the string is found.
+b) It returns the index of the first location where the string is found.
+c) It raises a value error and crashes the program.
+d) It returns -1 if the string is not found.
+
+Key: c

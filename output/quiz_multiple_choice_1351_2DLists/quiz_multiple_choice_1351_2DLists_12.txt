@@ -1,0 +1,9 @@
+1. Question: What is a common reason for using two-dimensional lists in programming?
+
+Possible Answers:
+a) To store information in a linear format
+b) To create a matrix or grid of values
+c) To implement games like tic tac toe and chess
+d) To store digital images in color
+
+Key: b

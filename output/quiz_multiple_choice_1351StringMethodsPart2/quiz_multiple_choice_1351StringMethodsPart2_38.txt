@@ -1,0 +1,9 @@
+1. Question: What method can be used to find the index of the first occurrence of a specified substring in a string, and raises a value error if the substring is not found?
+
+Possible Answers:
+a) string.index
+b) string.find
+c) string.count
+d) string.replace
+
+Key: a

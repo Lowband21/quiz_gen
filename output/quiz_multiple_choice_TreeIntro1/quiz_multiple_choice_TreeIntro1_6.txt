@@ -1,0 +1,9 @@
+1. Question: What is the definition of an internal node in a tree?
+
+Possible Answers:
+a) A node that has no children
+b) A node that has at least one child
+c) A node that is the root of the tree
+d) A node that is not connected to any other nodes
+
+Key: b
