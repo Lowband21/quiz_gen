@@ -1,0 +1,7 @@
+Question: Which type of glial cell is responsible for wrapping layers of myelin around neuronal axons?
+Possible Answers:
+a) Astrocytes
+b) Oligodendrocytes
+c) Microglia
+d) Ependymal cells
+Key: b

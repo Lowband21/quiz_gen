@@ -1,0 +1,7 @@
+Question: What is the function of the autonomic nervous system?
+Possible Answers:
+a) Mediates interactions with the external environment
+b) Regulates heart rate and blood vessel dilation
+c) Controls skeletal muscle movements
+d) Processes sensory information from the peripheral nervous system
+Key: b

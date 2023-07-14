@@ -1,0 +1,7 @@
+Question: Which type of cell in the nervous system performs the signaling and information processing?
+Possible Answers: 
+a) Neurons
+b) Glia
+c) Astrocytes
+d) Oligodendrocytes
+Key: a

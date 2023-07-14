@@ -1,9 +1,9 @@
-1. Question: What is the purpose of using ArraySet in the given text?
+Question: Which data structure is used to implement the ArraySet?
 
 Possible Answers:
-a) To demonstrate the implementation of a dynamic array
-b) To showcase the usage of PythonList
-c) To explain the concept of naming conventions in ADT implementation
-d) To highlight the functionality of the set interface
+a) Linked List
+b) Binary Tree
+c) Dynamic Array
+d) Hash Table
 
-Key: d
+Key: c

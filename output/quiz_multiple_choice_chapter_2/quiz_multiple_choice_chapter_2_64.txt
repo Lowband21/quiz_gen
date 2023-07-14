@@ -1,0 +1,7 @@
+Question: What is the function of the cerebellum?
+Possible Answers: 
+a) Regulating heart rate
+b) Processing sensory information
+c) Controlling voluntary movements
+d) Regulating body temperature
+Key: c

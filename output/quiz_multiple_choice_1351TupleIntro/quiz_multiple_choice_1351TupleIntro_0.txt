@@ -1,0 +1,9 @@
+Question: What is a tuple in Python?
+
+Possible Answers:
+a) A way to connect two or more variables into one container
+b) A data structure that stores a single value
+c) A container that allows for mutable values
+d) A type of loop in Python
+
+Key: a

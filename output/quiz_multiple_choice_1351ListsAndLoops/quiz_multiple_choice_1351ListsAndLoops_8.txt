@@ -1,0 +1,9 @@
+Question: How is the length of a list obtained in Python?
+
+Possible Answers:
+a) By using the len() function
+b) By counting the number of elements in the list
+c) By subtracting 1 from the index of the last element
+d) By using a for loop to iterate through each element
+
+Key: a

@@ -1,0 +1,9 @@
+Question: What is the purpose of the len() function when working with lists in Python?
+
+Possible Answers:
+a) It returns the total number of elements in a list.
+b) It returns the first element in a list.
+c) It returns the last element in a list.
+d) It returns the sum of all elements in a list.
+
+Key: a

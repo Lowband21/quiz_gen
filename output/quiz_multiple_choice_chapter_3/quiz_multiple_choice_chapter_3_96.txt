@@ -1,0 +1,9 @@
+Question: What are the two main types of cells in the nervous system?
+
+Possible Answers: 
+a) Neurons and astrocytes
+b) Neurons and glia
+c) Astrocytes and glia
+d) Astrocytes and dendrites
+
+Key: b

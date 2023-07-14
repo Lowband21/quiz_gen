@@ -1,9 +1,9 @@
-1. Question: What is the order in which nodes are visited in an in-order traversal of a binary tree?
+Question: Which type of traversal visits the root node in between its children in a binary tree?
 
 Possible Answers:
-a) Pre-order, post-order, in-order
-b) Post-order, in-order, pre-order
-c) In-order, pre-order, post-order
-d) In-order, post-order, pre-order
+a) Pre-order traversal
+b) Post-order traversal
+c) In-order traversal
+d) Breadth-first traversal
 
 Key: c

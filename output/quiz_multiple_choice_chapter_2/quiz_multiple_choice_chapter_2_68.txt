@@ -1,0 +1,7 @@
+Question: What is the function of the somatic nervous system?
+Possible Answers:
+a) Regulating heart rate and digestion
+b) Controlling voluntary movements and interactions with the external environment
+c) Mediating interactions with the body's internal environment
+d) Processing sensory information and generating motor responses
+Key: b

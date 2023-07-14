@@ -1,0 +1,9 @@
+Question: Which of the following statements about strings is true?
+
+Possible Answers:
+a) Strings are mutable and can be changed directly.
+b) Strings can be sliced using negative indices.
+c) Strings cannot be traversed using for loops.
+d) Strings have a fixed length and cannot be resized.
+
+Key: b

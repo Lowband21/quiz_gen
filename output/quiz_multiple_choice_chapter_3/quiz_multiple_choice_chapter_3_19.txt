@@ -1,0 +1,9 @@
+Question: What is the main function of glial cells in the nervous system?
+
+Possible Answers:
+a) Glial cells support the structure of neurons
+b) Glial cells transmit electrical signals between neurons
+c) Glial cells produce neurotransmitters for neuronal communication
+d) Glial cells regulate blood flow in the brain
+
+Key: a

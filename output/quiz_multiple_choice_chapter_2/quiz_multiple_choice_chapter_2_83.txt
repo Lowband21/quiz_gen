@@ -1,0 +1,7 @@
+Question: Which part of the brain is responsible for fear learning?
+Possible Answers:
+a) Cerebral cortex
+b) Basal ganglia
+c) Hippocampus
+d) Amygdala
+Key: d

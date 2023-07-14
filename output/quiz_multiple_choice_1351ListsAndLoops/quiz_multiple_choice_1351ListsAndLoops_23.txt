@@ -1,0 +1,9 @@
+Question: What is the purpose of the loop in the code described in the text?
+
+Possible Answers:
+a) To prompt the user to input names of their friends
+b) To store the names entered by the user into a list
+c) To output the list of names entered by the user
+d) To find and print out specific elements from the list
+
+Key: b

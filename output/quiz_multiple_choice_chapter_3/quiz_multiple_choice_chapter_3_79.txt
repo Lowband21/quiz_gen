@@ -1,0 +1,7 @@
+Question: What is the function of astrocytes in the brain?
+Possible Answers:
+a) Regulating blood flow and taking up glucose from the blood
+b) Insulating axons to allow fast neuronal transmission
+c) Producing cerebrospinal fluid (CSF)
+d) Repairing damaged brain tissue
+Key: a

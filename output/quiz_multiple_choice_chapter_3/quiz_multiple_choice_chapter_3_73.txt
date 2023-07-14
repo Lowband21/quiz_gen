@@ -1,0 +1,9 @@
+Question: What are the main types of glial cells found in the brain?
+
+Possible Answers:
+a) Astrocytes, oligodendrocytes, Schwann cells, microglia, and ependymal cells
+b) Neurons, endothelial cells, smooth muscle cells, and pericytes
+c) Dendrites, axons, and soma
+d) Excitatory and inhibitory neurons
+
+Key: a

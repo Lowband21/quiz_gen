@@ -1,7 +1,9 @@
-1. Question: What did the author modify in the animation code to animate a house instead of a circle?
+Question: What is the key concept demonstrated in the given text?
+
 Possible Answers:
-a) The X center and Y center
-b) The X position and Y position
-c) The size of the house
-d) The position of the circle
-Key: b
+a) Combining scalable drawings with animation
+b) Modifying the position of a circle
+c) Creating a house with a specific position and size
+d) Animating a circle on the canvas
+
+Key: a

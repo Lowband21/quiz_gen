@@ -1,0 +1,7 @@
+Question: What are the main cells in the nervous system?
+Possible Answers: 
+a) Neurons and glia
+b) Astrocytes and microglia
+c) Oligodendrocytes and Schwann cells
+d) Endothelial cells and pericytes
+Key: a

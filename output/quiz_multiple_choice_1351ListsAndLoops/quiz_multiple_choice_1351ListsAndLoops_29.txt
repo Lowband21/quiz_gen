@@ -1,0 +1,9 @@
+Question: How does the code in the given text traverse a list?
+
+Possible Answers:
+a) Using an index-based loop with the range function
+b) Using a loop that iterates over the sequence directly
+c) Both a and b are correct
+d) None of the above
+
+Key: c

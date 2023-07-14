@@ -1,0 +1,7 @@
+Question: What is the function of the cerebellum?
+Possible Answers: 
+a) It processes sensory information and generates motor behaviors.
+b) It regulates heart rate and breathing.
+c) It is involved in memory formation and spatial processing.
+d) It controls voluntary movements and coordinates muscle contractions.
+Key: c

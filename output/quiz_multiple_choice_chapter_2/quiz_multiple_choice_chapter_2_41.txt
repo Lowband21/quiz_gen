@@ -1,0 +1,7 @@
+Question: What are the major components of the nervous system?
+Possible Answers:
+a) Brain and spinal cord
+b) Brain and peripheral nervous system
+c) Spinal cord and peripheral nervous system
+d) Brain, spinal cord, and peripheral nervous system
+Key: d

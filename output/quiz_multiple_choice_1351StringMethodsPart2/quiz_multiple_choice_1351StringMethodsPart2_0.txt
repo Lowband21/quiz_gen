@@ -1,9 +1,9 @@
-1. Question: What is the alternative method to string.index if the substring is not found in the string?
+Question: Which method can be used to find the index of the first occurrence of a substring in a string, but returns -1 if the substring is not found?
 
 Possible Answers:
-a) string.find
-b) string.replace
-c) string.count
-d) string.split
+a) String.index
+b) String.find
+c) String.count
+d) String.replace
 
-Key: a
+Key: b

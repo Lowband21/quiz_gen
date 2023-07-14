@@ -1,9 +1,9 @@
-1. Question: What is the purpose of using for loops in Python?
+Question: What is the syntax for a for loop in Python?
 
 Possible Answers:
-a) To import necessary packages and modules
-b) To create random shapes on a canvas
-c) To repeat a block of code a specified number of times
-d) To display windows for an indefinite period of time
+a) for i in range(n):
+b) for i in range as an example 7:
+c) for i in range:
+d) for i in range as an example 7 colon
 
-Key: c
+Key: a

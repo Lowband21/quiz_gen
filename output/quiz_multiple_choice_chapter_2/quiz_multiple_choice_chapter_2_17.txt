@@ -1,0 +1,7 @@
+Question: Which part of the brain is responsible for regulating heart rate and breathing?
+Possible Answers:
+a) Cerebellum
+b) Basal ganglia
+c) Hippocampus
+d) Brainstem
+Key: d

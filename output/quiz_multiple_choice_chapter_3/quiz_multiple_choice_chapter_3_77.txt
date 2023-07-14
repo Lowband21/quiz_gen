@@ -1,0 +1,7 @@
+Question: What are the main types of cells in the nervous system?
+Possible Answers:
+a) Neurons and vascular cells
+b) Neurons and glia
+c) Glia and vascular cells
+d) Neurons, glia, and vascular cells
+Key: b

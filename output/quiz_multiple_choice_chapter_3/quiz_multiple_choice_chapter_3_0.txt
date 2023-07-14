@@ -1,0 +1,9 @@
+Question: Which of the following is NOT a type of glial cell in the nervous system?
+
+Possible Answers:
+a) Astrocytes
+b) Oligodendrocytes
+c) Microglia
+d) Pericytes
+
+Key: d

@@ -1,0 +1,9 @@
+Question: What change did the author make to the code to make the circle bounce when its right edge touches the right edge of the canvas?
+
+Possible Answers:
+a) Changed the name of the velocity variable to x velocity
+b) Reversed the direction of the velocity by making it negative
+c) Added a conditional statement to check if the x center is past the right edge of the canvas
+d) Modified the calculation for the right edge of the circle to include the radius
+
+Key: b

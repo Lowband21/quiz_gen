@@ -1,0 +1,9 @@
+Question: In Python, what is the index of the first element in a list?
+
+Possible Answers:
+a) 0
+b) 1
+c) 2
+d) 3
+
+Key: a

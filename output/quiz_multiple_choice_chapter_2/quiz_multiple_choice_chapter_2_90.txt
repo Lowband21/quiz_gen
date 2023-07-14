@@ -1,0 +1,7 @@
+Question: What are the two major components of the central nervous system?
+Possible Answers: 
+a) The brain and the spinal cord
+b) The cerebellum and the hypothalamus
+c) The somatic and autonomic nervous systems
+d) The sympathetic and parasympathetic nervous systems
+Key: a

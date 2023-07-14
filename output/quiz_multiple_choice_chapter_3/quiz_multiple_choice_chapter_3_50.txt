@@ -1,0 +1,7 @@
+Question: What is the main function of glia cells in the nervous system?
+Possible Answers:
+a) To detect inputs and send signals to other cells
+b) To provide physical support to neuronal connections
+c) To regulate the levels of ions in the extracellular space
+d) To wrap layers of myelin around neuronal axons
+Key: b

@@ -1,0 +1,9 @@
+Question: In Python, what is the purpose of using a for loop?
+
+Possible Answers:
+a) To execute a block of code a specific number of times
+b) To execute a block of code until a certain condition is met
+c) To execute a block of code only once
+d) To execute a block of code in random positions
+
+Key: a

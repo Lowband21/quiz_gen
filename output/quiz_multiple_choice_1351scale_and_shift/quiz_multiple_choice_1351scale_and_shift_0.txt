@@ -1,0 +1,7 @@
+Question: In the given text, the author demonstrates combining which two transformations?
+Possible Answers: 
+a) Shifting and scaling
+b) Rotating and reflecting
+c) Translating and shearing
+d) Stretching and skewing
+Key: a

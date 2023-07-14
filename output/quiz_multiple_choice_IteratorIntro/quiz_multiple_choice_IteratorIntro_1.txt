@@ -1,0 +1,9 @@
+Question: What is the purpose of an iterator in Python?
+
+Possible Answers:
+a) To create and return an iterable object
+b) To allow external code to traverse the elements of a data structure
+c) To implement nested for loops efficiently
+d) To improve the efficiency of index-based loops
+
+Key: b

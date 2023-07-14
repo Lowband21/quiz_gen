@@ -1,0 +1,9 @@
+Question: How does the loop in the code input and store information from the user?
+
+Possible Answers:
+a) The loop prompts the user to input names and stores them in a variable called "friend".
+b) The loop prompts the user to input names and stores them in a list variable called "names".
+c) The loop prompts the user to input names and stores them in a string variable called "friend".
+d) The loop prompts the user to input names and stores them in an empty list.
+
+Key: b

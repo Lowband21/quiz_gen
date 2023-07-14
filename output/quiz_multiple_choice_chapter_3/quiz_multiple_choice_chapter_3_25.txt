@@ -1,0 +1,9 @@
+Question: What is the main function of glial cells in the nervous system?
+
+Possible Answers:
+a) To perform signaling and information processing
+b) To detect inputs and integrate information
+c) To provide structural support for neurons
+d) To control the extracellular environment for neurons
+
+Key: c

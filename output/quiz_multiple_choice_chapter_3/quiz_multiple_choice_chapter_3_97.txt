@@ -1,0 +1,9 @@
+Question: What is the main function of glia in the nervous system?
+
+Possible Answers:
+a) Detecting inputs and integrating information
+b) Sending signals to other cells
+c) Providing structural support to neurons
+d) Modulating neuronal communication
+
+Key: c

@@ -1,0 +1,7 @@
+Question: What are the major components of the central nervous system?
+Possible Answers:
+a) The brain and spinal cord
+b) The brain and peripheral nervous system
+c) The spinal cord and peripheral nervous system
+d) The brain, spinal cord, and peripheral nervous system
+Key: a

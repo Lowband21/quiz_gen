@@ -1,0 +1,7 @@
+Question: What are the main types of glial cells in the nervous system?
+Possible Answers: 
+a) Neurons and astrocytes 
+b) Astrocytes, oligodendrocytes, Schwann cells, microglia, and ependymal cells 
+c) Pyramidal cells, granule cells, and chandelier cells 
+d) Endothelial cells, smooth muscle cells, and pericytes 
+Key: b

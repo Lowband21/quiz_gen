@@ -1,0 +1,9 @@
+Question: How does the code in the given text demonstrate looping through a list?
+
+Possible Answers:
+a) The code uses a while loop to iterate through each element in the list.
+b) The code uses a for loop with an index-based iteration to access each element in the list.
+c) The code uses a for loop with sequence-based iteration to access each element in the list.
+d) The code uses recursion to iterate through each element in the list.
+
+Key: c

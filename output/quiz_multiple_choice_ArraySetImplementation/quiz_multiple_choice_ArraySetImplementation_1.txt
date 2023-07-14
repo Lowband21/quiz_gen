@@ -1,0 +1,9 @@
+Question: Which method is used to add an element to the ArraySet class?
+
+Possible Answers:
+a) contains
+b) discard
+c) add
+d) remove
+
+Key: c

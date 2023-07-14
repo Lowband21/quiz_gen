@@ -1,0 +1,7 @@
+Question: What is the function of the basal ganglia?
+Possible Answers:
+a) Processing of emotions
+b) Control of heart rate and breathing
+c) Sensory processing
+d) Initiating and selecting motor behaviors
+Key: d

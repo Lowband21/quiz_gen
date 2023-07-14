@@ -1,0 +1,7 @@
+Question: What is the function of the cerebellum?
+Possible Answers:
+a) It relays ascending and descending information from widespread brain areas.
+b) It is involved in regulating heart rate and breathing.
+c) It is important for memory formation and retrieval.
+d) It is responsible for initiating and selecting motor behaviors.
+Key: c

@@ -1,0 +1,9 @@
+Question: What is the purpose of downloading Python software?
+
+Possible Answers:
+a) To edit Python programs
+b) To run or execute Python programs
+c) To debug Python programs
+d) To organize Python programs
+
+Key: b

@@ -1,0 +1,7 @@
+Question: Which cells in the nervous system detect inputs, integrate information, and send signals to other cells?
+Possible Answers:
+a) Astrocytes
+b) Microglia
+c) Neurons
+d) Oligodendrocytes
+Key: c

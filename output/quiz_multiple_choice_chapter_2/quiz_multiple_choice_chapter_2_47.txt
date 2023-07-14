@@ -1,0 +1,7 @@
+Question: What is the purpose of the nervous system?
+Possible Answers: 
+a) To enable us to successfully exist and interact with the world
+b) To generate patterns of muscle contractions
+c) To detect visual information
+d) To regulate heart rate
+Key: a

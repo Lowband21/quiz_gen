@@ -1,0 +1,7 @@
+Question: What is the function of the hypothalamus?
+Possible Answers:
+a) Control of heart rate and breathing
+b) Regulation of memory
+c) Regulation of body temperature and thirst
+d) Processing of emotions and fear learning
+Key: c

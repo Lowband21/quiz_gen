@@ -1,0 +1,9 @@
+Question: How does the code in the given text traverse a list?
+
+Possible Answers:
+a) By using an index-based loop
+b) By using a sequence-based loop
+c) By using both an index-based and sequence-based loop
+d) The code does not traverse a list
+
+Key: c

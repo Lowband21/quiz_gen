@@ -1,0 +1,9 @@
+Question: In Python, what is the purpose of using a for loop in the context of the given code?
+
+Possible Answers:
+a) To generate random values for the X and Y positions of the squares
+b) To repeat a block of code a specific number of times
+c) To create 50 squares in random positions
+d) To indent code lines in VS Code
+
+Key: b

@@ -1,0 +1,9 @@
+Question: How can you access the last element of a list in Python?
+
+Possible Answers:
+a) By using the index 0
+b) By using the index len(list) - 1
+c) By using the index len(list)
+d) By using the index -1
+
+Key: b

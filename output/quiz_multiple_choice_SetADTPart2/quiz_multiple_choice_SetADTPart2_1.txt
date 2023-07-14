@@ -1,7 +1,9 @@
-1. Question: What data structure is used to implement the ArraySet?
+Question: Which data structure is used to implement the ArraySet in the given code?
+
 Possible Answers:
-a) Linked List
-b) Stack
-c) Dynamic Array
-d) Queue
-Key: c
+a) Linked list
+b) Hash table
+c) Binary tree
+d) Dynamic array
+
+Key: d

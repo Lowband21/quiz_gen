@@ -1,0 +1,9 @@
+Question: How does the code in the given text demonstrate traversing a list in Python?
+
+Possible Answers:
+a) By using an index-based loop
+b) By using a sequence-based loop
+c) By using both an index-based and a sequence-based loop
+d) None of the above
+
+Key: c

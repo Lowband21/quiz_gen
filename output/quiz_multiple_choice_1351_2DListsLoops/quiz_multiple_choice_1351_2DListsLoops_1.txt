@@ -1,9 +1,9 @@
-1. Question: What is the advantage of using a nested for loop to create a 2D list instead of using a list literal?
+Question: How can you create a 2D list using a nested for loop in Python?
 
 Possible Answers:
-a) It allows for more flexibility in creating larger lists with varying dimensions.
-b) It improves the efficiency of the code by reducing the number of lines.
-c) It simplifies the debugging process by allowing step-by-step execution.
-d) It provides a more compact way to write the code using list comprehension.
+a) By using a list literal
+b) By using a list comprehension
+c) By using a while loop
+d) By using a nested if statement
 
-Key: a
+Key: b

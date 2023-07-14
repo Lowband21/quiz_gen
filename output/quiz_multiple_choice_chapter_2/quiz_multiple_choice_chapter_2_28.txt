@@ -1,0 +1,7 @@
+Question: What is the function of the somatic nervous system?
+Possible Answers:
+a) It regulates interactions with the internal environment.
+b) It controls involuntary movements.
+c) It processes sensory information from the external environment.
+d) It coordinates voluntary movements and interactions with the external environment.
+Key: d

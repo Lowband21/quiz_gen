@@ -1,7 +1,9 @@
-1. Question: What does the author modify in the animation code to animate a house instead of a circle?
+Question: What is the purpose of combining scalable positional drawings with animation?
+
 Possible Answers:
-a) The X center and Y center variables
-b) The X position and Y position variables
-c) The size variable
-d) The drawHouse method
-Key: b
+a) To create a more visually appealing animation
+b) To allow for the animation of complex shapes, such as houses
+c) To demonstrate the power of combining existing code
+d) To make the animation process easier and more efficient
+
+Key: c

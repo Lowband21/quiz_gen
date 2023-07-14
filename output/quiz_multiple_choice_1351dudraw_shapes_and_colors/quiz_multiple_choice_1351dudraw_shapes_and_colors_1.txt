@@ -1,0 +1,9 @@
+Question: In DUDraw, what command is used to draw a filled rectangle?
+
+Possible Answers:
+a) filled_rectangle
+b) draw_rectangle
+c) fill_rectangle
+d) rectangle
+
+Key: c

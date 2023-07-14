@@ -1,0 +1,9 @@
+Question: What is the purpose of passing parameters to a function?
+
+Possible Answers:
+a) To shift the position of the lower left corner of an image
+b) To change the size of a filled rectangle
+c) To document the program
+d) To create multiple instances of an object at different positions
+
+Key: d

@@ -1,0 +1,7 @@
+Question: Which division of the autonomic nervous system is responsible for interactions with the body's internal environment?
+Possible Answers:
+a) Sympathetic nervous system
+b) Parasympathetic nervous system
+c) Enteric nervous system
+d) Somatic nervous system
+Key: b

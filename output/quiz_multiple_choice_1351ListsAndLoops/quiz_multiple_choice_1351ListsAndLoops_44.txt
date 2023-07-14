@@ -1,0 +1,9 @@
+Question: How is the loop in the code used to input information from the user and store it in a list?
+
+Possible Answers:
+a) The loop prompts the user to input names and stores them directly into a list.
+b) The loop checks if what the user typed is equal to "done" before storing it in a list.
+c) The loop takes the input from the user and appends it to an existing list of names.
+d) The loop creates an empty list and waits for user input before storing it.
+
+Key: c

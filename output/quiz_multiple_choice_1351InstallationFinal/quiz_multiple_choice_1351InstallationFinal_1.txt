@@ -1,0 +1,9 @@
+Question: What is the purpose of the LiveShare extension mentioned in the text?
+
+Possible Answers:
+a) To download and install DUDraw
+b) To create a new file in VS Code
+c) To allow collaborative development in class
+d) To test the DUDraw program
+
+Key: c

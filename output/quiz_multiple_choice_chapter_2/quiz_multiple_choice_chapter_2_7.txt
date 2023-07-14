@@ -1,0 +1,7 @@
+Question: Which structure in the brain is responsible for memory formation and retrieval?
+Possible Answers:
+a) Basal ganglia
+b) Amygdala
+c) Cerebellum
+d) Hippocampus
+Key: d

@@ -1,9 +1,9 @@
-1. Question: What is the syntax for a for loop in Python?
+Question: What is the syntax for a for loop in Python?
 
 Possible Answers:
 a) for i in range(n):
-b) for i in range as an example 7:
-c) for i in range as an example 7:
-d) for i in range n:
+b) for i in in range(n):
+c) for i in range:
+d) for i in n:
 
 Key: a

@@ -1,0 +1,7 @@
+Question: Which cells in the nervous system perform the signalling and information processing?
+Possible Answers: 
+a) Neurons
+b) Glia
+c) Astrocytes
+d) Oligodendrocytes
+Key: a

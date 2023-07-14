@@ -1,0 +1,9 @@
+Question: Which of the following is NOT a function of astrocytes in the brain?
+
+Possible Answers:
+a) Providing physical support to neuronal connections
+b) Regulating the levels of ions in the extracellular space
+c) Insulating axons to allow fast neuronal transmission
+d) Removing neurotransmitter from synapses
+
+Key: c

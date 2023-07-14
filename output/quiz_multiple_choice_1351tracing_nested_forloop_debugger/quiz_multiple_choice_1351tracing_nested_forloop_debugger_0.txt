@@ -1,0 +1,9 @@
+Question: What is the purpose of setting a breakpoint in a debugger?
+
+Possible Answers:
+a) To stop the program at a specific line of code for detailed inspection
+b) To run the program straight through without any interruptions
+c) To display the current values of variables during program execution
+d) To complete the execution of the program
+
+Key: a

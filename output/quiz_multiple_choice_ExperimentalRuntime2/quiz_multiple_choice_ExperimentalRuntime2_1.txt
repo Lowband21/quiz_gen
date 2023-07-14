@@ -1,0 +1,9 @@
+Question: What is the main difference in runtime between appending elements to the end of a Python list and inserting elements at the beginning of a Python list?
+
+Possible Answers:
+a) Appending elements to the end of a list is slower than inserting elements at the beginning.
+b) Appending elements to the end of a list is faster than inserting elements at the beginning.
+c) Appending elements to the end of a list and inserting elements at the beginning have similar runtimes.
+d) The runtime difference between appending elements to the end and inserting elements at the beginning cannot be determined.
+
+Key: a

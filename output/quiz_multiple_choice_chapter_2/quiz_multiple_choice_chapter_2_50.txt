@@ -1,0 +1,7 @@
+Question: What is the function of the central nervous system (CNS)?
+Possible Answers:
+a) To transmit information to and from the brain to the rest of the body
+b) To regulate heart rate and breathing
+c) To control voluntary movements
+d) To process sensory information and generate motor outputs
+Key: a

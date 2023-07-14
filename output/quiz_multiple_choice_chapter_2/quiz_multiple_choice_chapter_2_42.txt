@@ -1,0 +1,7 @@
+Question: What are the two major components of the nervous system?
+Possible Answers:
+a) Central nervous system and peripheral nervous system
+b) Brain and spinal cord
+c) Neurons and glia
+d) Cerebral cortex and basal ganglia
+Key: a

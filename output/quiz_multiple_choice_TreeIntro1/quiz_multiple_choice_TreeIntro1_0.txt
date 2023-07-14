@@ -1,9 +1,9 @@
-1. Question: What is an external node in a tree?
+Question: What is an external node in a tree?
 
 Possible Answers:
-a) A node with no parent
-b) A node with no children
-c) A node that is the root of the tree
-d) A node that has a sibling
+a) A node that has no parent
+b) A node that has no children
+c) A node that has both a parent and children
+d) A node that is the root of the tree
 
 Key: b

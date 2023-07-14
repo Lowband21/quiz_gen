@@ -1,0 +1,7 @@
+Question: What is the function of the autonomic nervous system?
+Possible Answers:
+a) Regulating heart rate and breathing
+b) Controlling voluntary movements
+c) Processing sensory information
+d) Initiating and selecting motor behaviors
+Key: a

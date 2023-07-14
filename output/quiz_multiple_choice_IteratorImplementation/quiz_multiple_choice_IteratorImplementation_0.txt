@@ -1,0 +1,9 @@
+Question: What is the purpose of the double underscore iter method in a class that implements an iterable data structure?
+
+Possible Answers:
+a) It sets up the current location for an iterator during iteration.
+b) It returns the value of the next element in the iteration.
+c) It raises a stop iteration exception when the end of the iteration is reached.
+d) It instantiates the iterator object for the data structure.
+
+Key: d

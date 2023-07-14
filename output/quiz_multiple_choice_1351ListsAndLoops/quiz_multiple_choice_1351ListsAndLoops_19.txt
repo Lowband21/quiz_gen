@@ -1,0 +1,9 @@
+Question: How does the code in the given text demonstrate traversing a list using a loop?
+
+Possible Answers:
+a) By using an index-based loop
+b) By using a sequence-based loop
+c) By using both an index-based and sequence-based loop simultaneously
+d) The code does not demonstrate traversing a list
+
+Key: b

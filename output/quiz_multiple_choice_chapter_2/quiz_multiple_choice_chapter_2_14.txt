@@ -1,0 +1,7 @@
+Question: Which part of the nervous system is responsible for regulating heart rate and breathing?
+Possible Answers:
+a) Cerebellum
+b) Basal ganglia
+c) Brainstem
+d) Hippocampus
+Key: c

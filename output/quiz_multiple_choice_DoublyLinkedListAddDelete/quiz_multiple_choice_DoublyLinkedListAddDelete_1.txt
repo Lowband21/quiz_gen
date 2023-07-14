@@ -1,9 +1,9 @@
-1. Question: What is the purpose of the sentinel nodes in a doubly linked list?
+Question: What is a key property that must hold true for every node in a doubly linked list?
 
 Possible Answers:
-a) To mark the beginning and end of the list
-b) To store the values of the nodes
-c) To keep track of the references between nodes
-d) To indicate the position for inserting new nodes
+a) The next pointer of a node must point to the node that it started at.
+b) The prev pointer of a node must point to the node that it started at.
+c) The next pointer of a node must point to the node on the right of it.
+d) The prev pointer of a node must point to the node on the left of it.
 
-Key: a
+Key: b

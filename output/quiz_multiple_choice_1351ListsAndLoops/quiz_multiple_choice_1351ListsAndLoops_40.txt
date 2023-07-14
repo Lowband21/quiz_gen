@@ -1,0 +1,9 @@
+Question: How does the code in the given text demonstrate traversing a list using a loop?
+
+Possible Answers:
+a) By using an index-based loop with the range function
+b) By using a sequence-based loop with the for-in statement
+c) By using a while loop to iterate through each element of the list
+d) By using recursion to traverse and print each element of the list
+
+Key: b

@@ -1,0 +1,9 @@
+Question: Which of the following is an example of accessing values from a tuple?
+
+Possible Answers:
+a) Using the index of the tuple to access specific elements
+b) Using the random.choice method to select elements from the tuple
+c) Using the len() function to determine the length of the tuple
+d) Using the append() method to add elements to the tuple
+
+Key: a

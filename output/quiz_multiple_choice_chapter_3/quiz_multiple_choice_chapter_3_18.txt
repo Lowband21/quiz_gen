@@ -1,0 +1,7 @@
+Question: What is the role of astrocytes in the nervous system?
+Possible Answers:
+a) Astrocytes provide physical and metabolic support to neurons.
+b) Astrocytes wrap layers of myelin around neuronal axons.
+c) Astrocytes repair damaged brain tissue.
+d) Astrocytes regulate the entry of cells and molecules across the blood-brain barrier (BBB).
+Key: a

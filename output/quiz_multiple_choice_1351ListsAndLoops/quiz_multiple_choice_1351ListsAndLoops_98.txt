@@ -1,0 +1,9 @@
+Question: How does the code in the given text traverse a list of names?
+
+Possible Answers:
+a) By using an index-based loop with the range function.
+b) By using a loop that iterates over the sequence directly.
+c) By using a while loop with conditional statements.
+d) By using recursion to iterate through each element.
+
+Key: b

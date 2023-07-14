@@ -1,0 +1,9 @@
+Question: Which of the following statements about strings is true?
+
+Possible Answers:
+a) Strings can be modified directly by changing the value of a specific character.
+b) Strings can only be accessed using an index-based for loop.
+c) Strings are immutable and cannot be changed directly.
+d) Strings have the same properties and behaviors as lists.
+
+Key: c

@@ -1,9 +1,9 @@
-1. Question: What is the purpose of using sentinel nodes in a doubly linked list?
+Question: What is the main advantage of using doubly linked lists over singly linked lists?
 
 Possible Answers:
-a) To store actual data in the list
-b) To simplify the implementation of special cases
-c) To improve the efficiency of traversing the list
-d) To prevent memory leaks
+a) Doubly linked lists allow for traversal in both forward and reverse directions.
+b) Doubly linked lists have a more efficient memory representation.
+c) Doubly linked lists can store a wider range of data types.
+d) Doubly linked lists have faster insertion and deletion operations.
 
-Key: b
+Key: a

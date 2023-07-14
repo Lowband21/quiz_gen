@@ -1,0 +1,9 @@
+Question: What command is used to set the size of the window in DUDraw?
+
+Possible Answers:
+a) DUDraw.setWindowSize
+b) DUDraw.setCanvasSize
+c) DUDraw.setWindowDimensions
+d) DUDraw.setScreenSize
+
+Key: b

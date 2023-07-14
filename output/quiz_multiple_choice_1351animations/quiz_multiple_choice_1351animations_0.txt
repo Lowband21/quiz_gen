@@ -1,0 +1,9 @@
+Question: What is the purpose of clearing the background in an animation loop?
+
+Possible Answers:
+a) To erase the previous frame and make room for the new frame
+b) To change the color of the canvas
+c) To resize the canvas
+d) To pause the animation
+
+Key: a

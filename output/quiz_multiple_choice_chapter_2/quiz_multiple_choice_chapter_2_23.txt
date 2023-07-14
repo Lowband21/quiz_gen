@@ -1,0 +1,7 @@
+Question: What is the function of the cerebrospinal fluid (CSF) in the brain?
+Possible Answers:
+a) CSF provides oxygen and glucose to neurons
+b) CSF cushions the brain from damage during impacts
+c) CSF regulates blood flow in the brain
+d) CSF carries waste products out of the brain
+Key: b

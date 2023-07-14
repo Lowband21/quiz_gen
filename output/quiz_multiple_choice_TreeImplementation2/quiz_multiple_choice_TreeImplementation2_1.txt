@@ -1,7 +1,9 @@
-1. Question: What method in the binary tree class is used to add a root node?
+Question: What is the depth of the node with contents "Jordan" in the binary tree?
+
 Possible Answers:
-a) add_root
-b) add_node
-c) create_root
-d) add_child
-Key: a
+a) 0
+b) 1
+c) 2
+d) 3
+
+Key: c

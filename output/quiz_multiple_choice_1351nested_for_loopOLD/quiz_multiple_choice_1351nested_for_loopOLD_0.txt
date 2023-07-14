@@ -1,0 +1,9 @@
+Question: What is the purpose of using nested for loops in this program?
+
+Possible Answers:
+a) To output a flexible number of stars in each row
+b) To repeat the code for one row multiple times
+c) To change the number of rows and columns in the program
+d) To create a matrix of stars with a specific number of rows and columns
+
+Key: b

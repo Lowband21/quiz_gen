@@ -1,0 +1,9 @@
+Question: What is the purpose of negative indexing in Python lists?
+
+Possible Answers:
+a) To access elements in reverse order
+b) To access elements starting from the last index
+c) To access elements randomly within the list
+d) To access elements with a specific index value
+
+Key: b

@@ -1,0 +1,7 @@
+Question: Which structure of the brain is responsible for processing emotions and fear learning?
+Possible Answers: 
+a) Cerebellum
+b) Basal ganglia
+c) Hippocampus
+d) Amygdala
+Key: d

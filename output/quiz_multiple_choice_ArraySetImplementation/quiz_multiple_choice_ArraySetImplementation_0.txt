@@ -1,0 +1,9 @@
+Question: Which method in the ArraySet class checks if an element is in the set?
+
+Possible Answers:
+a) contains
+b) add
+c) discard
+d) iter
+
+Key: a

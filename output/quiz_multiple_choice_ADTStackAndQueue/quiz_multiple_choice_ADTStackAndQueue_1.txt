@@ -1,0 +1,9 @@
+Question: Which of the following statements accurately describes the characteristics of a stack?
+
+Possible Answers:
+a) A stack is a first in, first out data structure.
+b) A stack is a last in, first out data structure.
+c) A stack is a data structure that allows elements to be inserted and removed from both ends.
+d) A stack is a data structure that allows elements to be inserted and removed in any order.
+
+Key: b

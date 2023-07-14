@@ -1,0 +1,9 @@
+Question: How is the length of a list accessed in Python?
+
+Possible Answers:
+a) By using the "length" keyword
+b) By using the "size" function
+c) By using the "len" function
+d) By using the "count" method
+
+Key: c

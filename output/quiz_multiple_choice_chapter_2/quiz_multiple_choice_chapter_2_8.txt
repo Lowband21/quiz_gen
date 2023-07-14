@@ -1,0 +1,7 @@
+Question: What is the function of the autonomic nervous system?
+Possible Answers: 
+a) Regulate interactions with the external environment
+b) Control voluntary movements and behaviors
+c) Mediate interactions with the body's internal environment
+d) Control sensory and motor information flow in the spinal cord
+Key: c

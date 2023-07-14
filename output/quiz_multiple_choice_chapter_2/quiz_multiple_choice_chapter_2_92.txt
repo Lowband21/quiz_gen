@@ -1,0 +1,7 @@
+Question: What is the function of the cerebellum?
+Possible Answers: 
+a) It is responsible for processing emotions and fear learning.
+b) It is involved in episodic memory and spatial processing.
+c) It regulates heart rate and breathing.
+d) It controls voluntary movements and coordinates motor learning.
+Key: d

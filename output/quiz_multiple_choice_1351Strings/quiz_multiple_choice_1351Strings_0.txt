@@ -1,0 +1,9 @@
+Question: Which escape character is used to insert a tab into a string?
+
+Possible Answers:
+a) \n
+b) \t
+c) \\
+d) \"
+
+Key: b

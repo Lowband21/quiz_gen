@@ -1,0 +1,9 @@
+Question: What is the main function of glial cells in the nervous system?
+
+Possible Answers:
+a) Signal detection and processing
+b) Insulating axons for fast neuronal transmission
+c) Providing physical and metabolic support for neurons
+d) Producing cerebrospinal fluid
+
+Key: c

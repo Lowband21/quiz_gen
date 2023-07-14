@@ -1,0 +1,7 @@
+Question: What is the role of the autonomic nervous system?
+Possible Answers:
+a) Mediating interactions with the external environment
+b) Controlling voluntary movements
+c) Regulating heart rate and other internal functions
+d) Processing sensory information
+Key: c

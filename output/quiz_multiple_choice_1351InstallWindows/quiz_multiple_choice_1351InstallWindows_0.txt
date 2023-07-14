@@ -1,0 +1,9 @@
+Question: What is the purpose of an Integrated Development Environment (IDE)?
+
+Possible Answers:
+a) To download and install software programs
+b) To edit and run code within a single program
+c) To detect the operating system of a computer
+d) To create a folder for storing code files
+
+Key: b

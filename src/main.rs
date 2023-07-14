@@ -10,6 +10,10 @@ use std::error::Error;
 use std::fs;
 use std::path::{Path, PathBuf};
 
+use query::query::*;
+
+use rusqlite::Connection;
+
 mod eval {
     pub mod bard;
     pub mod common_words;
@@ -21,6 +25,10 @@ mod eval {
 mod gen {
     pub mod explanation_gen;
     pub mod quiz_gen;
+}
+
+mod query {
+    pub mod query;
 }
 
 mod quiz {
@@ -51,6 +59,7 @@ fn select_operation_mode() -> String {
             "quiz",
             "analysis",
             "transcription",
+            "query",
         ])
         .build();
     let operation_mode_choice = &requestty::prompt_one(operation_mode_question).unwrap();
@@ -208,10 +217,26 @@ fn main() {
     match operation_mode.as_str() {
         "analysis" => {
             //eval::bard::run();
-            eval::gpt::run();
             //eval::common_words::run();
             //eval::similarity::similarity();
             //eval::stat::run();
+            let filenames_question = Question::multi_select("filenames")
+                .message("Select the filenames associated with the questions to be evaluated:")
+                .choices(
+                    get_unique_filenames(&Connection::open("quiz_questions.db").unwrap()).unwrap(),
+                )
+                .build();
+
+            let filenames_answer = &requestty::prompt_one(filenames_question).unwrap();
+
+            let filenames: Vec<String> = filenames_answer
+                .as_list_items()
+                .unwrap()
+                .into_iter()
+                .map(|item| item.text.clone())
+                .collect();
+
+            eval::gpt::run(filenames);
         }
         "transcription" => {
             let gpu_or_cpu = Question::select("difficulty_level")
@@ -291,13 +316,6 @@ fn main() {
                     // Determine the generation mode and generate content accordingly
                     match generation_mode.as_str() {
                         "quiz" => {
-                            let processed_content = generate_quiz_questions(
-                                &openai,
-                                &preprocessed_content,
-                                &question_type,
-                                &difficulty_level,
-                            )
-                            .unwrap();
                             // Write the output content to the file
                             let output_string = format!(
                                 "{}",
@@ -314,16 +332,26 @@ fn main() {
 
                             let output_file_ext = format!("_{}.txt", i);
 
+                            let processed_content = generate_quiz_questions(
+                                &openai,
+                                &preprocessed_content,
+                                &question_type,
+                                &difficulty_level,
+                                split_strings.last().unwrap_or(&""),
+                            )
+                            .unwrap();
+
                             let output_file_path = save_processed(
                                 processed_content,
                                 output_file_name.to_string(),
                                 output_file_ext,
                             );
-                            let (quiz_questions, success_rate) =
-                                parse_quiz_file(output_file_path.as_path()).unwrap();
 
-                            pretty_print(quiz_questions);
-                            println!("The failure rate was {}", success_rate);
+                            //let (quiz_questions, success_rate) =
+                            //    parse_quiz_file(output_file_path.as_path()).unwrap();
+
+                            //pretty_print(quiz_questions);
+                            //println!("The failure rate was {}", success_rate);
                         }
                         "explanation" => {
                             let processed_content =
@@ -332,7 +360,11 @@ fn main() {
                             let output_file_name = format!(
                                 "{}_{}",
                                 generation_mode,
-                                file.trim_end_matches(".md").trim_end_matches(".txt")
+                                file.trim_end_matches(".md")
+                                    .trim_end_matches(".txt")
+                                    .split_terminator("/")
+                                    .last()
+                                    .unwrap()
                             );
                             let output_file_ext = format!("_{}.txt", i);
                             let _output_file_path = save_processed(
@@ -362,6 +394,71 @@ fn main() {
             run_quiz(selected_files, "parsed_quizzes").expect("Failed to run quiz");
             // This will be another helper function like the ones above
         }
+        "query" => {
+            let conn = &Connection::open("quiz_questions.db").unwrap();
+            let top_10 = get_top_10(conn).unwrap();
+            for i in top_10 {
+                println!("{:?}\n", i);
+            }
+            // Call the get_statistics function
+            let (
+                (avg_total, min_total, max_total, median_total),
+                (avg_relevance, min_relevance, max_relevance, median_relevance),
+                (avg_complexity, min_complexity, max_complexity, median_complexity),
+                (avg_clarity, min_clarity, max_clarity, median_clarity),
+                (avg_creativity, min_creativity, max_creativity, median_creativity),
+            ) = get_statistics().unwrap();
+
+            let categories = ["Total", "Relevance", "Complexity", "Clarity", "Creativity"];
+            let category_results = [
+                (avg_total, min_total, max_total, median_total),
+                (
+                    avg_relevance,
+                    min_relevance,
+                    max_relevance,
+                    median_relevance,
+                ),
+                (
+                    avg_complexity,
+                    min_complexity,
+                    max_complexity,
+                    median_complexity,
+                ),
+                (avg_clarity, min_clarity, max_clarity, median_clarity),
+                (
+                    avg_creativity,
+                    min_creativity,
+                    max_creativity,
+                    median_creativity,
+                ),
+            ];
+
+            for (category, result) in categories.iter().zip(category_results.iter()) {
+                let (avg, min, max, median) = result;
+
+                println!(
+                    "Average {} score: {}",
+                    category,
+                    avg.unwrap_or_else(|| panic!("Could not calculate average {} score", category))
+                );
+                println!(
+                    "Minimum {} score: {}",
+                    category,
+                    min.unwrap_or_else(|| panic!("Could not calculate minimum {} score", category))
+                );
+                println!(
+                    "Maximum {} score: {}",
+                    category,
+                    max.unwrap_or_else(|| panic!("Could not calculate maximum {} score", category))
+                );
+                println!(
+                    "Median {} score: {}",
+                    category,
+                    median
+                        .unwrap_or_else(|| panic!("Could not calculate median {} score", category))
+                );
+            }
+        }
         _ => {
             panic!("Invalid operation mode selected");
         }
@@ -369,22 +466,16 @@ fn main() {
 }
 
 fn save_processed(
-    processed_content: Vec<String>,
+    processed_content: String,
     output_file_name: String,
     output_file_ext: String,
 ) -> PathBuf {
     // Prepare the output directory
     let output_dir = prepare_output_dir(format!("output/{}", output_file_name).as_str());
 
-    // Prepare the content to be written to the file
-    let mut output_content = String::new();
-    for item in processed_content {
-        output_content.push_str(&format!("{}\n", item));
-    }
-
     let output_file_path = output_dir.join(format!("{}{}", output_file_name, output_file_ext));
     println!("{:?}", output_file_path);
-    fs::write(&output_file_path, output_content).expect("Unable to write file");
+    fs::write(&output_file_path, processed_content).expect("Unable to write file");
     output_file_path
 }
 

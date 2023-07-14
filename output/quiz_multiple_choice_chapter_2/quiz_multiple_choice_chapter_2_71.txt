@@ -1,0 +1,7 @@
+Question: Which division of the autonomic nervous system is responsible for regulating heart rate?
+Possible Answers:
+a) Sympathetic
+b) Parasympathetic
+c) Enteric
+d) Somatic
+Key: b

@@ -1,0 +1,9 @@
+Question: What is the role of astrocytes in the brain?
+
+Possible Answers:
+a) Providing physical and metabolic support to neurons
+b) Insulating axons to allow fast neuronal transmission
+c) Detecting and combatting infection and tissue damage
+d) Producing cerebrospinal fluid
+
+Key: a

@@ -1,0 +1,9 @@
+Question: What is the purpose of using nested for loops in this program?
+
+Possible Answers:
+a) To output a specific pattern of stars to the terminal
+b) To create a flexible solution that can easily change the number of rows and columns
+c) To repeat a single row of stars multiple times
+d) To suppress the new line at the end of a print statement
+
+Key: b

@@ -1,0 +1,7 @@
+Question: Which structure is responsible for producing cerebrospinal fluid?
+Possible Answers:
+a) Thalamus
+b) Cerebellum
+c) Hypothalamus
+d) Choroid plexus
+Key: d

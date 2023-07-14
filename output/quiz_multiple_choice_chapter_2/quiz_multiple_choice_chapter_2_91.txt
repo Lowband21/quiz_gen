@@ -1,0 +1,7 @@
+Question: Which part of the nervous system is responsible for sensing the outside world and sending signals to control skeletal muscles?
+Possible Answers: 
+a) Central nervous system
+b) Peripheral nervous system
+c) Autonomic nervous system
+d) Somatic nervous system
+Key: d

@@ -79,21 +79,12 @@ pub fn generate_explanation(openai: &OpenAI, prompt: &str) -> String {
     explanation
 }
 
-pub fn generate_explanations(openai: &OpenAI, parsed_content: &[String]) -> Vec<String> {
-    let mut explanations = Vec::new();
-    for (idx, section) in parsed_content.iter().enumerate() {
-        if idx > 10 {
-            break;
-        }
-        let prompt = format!(
+pub fn generate_explanations(openai: &OpenAI, parsed_content: &String) -> String {
+    let prompt = format!(
             "Please rephrase the following explanation:\n\n{}\n\nPlease format your output as follows:\nExplanation: [Your rephrased explanation here]",
-            section
-
+            parsed_content
         );
-        let explanation = generate_explanation(openai, &prompt);
-        explanations.push(format!("{}. {}", idx + 1, explanation));
-        println!("{}", format!("{}. {}", idx + 1, explanation));
-    }
+    let explanation = generate_explanation(openai, &prompt);
 
-    explanations
+    explanation
 }

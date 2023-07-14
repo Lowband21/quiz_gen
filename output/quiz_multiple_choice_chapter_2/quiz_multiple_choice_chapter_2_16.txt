@@ -1,0 +1,7 @@
+Question: What is the role of the somatic nervous system?
+Possible Answers:
+a) Sensing the external environment and controlling skeletal muscles
+b) Regulating heart rate and other internal bodily functions
+c) Processing sensory information and generating motor responses
+d) Controlling the release of hormones and regulating body temperature
+Key: a

@@ -1,0 +1,7 @@
+Question: What is the function of the nervous system?
+Possible Answers:
+a) To orchestrate behaviors that keep us fed, watered, and safe.
+b) To generate patterns of muscle contractions in our legs.
+c) To detect visual information and conclude that the light falling on the retina was forming a vertical line.
+d) To regulate heart rate and control blood vessel diameters.
+Key: a

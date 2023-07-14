@@ -1,0 +1,7 @@
+Question: Which part of the nervous system is responsible for detecting something, transmitting that information, integrating it with other information, and sending an instruction to other parts of the body?
+Possible Answers:
+a) Central Nervous System (CNS)
+b) Peripheral Nervous System (PNS)
+c) Autonomic Nervous System (ANS)
+d) Somatic Nervous System (SNS)
+Key: b

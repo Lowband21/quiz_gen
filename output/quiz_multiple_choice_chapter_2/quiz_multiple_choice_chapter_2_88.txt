@@ -1,0 +1,7 @@
+Question: What is the role of the basal ganglia in the brain?
+Possible Answers:
+a) Regulating heart rate and breathing
+b) Controlling motor behaviors and motivated behaviors
+c) Processing emotions and fear learning
+d) Forming associations and spatial processing
+Key: b

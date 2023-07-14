@@ -1,0 +1,9 @@
+Question: In DUDraw, what command is used to set the size of the window that gets opened?
+
+Possible Answers:
+a) DUDraw.setCanvasSize
+b) DUDraw.show
+c) DUDraw.clear
+d) Import DUDraw
+
+Key: a

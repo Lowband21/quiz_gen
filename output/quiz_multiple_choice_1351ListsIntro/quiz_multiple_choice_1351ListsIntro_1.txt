@@ -1,0 +1,9 @@
+Question: In Python, how are the positions in a list numbered?
+
+Possible Answers:
+a) Starting from one
+b) Starting from zero
+c) Starting from negative one
+d) Starting from negative zero
+
+Key: b

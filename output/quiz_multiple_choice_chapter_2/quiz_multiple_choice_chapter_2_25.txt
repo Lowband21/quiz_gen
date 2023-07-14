@@ -1,0 +1,7 @@
+Question: Which part of the nervous system is responsible for relaying ascending and descending information from widespread brain areas?
+Possible Answers:
+a) Basal ganglia
+b) Cerebral cortex
+c) Thalamus
+d) Hippocampus
+Key: c

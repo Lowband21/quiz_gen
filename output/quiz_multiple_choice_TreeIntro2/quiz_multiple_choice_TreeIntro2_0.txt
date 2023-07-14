@@ -1,9 +1,9 @@
-1. Question: What is the difference between node depth and tree height?
+Question: What is the definition of node depth in a tree?
 
 Possible Answers:
-a) Node depth refers to the number of ancestors of a node, while tree height refers to the maximum depth of all nodes in a tree.
-b) Node depth refers to the maximum depth of all nodes in a tree, while tree height refers to the number of ancestors of a node.
-c) Node depth refers to the number of ancestors of a node, while tree height refers to the depth of the root node.
-d) Node depth refers to the depth of the root node, while tree height refers to the number of ancestors of a node.
+a) The number of ancestors a node has, including itself.
+b) The number of ancestors a node has, not including itself.
+c) The maximum depth of all the nodes in a tree.
+d) The height of a subtree rooted at a node.
 
-Key: a
+Key: b

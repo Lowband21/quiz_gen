@@ -1,0 +1,9 @@
+Question: Which type of glial cell is responsible for removing neurotransmitters from synapses and regulating the levels of ions in the extracellular space?
+
+Possible Answers:
+a) Astrocytes
+b) Oligodendrocytes
+c) Schwann cells
+d) Microglia
+
+Key: a

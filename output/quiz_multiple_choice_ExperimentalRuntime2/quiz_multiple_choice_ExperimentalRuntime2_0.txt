@@ -1,0 +1,9 @@
+Question: In the experimental study of measuring the runtime of functions and methods, what was observed when the size of the list grew in the first experiment?
+
+Possible Answers:
+a) The time increased linearly as the size of the list grew.
+b) The time increased quadratically as the size of the list grew.
+c) The time remained constant regardless of the size of the list.
+d) The time decreased as the size of the list grew.
+
+Key: a

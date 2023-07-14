@@ -1,7 +1,9 @@
-1. Question: What is the purpose of a MapADT?
+Question: What is the purpose of a MapADT?
+
 Possible Answers:
-a) To store data in pairs of key and value
+a) To store data in pairs of key-value items
 b) To store data in an array or linked list
-c) To store data in a file cabinet model
-d) To store data in a transcript object
+c) To count occurrences of words in a file
+d) To store customer flight records
+
 Key: a

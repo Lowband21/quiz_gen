@@ -1,0 +1,7 @@
+Question: Which type of glial cell is responsible for insulating axons to allow fast neuronal transmission?
+Possible Answers:
+a) Astrocytes
+b) Oligodendrocytes
+c) Schwann cells
+d) Microglia
+Key: b

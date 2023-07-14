@@ -1,0 +1,9 @@
+Question: Which data structure follows the "last in, first out" principle?
+
+Possible Answers:
+a) Queue
+b) Array
+c) Linked list
+d) Stack
+
+Key: d

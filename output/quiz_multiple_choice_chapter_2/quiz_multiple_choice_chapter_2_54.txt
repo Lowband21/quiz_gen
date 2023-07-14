@@ -1,0 +1,7 @@
+Question: What is the function of the nervous system?
+Possible Answers:
+a) To take in information from the outside world and our bodies, and determine the best course of action
+b) To generate patterns of muscle contractions in the legs
+c) To relay sensory information from the peripheral nervous system to the central nervous system
+d) To control heart rate and breathing
+Key: a

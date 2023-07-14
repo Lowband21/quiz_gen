@@ -1,0 +1,9 @@
+Question: What is the purpose of an IDE?
+
+Possible Answers:
+a) To download and install software
+b) To write and run programs
+c) To detect the operating system
+d) To create a folder for program files
+
+Key: b

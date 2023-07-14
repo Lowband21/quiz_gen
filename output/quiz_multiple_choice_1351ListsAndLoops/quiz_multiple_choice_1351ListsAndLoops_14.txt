@@ -1,0 +1,9 @@
+Question: How does the loop in the code input information from the user and store it in a list?
+
+Possible Answers:
+a) The loop prompts the user to input names and stores each name in a separate variable.
+b) The loop prompts the user to input names and appends each name to an existing list.
+c) The loop creates an empty list and waits for the user to enter names, which are then stored in that list.
+d) The loop creates a list with predefined names and asks the user to confirm or modify them.
+
+Key: b

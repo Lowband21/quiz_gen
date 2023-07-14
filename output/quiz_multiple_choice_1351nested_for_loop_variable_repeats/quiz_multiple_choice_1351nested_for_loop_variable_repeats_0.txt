@@ -1,0 +1,9 @@
+Question: In Python, what is the purpose of using nested for loops in the context of creating a triangle of stars?
+
+Possible Answers:
+a) To vary the number of stars outputted based on the column value
+b) To vary the number of stars outputted based on the row value
+c) To create a rectangular shape instead of a triangle
+d) To repeat the same number of stars for each row
+
+Key: b
