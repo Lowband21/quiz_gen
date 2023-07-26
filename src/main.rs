@@ -1,6 +1,6 @@
 use eval::similarity::similarity;
 use quiz::quiz::quiz;
-use quiz::quiz_parser::{parse_quiz_file, QuizQuestion};
+use quiz::quiz_parser::{parse_quiz_file, QuizQuestion, filter_and_parse};
 
 use gen::explanation_gen::generate_explanations;
 use gen::quiz_gen::*;
@@ -60,6 +60,7 @@ fn select_operation_mode() -> String {
             "analysis",
             "transcription",
             "query",
+            "filter",
         ])
         .build();
     let operation_mode_choice = &requestty::prompt_one(operation_mode_question).unwrap();
@@ -458,6 +459,11 @@ fn main() {
                         .unwrap_or_else(|| panic!("Could not calculate median {} score", category))
                 );
             }
+        }
+        "filter" => {
+            filter_and_parse(2);
+
+
         }
         _ => {
             panic!("Invalid operation mode selected");

@@ -21,43 +21,26 @@ impl QuizQuestion {
 
 use rusqlite::{params, Connection, Result};
 use regex::Regex;
-use log::{info, error, debug};
 
 pub fn filter_and_parse(top_n: i32) -> Result<()> {
-    // Initialize logger
-    env_logger::init();
-
-    info!("Connecting to the database");
-    let conn = Connection::open("quiz_questions.db")?;
-
+    // Connect to the database
+    let conn = Connection::open("database.db")?;
+    
     // Define your regex pattern for parsing question, answer, key
     let re_question = Regex::new(r"Question: (.*)").unwrap();
-    let re_answer = Regex::new(r"Possible Answers:\s*((?s).*)Key:").unwrap();
+    let re_answer = Regex::new(r"Possible Answers: (.*)").unwrap();
     let re_key = Regex::new(r"Key: (.*)").unwrap();
-
-    info!("Preparing SQL statement");
-    let sql_query = format!("
-        SELECT response, total_score, filename
+    
+    // Select top N high score questions from each filename
+    let mut stmt = conn.prepare(&format!("
+        SELECT quiz.response, results.total_score, quiz.filename 
         FROM (
-            SELECT quiz.response AS response, 
-                   results.total_score AS total_score, 
-                   quiz.filename AS filename,
-                   ROW_NUMBER() OVER(PARTITION BY quiz.filename ORDER BY results.total_score DESC) rn
+            SELECT *, ROW_NUMBER() OVER(PARTITION BY filename ORDER BY total_score DESC) rn
             FROM results
             JOIN quiz ON quiz.id = results.id
         )
         WHERE rn <= {}
-    ", top_n);
-
-    info!("Executing SQL query: {}", sql_query);
-    let mut stmt = match conn.prepare(&sql_query) {
-        Ok(stmt) => stmt,
-        Err(e) => {
-            error!("Failed to prepare SQL statement: {}", e);
-            return Err(e);
-        }
-    };
-
+    ", top_n))?;
     let rows = stmt.query_map([], |row| {
         let response: String = row.get(0)?;
         let total_score: i32 = row.get(1)?;
@@ -66,20 +49,20 @@ pub fn filter_and_parse(top_n: i32) -> Result<()> {
         // Parse response into question, answer, key
         let question = re_question.captures(&response)
             .and_then(|cap| cap.get(1).map(|m| m.as_str()))
-            .unwrap_or("").to_string().trim().to_string();
+            .unwrap_or("").to_string();
         
         let answer = re_answer.captures(&response)
             .and_then(|cap| cap.get(1).map(|m| m.as_str()))
-            .unwrap_or("").trim().replace("\n\n", "\n").to_string();
+            .unwrap_or("").to_string();
         
         let key = re_key.captures(&response)
             .and_then(|cap| cap.get(1).map(|m| m.as_str()))
-            .unwrap_or("").trim().to_string();
+            .unwrap_or("").to_string();
 
         Ok((QuizQuestion::new(question, answer, key), total_score, filename))
     })?;
 
-    info!("Creating new table");
+    // Create a new table
     conn.execute("
         CREATE TABLE IF NOT EXISTS top_questions (
             id INTEGER PRIMARY KEY,
@@ -90,27 +73,18 @@ pub fn filter_and_parse(top_n: i32) -> Result<()> {
             filename TEXT NOT NULL
         )
     ", [])?;
-
+    
     // Insert data into the new table
-    info!("Inserting data into new table");
     let mut i = 0;
     for row_result in rows {
-        match row_result {
-            Ok((quiz_question, total_score, filename)) => {
-                debug!("Inserting question: {}", &quiz_question.question);
-                conn.execute("
-                    INSERT OR REPLACE INTO top_questions (id, question, answer, key, total_score, filename)
-                    VALUES (?1, ?2, ?3, ?4, ?5, ?6)
-                ", params![i, quiz_question.question, quiz_question.answer, quiz_question.key, total_score, filename])?;
-                i += 1;
-            },
-            Err(e) => {
-                error!("Failed to process a row: {}", e);
-            }
-        }
+        let (quiz_question, total_score, filename) = row_result?;
+        conn.execute("
+            INSERT INTO top_questions (id, question, answer, key, total_score, filename)
+            VALUES (?1, ?2, ?3, ?4, ?5, ?6)
+        ", params![i, quiz_question.question, quiz_question.answer, quiz_question.key, total_score, filename])?;
+        i += 1;
     }
     
-    info!("Successfully finished operation");
     Ok(())
 }
 
