@@ -1,4 +1,5 @@
 // src/similarity.rs
+/*
 use std::fs;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
@@ -50,3 +51,4 @@ pub fn similarity() -> std::io::Result<()> {
 
     Ok(())
 }
+*/

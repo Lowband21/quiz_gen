@@ -2,7 +2,7 @@ use rusqlite::{Connection, Result};
 use std::collections::HashMap;
 use std::error::Error;
 
-type QuizTuple = (i32, String, String);
+use crate::eval::gpt::QuizTuple;
 
 fn read_quiz_questions() -> Result<Vec<QuizTuple>, Box<dyn Error>> {
     let conn = Connection::open("quiz_questions.db")?;
@@ -99,7 +99,7 @@ fn readability_score(text: &str) -> f32 {
     206.835 - 1.015 * (total_words / total_sentences) - 84.6 * (total_syllables / total_words)
 }
 
-fn semantic_similarity(text1: &str, text2: &str) -> f32 {
+fn semantic_similarity(_text1: &str, _text2: &str) -> f32 {
     unimplemented!(); // Semantic similarity cannot be calculated without machine learning libraries
 }
 

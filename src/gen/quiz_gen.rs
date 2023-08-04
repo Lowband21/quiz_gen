@@ -10,6 +10,9 @@ use std::thread;
 use std::time::Duration;
 use std::time::SystemTime;
 
+//use std::collections::HashMap;
+use std::error::Error;
+
 pub fn log_api_call(prompt: &str, api_parameters: &str) {
     let log_message = format!(
         "{}: Prompt: {}, API parameters: {}",
@@ -41,8 +44,6 @@ pub fn preprocess_content(content: &str) -> String {
     content.to_string()
 }
 
-use std::collections::HashMap;
-use std::error::Error;
 
 pub fn generate_question(openai: &OpenAI, prompt: &str) -> Result<String, Box<dyn Error>> {
     let mut model = "gpt-3.5-turbo".to_string();

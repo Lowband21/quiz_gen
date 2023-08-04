@@ -3,7 +3,7 @@ use std::fs::File;
 use std::path::Path;
 use std::process::Command;
 
-use std::env;
+//use std::env;
 use std::fs;
 use std::io::prelude::*;
 
@@ -68,10 +68,10 @@ pub fn transcribe_all(model_size: String) {
             let segment = state
                 .full_get_segment_text(i)
                 .expect("failed to get segment");
-            let start_timestamp = state
+            let _start_timestamp = state
                 .full_get_segment_t0(i)
                 .expect("failed to get segment start timestamp");
-            let end_timestamp = state
+            let _end_timestamp = state
                 .full_get_segment_t1(i)
                 .expect("failed to get segment end timestamp");
 

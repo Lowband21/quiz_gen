@@ -1,8 +1,8 @@
+/*
 use reqwest::Client;
 use rusqlite::{Connection, Result};
 use serde::{Deserialize, Serialize};
 use std::error::Error;
-use tokio;
 
 type QuizTuple = (i32, String, String);
 
@@ -65,3 +65,4 @@ pub async fn run() -> Result<(), Box<dyn Error>> {
     }
     Ok(())
 }
+*/

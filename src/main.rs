@@ -1,4 +1,4 @@
-use eval::similarity::similarity;
+//use eval::similarity::similarity;
 use quiz::quiz::quiz;
 use quiz::quiz_parser::{parse_quiz_file, QuizQuestion, filter_and_parse};
 
@@ -55,9 +55,9 @@ fn select_operation_mode() -> String {
         .message("Choose an operation mode:")
         .choices(vec![
             "generate",
+            "evaluate",
             "parse",
             "quiz",
-            "analysis",
             "transcription",
             "query",
             "filter",
@@ -216,7 +216,7 @@ fn main() {
     let operation_mode = select_operation_mode();
 
     match operation_mode.as_str() {
-        "analysis" => {
+        "evaluate" => {
             //eval::bard::run();
             //eval::common_words::run();
             //eval::similarity::similarity();
@@ -237,7 +237,7 @@ fn main() {
                 .map(|item| item.text.clone())
                 .collect();
 
-            eval::gpt::run(filenames);
+            eval::gpt::run(filenames).unwrap();
         }
         "transcription" => {
             let gpu_or_cpu = Question::select("difficulty_level")
@@ -342,7 +342,7 @@ fn main() {
                             )
                             .unwrap();
 
-                            let output_file_path = save_processed(
+                            let _output_file_path = save_processed(
                                 processed_content,
                                 output_file_name.to_string(),
                                 output_file_ext,
@@ -487,7 +487,7 @@ fn save_processed(
 
 use walkdir::WalkDir;
 
-fn parse_files_and_output(selected_files: Vec<String>, input_dir: &str, output_dir: &str) {
+fn parse_files_and_output(selected_files: Vec<String>, _input_dir: &str, output_dir: &str) {
     // Prepare the output directory
     let output_dir = prepare_output_dir(output_dir);
 
@@ -527,7 +527,7 @@ fn parse_files_and_output(selected_files: Vec<String>, input_dir: &str, output_d
     }
 }
 
-fn run_quiz(selected_files: Vec<String>, quiz_dir: &str) -> Result<(), Box<dyn std::error::Error>> {
+fn run_quiz(selected_files: Vec<String>, _quiz_dir: &str) -> Result<(), Box<dyn std::error::Error>> {
     for i in selected_files {
         println!("{:?}", i);
         //let quiz_file_path = Path::new(quiz_dir).join(i);
