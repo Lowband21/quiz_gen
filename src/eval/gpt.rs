@@ -4,11 +4,40 @@ use rusqlite::{Connection, Result};
 use std::error::Error;
 use std::thread;
 use std::time::Duration;
-use tokio;
-
+use rand::prelude::SliceRandom;
+use rand::Rng;
+use std::sync::mpsc;
 use std::io::{self, Write};
+use std::fmt;
 
-type QuizTuple = (i32, String, String);
+pub type QuizTuple = (i32, String, String);
+
+#[derive(Debug)]
+struct MyError {
+    details: String
+}
+
+impl MyError {
+    fn new(msg: &str) -> MyError {
+        MyError{details: msg.to_string()}
+    }
+}
+
+impl fmt::Display for MyError {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
+        write!(f,"{}",self.details)
+    }
+}
+
+impl Error for MyError {
+    fn description(&self) -> &str {
+        &self.details
+    }
+}
+
+fn handle_error(error: Box<dyn Error>) -> Box<dyn Error> {
+    Box::new(MyError::new(error.description()))
+}
 
 fn manual_evaluation(quiz: &QuizTuple, rubric: &str) -> Result<String, Box<dyn Error>> {
     println!(
@@ -23,25 +52,40 @@ fn manual_evaluation(quiz: &QuizTuple, rubric: &str) -> Result<String, Box<dyn E
     io::stdin().read_line(&mut input)?;
     Ok(input.trim().to_string())
 }
+
 fn read_quiz_questions_by_filename(
     conn: &Connection,
     filename: &str,
 ) -> Result<Vec<QuizTuple>, Box<dyn Error>> {
-    let mut stmt = conn.prepare("SELECT id, prompt, response FROM quiz WHERE filename = ?1")?;
-    let rows = stmt.query_map(params![filename], |row| {
+    let mut stmt = match conn.prepare("SELECT id, prompt, response FROM quiz WHERE filename = ?1") {
+        Ok(stmt) => stmt,
+        Err(e) => return Err(handle_error(Box::new(e))),
+    };
+
+    let rows = match stmt.query_map(params![filename], |row| {
         Ok((row.get(0)?, row.get(1)?, row.get(2)?))
-    })?;
+    }) {
+        Ok(rows) => rows,
+        Err(e) => return Err(handle_error(Box::new(e))),
+    };
+
     let mut quiz_tuples = Vec::new();
+
     for row_result in rows {
-        let row = row_result?;
+        let row = match row_result {
+            Ok(row) => row,
+            Err(e) => return Err(handle_error(Box::new(e))),
+        };
+
         quiz_tuples.push(row);
     }
+
     Ok(quiz_tuples)
 }
 
 fn gpt_coherence_score(
     openai: &OpenAI,
-    prompt: &str,
+    _prompt: &str,
     question: &str,
     rubric: &str,
 ) -> Result<String, Box<dyn Error>> {
@@ -71,7 +115,7 @@ fn gpt_coherence_score(
         let response = openai.chat_completion_create(&api_parameters);
         match response {
             Ok(res) => {
-                let mut score = res.choices[0].message.as_ref().unwrap().content.clone();
+                let score = res.choices[0].message.as_ref().unwrap().content.clone();
 
                 if tries >= 10 {
                     return Ok(score);
@@ -112,13 +156,35 @@ fn store_score(
     Ok(())
 }
 
+fn store_evaluation_score(
+    conn: &Connection,
+    id: i32,
+    hr_relevance: i32,
+    hr_complexity: i32,
+    hr_clarity: i32,
+    hr_creativity: i32,
+    gr_relevance: i32,
+    gr_complexity: i32,
+    gr_clarity: i32,
+    gr_creativity: i32,
+    hr_score: i32,
+    gr_score: i32,
+) -> Result<(), Box<dyn Error>> {
+    conn.execute(
+        "INSERT INTO evaluations (id, hr_relevance, hr_complexity, hr_clarity, hr_creativity, gr_relevance, gr_complexity, gr_clarity, gr_creativity, hr_score, gr_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11)",
+        params![id, hr_relevance, hr_complexity, hr_clarity, hr_creativity, gr_relevance, gr_complexity, gr_clarity, gr_creativity, hr_score, gr_score],
+    )?;
+    Ok(())
+}
+
 use rusqlite::params;
 
 use regex::Regex;
 
 pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
-    let conn = &Connection::open("quiz_questions.db")?;
-    let manual = false;
+    let conn = create_connection()?;
+    create_evaluations_table(&conn)?;
+    //let manual = true;
     let auth = Auth::from_env().unwrap();
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let rubric = "
@@ -147,49 +213,90 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let mut failures = 0;
     let mut count = 0;
 
+    // Randomize filenames
+    let mut rng = rand::thread_rng();
+    let mut filenames = filenames.clone();
+    filenames.shuffle(&mut rng);
+
     for filename in filenames {
-        let quiz_tuples = read_quiz_questions_by_filename(conn, filename.as_str())?;
+        let mut quiz_tuples = match read_quiz_questions_by_filename(&conn, filename.as_str()) {
+            Ok(tuples) => tuples,
+            Err(e) => {
+                println!("Failed to read quiz questions from file {}: {}", filename, e);
+                continue;
+            }
+        };
 
-        let mut high_score = 10;
+        // Randomize quiz tuples and possibly duplicate some of them
+        quiz_tuples.shuffle(&mut rng);
+        if rng.gen_range(0..2) == 1 {
+            if let Some(random_tuple) = quiz_tuples.choose(&mut rng) {
+                quiz_tuples.push(random_tuple.clone());
+            }
+        }
+
+        //let mut high_score = 10;
         println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
+        // Inside your quiz_tuples loop
         for quiz in &quiz_tuples {
-            let score = if manual {
-                manual_evaluation(&quiz, &rubric)?
-            } else {
-                gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric)?
-            };
-
+            let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric)?;
+            let hr = manual_evaluation(&quiz, &rubric)?;
+        
             //println!("Eval: {:#?}", score);
-            let score = score.split("\n").last().unwrap();
+            let hr_score = hr.split("\n").last().unwrap();
+            let gr_score = gr.split("\n").last().unwrap();
 
             let re = Regex::new(r"(\d+)").unwrap();
-            let scores: Vec<i32> = re
-                .find_iter(score)
+            let hr_scores: Vec<i32> = re
+                .find_iter(hr_score)
+                .map(|m| m.as_str().parse::<i32>())
+                .filter_map(Result::ok)
+                .collect();
+            let gr_scores: Vec<i32> = re
+                .find_iter(gr_score)
                 .map(|m| m.as_str().parse::<i32>())
                 .filter_map(Result::ok)
                 .collect();
 
-            if scores.len() == 4 {
-                let total_score: i32 = scores.iter().sum();
-
+            if hr_scores.len() == 4 && gr_scores.len() == 4 {
+                let hr_total_score: i32 = hr_scores.iter().sum();
+                let gr_total_score: i32 = gr_scores.iter().sum();
+            
+                store_evaluation_score(
+                    &conn,
+                    quiz.0,
+                    hr_scores[0],
+                    hr_scores[1],
+                    hr_scores[2],
+                    hr_scores[3],
+                    gr_scores[0],
+                    gr_scores[1],
+                    gr_scores[2],
+                    gr_scores[3],
+                    hr_total_score,
+                    gr_total_score,
+                )?;
+                /*
                 if total_score > high_score {
                     high_score = total_score;
 
                     println!("High scoring question: {}", &quiz.2);
                     //println!("High scoring prompt: {}", &quiz.1);
                 }
+                */
 
                 store_score(
                     &conn,
                     quiz.0,
-                    scores[0],
-                    scores[1],
-                    scores[2],
-                    scores[3],
-                    total_score,
+                    gr_scores[0],
+                    gr_scores[1],
+                    gr_scores[2],
+                    gr_scores[3],
+                    gr_total_score,
                 )
                 .unwrap();
-                println!("Total Score: {}", total_score);
+                println!("Human total Score: {}", hr_total_score);
+                println!("GPT total Score: {}", gr_total_score);
                 count += 1;
             } else {
                 println!("Failed to extract score");
@@ -199,4 +306,28 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     }
     println!("Finished with {} failures out of {}", failures, count);
     Ok(())
+}
+
+fn create_evaluations_table(conn: &Connection) -> Result<(), Box<dyn Error>> {
+    conn.execute(
+        "CREATE TABLE IF NOT EXISTS evaluations (
+            id INTEGER,
+            hr_relevance INTEGER NOT NULL,
+            hr_complexity INTEGER NOT NULL,
+            hr_clarity INTEGER NOT NULL,
+            hr_creativity INTEGER NOT NULL,
+            gr_relevance INTEGER NOT NULL,
+            gr_complexity INTEGER NOT NULL,
+            gr_clarity INTEGER NOT NULL,
+            gr_creativity INTEGER NOT NULL,
+            hr_score INTEGER NOT NULL,
+            gr_score INTEGER NOT NULL
+         )",
+        [],
+    )?;
+    Ok(())
+}
+
+fn create_connection() -> rusqlite::Result<Connection> {
+    Connection::open("quiz_questions.db")
 }
