@@ -1,9 +1,7 @@
-Question: Which of the following statements about strings is true?
-
-Possible Answers:
-a) Strings can be modified directly by changing the value of a specific character.
-b) Strings can only be accessed using an index-based for loop.
-c) Strings are immutable and cannot be changed directly.
-d) Strings have the same properties and behaviors as lists.
-
+Question: What does the term "immutable" mean in the context of strings in Python?
+Possible Answers: 
+a) It means that strings can be directly altered.
+b) It means that strings can be changed by using an index.
+c) It means that strings cannot be changed once they are created.
+d) It means that strings can be changed by using loops.
 Key: c

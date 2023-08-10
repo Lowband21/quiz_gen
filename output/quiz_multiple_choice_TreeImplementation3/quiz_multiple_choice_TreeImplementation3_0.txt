@@ -1,9 +1,7 @@
-Question: What is the purpose of the BinaryTree constructor?
-
-Possible Answers:
-a) To initialize the instance variables of the BinaryTree class
-b) To add a root node to the tree
-c) To create a new instance of the BinaryTree class
-d) To compute the size of the tree
-
-Key: a
+Question: What does the isExternal method in the BinaryTree class do?
+Possible Answers: 
+a) It checks if the node is the root of the tree.
+b) It checks if both the left and right children of a node are none.
+c) It checks if the node has any parent.
+d) It checks if the node has any children.
+Key: b

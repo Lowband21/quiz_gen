@@ -1,9 +1,7 @@
-Question: Which of the following statements accurately describes the characteristics of a stack?
-
-Possible Answers:
-a) A stack is a first in, first out data structure.
-b) A stack is a last in, first out data structure.
-c) A stack is a data structure that allows elements to be inserted and removed from both ends.
-d) A stack is a data structure that allows elements to be inserted and removed in any order.
-
+Question: What is the primary difference between a stack and a queue in terms of data processing?
+Possible Answers: 
+a) A stack is a first in, first out data structure, while a queue is a last in, first out data structure.
+b) A stack is a last in, first out data structure, while a queue is a first in, first out data structure.
+c) Both stack and queue are last in, first out data structures.
+d) Both stack and queue are first in, first out data structures.
 Key: b

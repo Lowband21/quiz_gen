@@ -1,9 +1,7 @@
-Question: What is an internal node in a tree?
-
-Possible Answers:
-a) A node that has no children
-b) A node that has at least one child
-c) A node that is the root of the tree
-d) A node that is a leaf node
-
+Question: What is the correct definition of an 'edge' in the context of a tree data structure?
+Possible Answers: 
+a) A pair of nodes that are siblings
+b) A pair of nodes such that one is the parent of the other
+c) A sequence of nodes such that any two consecutive nodes in that sequence form a path
+d) A node that has no children
 Key: b

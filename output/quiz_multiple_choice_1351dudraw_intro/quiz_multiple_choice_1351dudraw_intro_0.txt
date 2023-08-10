@@ -1,9 +1,7 @@
-Question: In DUDraw, what command is used to set the size of the window that gets opened?
-
-Possible Answers:
-a) DUDraw.setCanvasSize
-b) DUDraw.show
-c) DUDraw.clear
-d) Import DUDraw
-
-Key: a
+Question: What is the function of the DUDraw.setCanvasSize command in a Python program that uses DUDraw?
+Possible Answers: 
+a) It sets the background color of the canvas.
+b) It sets the size of the window that gets opened.
+c) It sets the scale for the horizontal and vertical axis.
+d) It imports the DUDraw package.
+Key: b

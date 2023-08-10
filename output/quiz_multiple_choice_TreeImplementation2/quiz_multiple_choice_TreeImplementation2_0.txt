@@ -1,9 +1,7 @@
-Question: What is the depth of the node with contents "Jordan" in the binary tree described in the text?
-
-Possible Answers:
-a) 0
-b) 1
-c) 2
-d) 3
-
-Key: c
+Question: What does the add_root method in the binary tree class return?
+Possible Answers: 
+a) A reference to the binary tree
+b) A tree node
+c) The contents of the root node
+d) Nothing
+Key: b

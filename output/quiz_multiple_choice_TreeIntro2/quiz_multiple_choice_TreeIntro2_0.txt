@@ -1,9 +1,7 @@
-Question: What is the definition of node depth in a tree?
-
-Possible Answers:
-a) The number of ancestors a node has, including itself.
-b) The number of ancestors a node has, not including itself.
-c) The maximum depth of all the nodes in a tree.
-d) The height of a subtree rooted at a node.
-
-Key: b
+Question: What is the difference between the depth of a node and the height of a node in a tree?
+Possible Answers: 
+a) The depth of a node is the number of its ancestors, while the height of a node is the height of the subtree rooted at that node.
+b) The depth of a node is the number of its descendants, while the height of a node is the number of its ancestors.
+c) The depth of a node is the number of its siblings, while the height of a node is the number of its children.
+d) The depth of a node is the number of its children, while the height of a node is the number of its parents.
+Key: a

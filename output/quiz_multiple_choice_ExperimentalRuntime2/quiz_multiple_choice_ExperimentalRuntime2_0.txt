@@ -1,9 +1,7 @@
-Question: In the experimental study of measuring the runtime of functions and methods, what was observed when the size of the list grew in the first experiment?
-
-Possible Answers:
-a) The time increased linearly as the size of the list grew.
-b) The time increased quadratically as the size of the list grew.
-c) The time remained constant regardless of the size of the list.
-d) The time decreased as the size of the list grew.
-
-Key: a
+Question: What is the behavior of the runtime when elements are inserted at the beginning of a Python list?
+Possible Answers: 
+a) The runtime remains constant regardless of the size of the list.
+b) The runtime increases linearly as the size of the list increases.
+c) The runtime increases quadratically as the size of the list increases.
+d) The runtime decreases as the size of the list increases.
+Key: c

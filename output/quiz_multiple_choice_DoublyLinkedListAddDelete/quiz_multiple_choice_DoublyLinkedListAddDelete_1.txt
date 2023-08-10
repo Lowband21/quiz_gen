@@ -1,9 +1,7 @@
-Question: What is a key property that must hold true for every node in a doubly linked list?
-
-Possible Answers:
-a) The next pointer of a node must point to the node that it started at.
-b) The prev pointer of a node must point to the node that it started at.
-c) The next pointer of a node must point to the node on the right of it.
-d) The prev pointer of a node must point to the node on the left of it.
-
-Key: b
+Question: What is the correct sequence of steps for inserting a new node in a doubly linked list with sentinel nodes?
+Possible Answers: 
+a) Instantiate a new node, fix the references in the new node, change the reference from the node before to the new node, and change the reference from the node after to the new node.
+b) Instantiate a new node, fix the references in the new node, change the reference from the node after to the new node, and change the reference from the node before to the new node.
+c) Instantiate a new node, change the reference from the node before to the new node, fix the references in the new node, and change the reference from the node after to the new node.
+d) Instantiate a new node, change the reference from the node after to the new node, fix the references in the new node, and change the reference from the node before to the new node.
+Key: a

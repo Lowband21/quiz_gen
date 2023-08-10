@@ -1,9 +1,7 @@
-Question: What is the order in which nodes are visited in an in-order traversal of a binary tree?
-
-Possible Answers:
-a) Pre-order, post-order, in-order
-b) Post-order, pre-order, in-order
-c) In-order, pre-order, post-order
-d) In-order, post-order, pre-order
-
-Key: c
+Question: In an in-order traversal of a binary tree, what is the correct order of operations?
+Possible Answers: 
+a) Visit the root node, process the left child, then process the right child
+b) Process the left child, visit the root node, then process the right child
+c) Process the right child, visit the root node, then process the left child
+d) Visit the root node, process the right child, then process the left child
+Key: b

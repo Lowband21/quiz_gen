@@ -1,9 +1,7 @@
-Question: In Python, what is the index of the first element in a list?
-
-Possible Answers:
-a) 0
-b) 1
-c) 2
-d) 3
-
-Key: a
+Question: What is the function of the 'len' command when used with a list in Python?
+Possible Answers: 
+a) It adds a new element to the end of the list
+b) It tells us how many elements are in the list
+c) It creates a new list
+d) It accesses a specific element in the list
+Key: b

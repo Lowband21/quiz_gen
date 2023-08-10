@@ -1,9 +1,7 @@
-Question: Which string method can be used to check if a string ends with a specified value?
-
-Possible Answers:
+Question: In Python, which string method would you use to check if a string ends with a specific value?
+Possible Answers: 
 a) isLower
 b) lower
 c) endsWith
-d) isUpper
-
+d) upper
 Key: c

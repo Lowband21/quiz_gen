@@ -1,9 +1,7 @@
-Question: What is the set abstract data type primarily used for?
-
-Possible Answers:
-a) Storing data in an ordered manner
-b) Storing data without any duplicates
-c) Performing mathematical operations on data
-d) Implementing linked lists
-
-Key: b
+Question: What are the basic operations that the set abstract data type (ADT) should be able to compute?
+Possible Answers: 
+a) Union, intersection, and set difference
+b) Addition, subtraction, and multiplication
+c) Union, intersection, and division
+d) Addition, intersection, and set difference
+Key: a

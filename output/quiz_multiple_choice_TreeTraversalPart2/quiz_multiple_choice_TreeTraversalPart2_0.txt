@@ -1,9 +1,7 @@
-Question: Which type of traversal visits the root node in between its children in a binary tree?
-
-Possible Answers:
-a) Pre-order traversal
-b) Post-order traversal
-c) In-order traversal
-d) Breadth-first traversal
-
-Key: c
+Question: What is the correct order of steps in an in-order traversal of a binary tree?
+Possible Answers: 
+a) Visit the root node, then the left child, then the right child
+b) Visit the left child, then the root node, then the right child
+c) Visit the right child, then the root node, then the left child
+d) Visit the root node, then the right child, then the left child
+Key: b

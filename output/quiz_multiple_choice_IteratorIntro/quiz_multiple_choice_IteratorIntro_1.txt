@@ -1,9 +1,7 @@
-Question: What is the purpose of an iterator in Python?
-
-Possible Answers:
-a) To create and return an iterable object
-b) To allow external code to traverse the elements of a data structure
-c) To implement nested for loops efficiently
-d) To improve the efficiency of index-based loops
-
-Key: b
+Question: What is the main advantage of using an iterator to traverse a data structure?
+Possible Answers: 
+a) It allows the data structure to be traversed in a random order.
+b) It makes the code more complex and thus more secure.
+c) It provides a consistent way to step through the elements of a data structure from external code.
+d) It reduces the time complexity of the traversal from O(n^2) to O(n).
+Key: d

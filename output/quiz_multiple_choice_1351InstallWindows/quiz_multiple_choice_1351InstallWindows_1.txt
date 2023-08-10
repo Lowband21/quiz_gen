@@ -1,9 +1,7 @@
-Question: What is the purpose of an IDE?
-
-Possible Answers:
-a) To download and install software
-b) To write and run programs
-c) To detect the operating system
-d) To create a folder for program files
-
+Question: What is the purpose of installing Visual Studio Code (VS Code) for Python programming?
+Possible Answers: 
+a) To create a desktop icon for easy access
+b) To serve as an Integrated Development Environment (IDE) that assists in editing, debugging, and running Python programs
+c) To automatically detect the operating system being used
+d) To enable the downloading of Python software
 Key: b

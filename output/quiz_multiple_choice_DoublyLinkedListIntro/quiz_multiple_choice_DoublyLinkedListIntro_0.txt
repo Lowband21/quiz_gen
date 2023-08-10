@@ -1,9 +1,7 @@
-Question: What is the purpose of using sentinel nodes in a doubly linked list?
-
-Possible Answers:
-a) To store actual data in the list
-b) To simplify the implementation of special cases
-c) To enable traversal of the list in both forward and reverse directions
-d) To link nodes to the previous and next nodes in the list
-
-Key: b
+Question: What is the main difference between a singly linked list and a doubly linked list?
+Possible Answers: 
+a) Singly linked lists can only be traversed in one direction, while doubly linked lists can be traversed in both directions.
+b) Singly linked lists have a head node, while doubly linked lists do not.
+c) Doubly linked lists can only store integers, while singly linked lists can store any data type.
+d) Singly linked lists have a tail node, while doubly linked lists do not.
+Key: a

@@ -1,9 +1,7 @@
-Question: What is a two dimensional list in Python?
-
-Possible Answers:
-a) A linear storage of multiple values
-b) A matrix or a grid of values
-c) A list of lists
-d) A storage of information in two dimensions
-
-Key: b
+Question: What is a practical application of two-dimensional lists in Python?
+Possible Answers: 
+a) Storing the pixels of a digital image
+b) Keeping track of a player's score in a game
+c) Storing the contents of a book
+d) Keeping track of a user's login information
+Key: a

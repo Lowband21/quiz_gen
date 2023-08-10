@@ -1,9 +1,7 @@
-Question: Which escape character is used to insert a tab into a string?
-
-Possible Answers:
-a) \n
-b) \t
-c) \\
-d) \"
-
+Question: What is the purpose of escape characters in Python strings?
+Possible Answers: 
+a) To combine words with the value of variables into one string
+b) To allow the inclusion of special characters into strings
+c) To create a string that's smoother for the programming
+d) To perform arithmetic on a string
 Key: b

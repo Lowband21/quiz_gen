@@ -1,9 +1,7 @@
-Question: What is the key concept demonstrated in the given text?
-
-Possible Answers:
-a) Combining scalable drawings with animation
-b) Modifying the position of a circle
-c) Creating a house with a specific position and size
-d) Animating a circle on the canvas
-
-Key: a
+Question: What modification was made to the animation program to replace the moving circle with a house?
+Possible Answers: 
+a) The circle's size was increased to resemble a house
+b) The drawHouse method was called with the X position, Y position, and size instead of duDraw.filledCircle
+c) The circle was colored to look like a house
+d) The animation loop was changed to draw a house instead of a circle
+Key: b

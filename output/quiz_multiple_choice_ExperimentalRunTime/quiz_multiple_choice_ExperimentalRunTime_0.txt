@@ -1,9 +1,7 @@
-Question: What is the purpose of timing how long it takes for a function or method to run?
-
-Possible Answers:
-a) To determine the number of elements in a data structure
-b) To measure the accuracy of the time function in Python
-c) To evaluate the relationship between the size of a data structure and the time an algorithm takes to execute
-d) To determine the elapsed time since the start of the program
-
-Key: c
+Question: Why is it important to time how long it takes for a function or method to run in a program?
+Possible Answers: 
+a) It helps to know when the program was last run
+b) It gives an indication of how much data our algorithms can reasonably handle and when we need to redesign our code
+c) It helps to keep track of the time spent on coding
+d) It helps to increase the speed of the computer
+Key: b

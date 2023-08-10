@@ -1,9 +1,7 @@
-Question: What is a feature of lists in Python that allows for accessing elements from the end of the list?
-
-Possible Answers:
-a) Reverse indexing
-b) Negative indexing
-c) Reverse slicing
-d) Negative slicing
-
+Question: In Python, how can you access the last element of a list?
+Possible Answers: 
+a) listname[0]
+b) listname[-1]
+c) listname[length of listname]
+d) listname[1]
 Key: b

@@ -1,9 +1,7 @@
-Question: What is the purpose of combining scalable positional drawings with animation?
-
-Possible Answers:
-a) To create a more visually appealing animation
-b) To allow for the animation of complex shapes, such as houses
-c) To demonstrate the power of combining existing code
-d) To make the animation process easier and more efficient
-
-Key: c
+Question: What is the main change the programmer made to animate a house instead of a circle in the program?
+Possible Answers: 
+a) They changed the parameters of the drawHouse method
+b) They replaced the duDraw.filledCircle method with the drawHouse method
+c) They adjusted the size of the house to 0.2 by 0.2
+d) They changed the X and Y center to X and Y position
+Key: b

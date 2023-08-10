@@ -1,9 +1,7 @@
-Question: What is the easiest way to implement a binary tree?
-
-Possible Answers:
-a) Using arrays to store the nodes
-b) Using linked nodes with references to the parent and child nodes
-c) Using a stack data structure
-d) Using a queue data structure
-
+Question: What are the four instance variables of a tree node in a binary tree?
+Possible Answers: 
+a) parent, left child, right child, color
+b) parent, left child, right child, value
+c) parent, sibling, right child, value
+d) parent, left child, right sibling, value
 Key: b

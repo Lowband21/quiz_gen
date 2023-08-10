@@ -1,9 +1,7 @@
-Question: What is the purpose of the inner for loop in the given code?
-
-Possible Answers:
-a) To output the number of rows of stars specified by the user.
-b) To output the number of columns of stars specified by the user.
-c) To print a star for each element in the sequence defined by the range of numCalls.
-d) To print a star for each element in the sequence defined by the range of numRows.
-
-Key: c
+Question: What happens to the values stored in memory for a loop variable after the completion of the loop?
+Possible Answers: 
+a) The values are stored permanently in the memory.
+b) The values are released from the memory.
+c) The values are moved to a different location in the memory.
+d) The values are transformed into a different data type.
+Key: b

@@ -1,9 +1,7 @@
-Question: What is the purpose of passing parameters to a function?
-
-Possible Answers:
-a) To change the size of the objects being drawn
-b) To shift the position of the objects being drawn
-c) To add additional instances of the objects being drawn
-d) To document the program
-
-Key: b
+Question: What is the main advantage of passing parameters to a function in a code?
+Possible Answers: 
+a) It allows for the creation of multiple instances of the same function
+b) It reduces the need for documentation in the code
+c) It increases the speed of the program
+d) It changes the size of the objects drawn on the canvas
+Key: a

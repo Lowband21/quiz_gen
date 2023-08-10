@@ -1,9 +1,7 @@
-Question: Which method in the ArraySet class checks if an element is in the set?
-
-Possible Answers:
-a) contains
-b) add
-c) discard
-d) iter
-
-Key: a
+Question: What is the primary reason the ArraySet implementation is not considered efficient?
+Possible Answers: 
+a) It uses Python lists which are not efficient
+b) It has to traverse the entire list to look for an element
+c) It does not store the size of the set
+d) It uses a dynamic array which is not efficient
+Key: b

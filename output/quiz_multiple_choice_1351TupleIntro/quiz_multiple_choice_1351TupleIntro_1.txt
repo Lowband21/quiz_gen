@@ -1,9 +1,7 @@
-Question: Which of the following statements about tuples in Python is true?
-
-Possible Answers:
-a) Tuples can only contain elements of the same type.
-b) Tuples are mutable and can be changed after creation.
-c) Tuples are a compound data structure that combines lists and dictionaries.
-d) Tuples are created by placing values within a pair of parentheses and separating them with commas.
-
-Key: d
+Question: What is a unique characteristic of tuples in Python?
+Possible Answers: 
+a) Tuples can only hold values of the same type 
+b) Tuples are mutable and can be changed after creation 
+c) Tuples are a way of connecting together two or more variables into one container 
+d) Tuples cannot hold more than three values
+Key: c

@@ -1,9 +1,7 @@
-Question: What is a tuple in Python?
-
-Possible Answers:
-a) A way to connect two or more variables into one container
-b) A data structure that stores a single value
-c) A container that allows for mutable values
-d) A type of loop in Python
-
-Key: a
+Question: What are the key characteristics of a tuple in Python?
+Possible Answers: 
+a) Tuples are mutable and can contain multiple variables of the same type.
+b) Tuples are mutable and can contain multiple variables of different types.
+c) Tuples are immutable and can contain multiple variables of the same type.
+d) Tuples are immutable and can contain multiple variables of different types.
+Key: d

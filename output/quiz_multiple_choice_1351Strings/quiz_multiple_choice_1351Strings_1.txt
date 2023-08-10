@@ -1,9 +1,7 @@
-Question: Which escape character is used to insert a tab into a string?
-
-Possible Answers:
-a) \n
-b) \t
-c) \\
-d) \"
-
-Key: b
+Question: What is the purpose of escape characters in Python strings and how are they used?
+Possible Answers: 
+a) Escape characters are used to include special characters into strings and are denoted by a backslash followed by a specific letter.
+b) Escape characters are used to escape from a loop in Python and are denoted by a backslash followed by a specific letter.
+c) Escape characters are used to include special characters into strings and are denoted by a forward slash followed by a specific letter.
+d) Escape characters are used to escape from a loop in Python and are denoted by a forward slash followed by a specific letter.
+Key: a

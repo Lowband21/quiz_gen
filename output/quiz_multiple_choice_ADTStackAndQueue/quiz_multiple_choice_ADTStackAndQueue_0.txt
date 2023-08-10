@@ -1,9 +1,7 @@
-Question: Which data structure follows the "last in, first out" principle?
-
-Possible Answers:
-a) Queue
-b) Array
-c) Linked list
-d) Stack
-
-Key: d
+Question: Which of the following best describes the difference between a stack and a queue in terms of data structure?
+Possible Answers: 
+a) A stack is a first in, first out data structure, while a queue is a last in, first out data structure.
+b) A stack is a last in, first out data structure, while a queue is a first in, first out data structure.
+c) Both stack and queue are last in, first out data structures.
+d) Both stack and queue are first in, first out data structures.
+Key: b

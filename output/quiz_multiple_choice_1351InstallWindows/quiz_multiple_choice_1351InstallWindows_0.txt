@@ -1,9 +1,7 @@
-Question: What is the purpose of an Integrated Development Environment (IDE)?
-
-Possible Answers:
-a) To download and install software programs
-b) To edit and run code within a single program
-c) To detect the operating system of a computer
-d) To create a folder for storing code files
-
+Question: What is the purpose of the Python extension in Visual Studio Code?
+Possible Answers: 
+a) It allows you to download Python programs.
+b) It provides assistance with understanding and debugging Python programs within VS Code.
+c) It enables you to create desktop icons for Python programs.
+d) It is necessary for running Python programs on Windows.
 Key: b

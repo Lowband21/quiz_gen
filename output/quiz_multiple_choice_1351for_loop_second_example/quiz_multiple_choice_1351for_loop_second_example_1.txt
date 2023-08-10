@@ -1,9 +1,7 @@
-Question: In Python, what is the purpose of using a for loop?
-
-Possible Answers:
-a) To execute a block of code a specific number of times
-b) To execute a block of code until a certain condition is met
-c) To execute a block of code only once
-d) To execute a block of code in random positions
-
-Key: a
+Question: In the context of programming, how can you repeat a block of code multiple times using Python?
+Possible Answers: 
+a) By using a while loop
+b) By using a for loop
+c) By using an if statement
+d) By using a switch statement
+Key: b

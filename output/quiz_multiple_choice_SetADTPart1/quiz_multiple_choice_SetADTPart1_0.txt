@@ -1,9 +1,9 @@
-Question: What is the purpose of the set abstract data type?
+Question: What are the three basic set operations that can be computed in a set abstract data type?
 
-Possible Answers:
-a) To store a collection of objects with a specific order
-b) To store a collection of objects without any duplicates
-c) To store a collection of objects with a specific order and without any duplicates
-d) To store a collection of objects with no specific order and with duplicates
+Possible Answers: 
+a) Union, Intersection, and Set Difference
+b) Addition, Subtraction, and Multiplication
+c) Union, Division, and Intersection
+d) Intersection, Set Difference, and Division
 
-Key: b
+Key: a

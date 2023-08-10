@@ -1,9 +1,7 @@
-Question: What transformations were applied to the house in the given text?
-
-Possible Answers:
-a) Shifting horizontally by a factor of four and vertically by a factor of two
-b) Scaling horizontally by a factor of four and vertically by a factor of two
-c) Shifting right two units and up three units
-d) Scaling horizontally by a factor of two and vertically by a factor of four
-
+Question: What are the steps to combine shifting and scaling transformations on a graphical object?
+Possible Answers: 
+a) Scale the x and y coordinates, then shift the x and y positions.
+b) Shift the x and y positions, then scale the x and y coordinates.
+c) Scale the x and y positions, then shift the x and y coordinates.
+d) Shift the x and y coordinates, then scale the x and y positions.
 Key: a

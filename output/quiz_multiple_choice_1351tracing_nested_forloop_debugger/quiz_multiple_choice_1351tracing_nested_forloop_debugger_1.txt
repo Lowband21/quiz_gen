@@ -1,9 +1,7 @@
-Question: What is the purpose of setting a breakpoint in a debugger?
-
-Possible Answers:
-a) To stop the program at a specific line of code for detailed inspection
-b) To run the program straight through without any interruptions
-c) To display the current values of variables in the program
-d) To indicate the completion of the program
-
-Key: a
+Question: What is the function of a breakpoint in the VS Code debugger?
+Possible Answers: 
+a) It allows the user to skip lines of code.
+b) It serves as a marker for where the code should stop running.
+c) It helps in printing the output faster.
+d) It deletes a specific line of code.
+Key: b

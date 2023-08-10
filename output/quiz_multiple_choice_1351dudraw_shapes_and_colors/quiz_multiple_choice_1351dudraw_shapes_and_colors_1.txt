@@ -1,9 +1,7 @@
-Question: In DUDraw, what command is used to draw a filled rectangle?
-
-Possible Answers:
-a) filled_rectangle
-b) draw_rectangle
-c) fill_rectangle
-d) rectangle
-
-Key: c
+Question: What is the default scale in DUDraw for the X and Y direction, regardless of the size of the canvas?
+Possible Answers: 
+a) 0 to 10
+b) 0 to 1
+c) 1 to 10
+d) 1 to 100
+Key: b

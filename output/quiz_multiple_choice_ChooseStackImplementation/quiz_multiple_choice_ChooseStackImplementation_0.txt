@@ -1,9 +1,7 @@
-Question: What is the order of growth for pushing elements onto a stack implemented as a singly linked list with the top of the stack at the end?
-
-Possible Answers:
+Question: What is the order of growth for pushing and popping elements when using an array to implement a stack, with the top of the stack stored at the first index of the array?
+Possible Answers: 
 a) O(1)
-b) O(log N)
-c) O(N)
-d) O(N^2)
-
-Key: a
+b) O(N)
+c) O(N^2)
+d) O(logN)
+Key: b

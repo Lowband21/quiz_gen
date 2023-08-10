@@ -1,9 +1,7 @@
-Question: Which method can be used to find the index of the first occurrence of a substring in a string, but returns -1 if the substring is not found?
-
-Possible Answers:
-a) String.index
-b) String.find
-c) String.count
-d) String.replace
-
+Question: What is the difference between the string methods .index and .find in Python?
+Possible Answers: 
+a) .index returns the first location of a substring in a string, while .find returns the number of occurrences of a substring.
+b) .index returns the first location of a substring in a string, while .find returns -1 if the substring is not found.
+c) .index returns the last location of a substring in a string, while .find returns the first location.
+d) .index and .find perform the same function, there is no difference.
 Key: b

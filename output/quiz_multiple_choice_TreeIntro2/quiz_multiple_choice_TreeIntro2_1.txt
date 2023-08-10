@@ -1,9 +1,7 @@
-Question: What is the difference between node depth and tree height?
-
-Possible Answers:
-a) Node depth is the maximum depth of all nodes in a tree, while tree height is the number of ancestors of a node.
-b) Node depth is the number of ancestors of a node, while tree height is the maximum depth of all nodes in a tree.
-c) Node depth is the number of children a node has, while tree height is the maximum number of children among all nodes in a tree.
-d) Node depth is the number of ancestors of a node, while tree height is the maximum number of children among all nodes in a tree.
-
+Question: What is the definition of a binary tree in the context of data structures?
+Possible Answers: 
+a) A tree with a maximum of three children per node
+b) A tree with a maximum of two children per node
+c) A tree with a maximum of four children per node
+d) A tree with a maximum of one child per node
 Key: b

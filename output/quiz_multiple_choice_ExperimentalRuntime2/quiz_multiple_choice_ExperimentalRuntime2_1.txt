@@ -1,9 +1,7 @@
-Question: What is the main difference in runtime between appending elements to the end of a Python list and inserting elements at the beginning of a Python list?
-
-Possible Answers:
-a) Appending elements to the end of a list is slower than inserting elements at the beginning.
-b) Appending elements to the end of a list is faster than inserting elements at the beginning.
-c) Appending elements to the end of a list and inserting elements at the beginning have similar runtimes.
-d) The runtime difference between appending elements to the end and inserting elements at the beginning cannot be determined.
-
-Key: a
+Question: What is the typical behavior of a linear function in terms of the relationship between the size of the input and the output time?
+Possible Answers: 
+a) When the size of the input doubles, the output time quadruples.
+b) When the size of the input triples, the output time triples.
+c) When the size of the input doubles, the output time also doubles.
+d) The output time remains constant regardless of the size of the input.
+Key: c

@@ -1,9 +1,7 @@
-Question: What is the purpose of the len() function when used with a list in Python?
-
-Possible Answers:
-a) It returns the number of elements in the list.
-b) It returns the index of the last element in the list.
-c) It returns the sum of all the elements in the list.
-d) It returns the average of all the elements in the list.
-
+Question: In Python, how can you access the last element of a list?
+Possible Answers: 
+a) By using the len function and subtracting one.
+b) By using the len function without subtracting anything.
+c) By using the index 0.
+d) By using the index 1.
 Key: a

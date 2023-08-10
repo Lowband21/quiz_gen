@@ -1,7 +1,7 @@
-Question: When scaling an image, what happens to the center point of the shape?
+Question: What happens to the center point of a shape when it is scaled?
 Possible Answers: 
-a) It remains unchanged
-b) It moves to the left and down
-c) It moves to the right and up
-d) It moves randomly
-Key: c
+a) The center point remains the same while the size of the shape changes
+b) The center point gets stretched in the direction of scaling
+c) The center point gets compressed in the direction of scaling
+d) The center point moves to a random location within the shape
+Key: b

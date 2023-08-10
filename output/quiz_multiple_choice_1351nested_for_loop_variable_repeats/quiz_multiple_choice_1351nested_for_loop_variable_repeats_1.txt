@@ -1,9 +1,7 @@
-Question: In Python, what is the purpose of using nested for loops in the context of generating a triangle of stars?
-
-Possible Answers:
-a) To output a rectangle of stars with varying number of stars in each row
-b) To output a triangle of stars with a fixed number of stars in each row
-c) To output a rectangle of stars with a fixed number of stars in each row
-d) To output a triangle of stars with varying number of stars in each row
-
-Key: d
+Question: What would be the output shape if the number of repetitions for the inner loop in a nested loop varies depending on the current iteration of the outer loop?
+Possible Answers: 
+a) Square
+b) Circle
+c) Triangle
+d) Hexagon
+Key: c

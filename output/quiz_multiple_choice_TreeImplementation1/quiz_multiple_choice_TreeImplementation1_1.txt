@@ -1,9 +1,7 @@
-Question: What is the branching factor of a binary tree?
-
-Possible Answers:
+Question: What is the maximum number of children a node can have in a binary tree?
+Possible Answers: 
 a) 1
 b) 2
 c) 3
 d) 4
-
 Key: b

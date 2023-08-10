@@ -1,9 +1,7 @@
-Question: What is the purpose of using nested for loops in this context?
-
-Possible Answers:
-a) To output a rectangle of stars with a flexible number of rows and columns
-b) To output a rectangle of stars with a fixed number of rows and columns
-c) To output a triangle of stars with a flexible number of rows and columns
-d) To output a triangle of stars with a fixed number of rows and columns
-
+Question: What is the purpose of using nested for loops in a program?
+Possible Answers: 
+a) To repeat a block of code multiple times within another repeated block of code
+b) To output a new line at the end of every print statement
+c) To convert a string from the user to an integer
+d) To suppress the new line from getting output to the terminal
 Key: a

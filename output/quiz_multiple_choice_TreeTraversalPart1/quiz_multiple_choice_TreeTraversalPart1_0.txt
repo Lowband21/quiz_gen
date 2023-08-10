@@ -1,9 +1,7 @@
-Question: Which type of traversal works only for binary trees?
-
-Possible Answers:
-a) Pre order traversal
-b) Post order traversal
-c) In order traversal
-d) Breadth first traversal
-
-Key: c
+Question: What is the key difference between pre-order and post-order traversal in a tree data structure?
+Possible Answers: 
+a) In pre-order traversal, the root node is processed before the child nodes, while in post-order traversal, the root node is processed after the child nodes.
+b) In pre-order traversal, the root node is processed after the child nodes, while in post-order traversal, the root node is processed before the child nodes.
+c) Pre-order traversal only works for binary trees, while post-order traversal can be used for any type of tree.
+d) Pre-order traversal can be used for any type of tree, while post-order traversal only works for binary trees.
+Key: a

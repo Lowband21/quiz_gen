@@ -1,9 +1,7 @@
-Question: What is the purpose of the "range" function in Python?
-
-Possible Answers:
-a) It produces a sequence of integers starting from 1 and going up to the specified number.
-b) It produces a sequence of integers starting from 0 and going up to the specified number.
-c) It produces a sequence of integers starting from the specified number and going up to infinity.
-d) It produces a sequence of integers starting from the specified number and going up to the specified number.
-
-Key: b
+Question: What does the expression "range(n)" in a for loop in Python produce?
+Possible Answers: 
+a) A sequence of n integers starting from 1 up to n.
+b) A sequence of n integers starting from 0 up to n.
+c) A sequence of n integers starting from 0 up to n-1.
+d) A sequence of n integers starting from 1 up to n-1.
+Key: c

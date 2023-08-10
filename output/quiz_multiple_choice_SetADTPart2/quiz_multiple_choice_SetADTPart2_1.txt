@@ -1,9 +1,7 @@
-Question: Which data structure is used to implement the ArraySet in the given code?
-
-Possible Answers:
-a) Linked list
-b) Hash table
-c) Binary tree
-d) Dynamic array
-
-Key: d
+Question: What does the 'discard' method do in the context of an ArraySet in Python?
+Possible Answers: 
+a) It adds an element to the set.
+b) It checks if an element is in the set.
+c) It removes a specified element from the set.
+d) It creates a union of two sets.
+Key: c

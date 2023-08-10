@@ -1,9 +1,7 @@
-Question: In Python, what does the expression "range(n)" produce?
-
-Possible Answers:
-a) A sequence of n integers starting from 1 and ending at n.
-b) A sequence of n integers starting from 0 and ending at n.
-c) A sequence of n integers starting from 1 and ending at n+1.
-d) A sequence of n integers starting from 0 and ending at n-1.
-
-Key: d
+Question: What does the expression 'range(n)' in a Python program produce?
+Possible Answers: 
+a) A sequence of n integers from 1 to n
+b) A sequence of n integers from 0 to n-1
+c) A sequence of n integers from 0 to n
+d) A sequence of n integers from 1 to n-1
+Key: b

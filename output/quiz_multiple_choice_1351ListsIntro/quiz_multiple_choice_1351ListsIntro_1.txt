@@ -1,9 +1,7 @@
-Question: In Python, how are the positions in a list numbered?
-
-Possible Answers:
-a) Starting from one
-b) Starting from zero
-c) Starting from negative one
-d) Starting from negative zero
-
+Question: What does the command 'scores.append(87)' do in Python?
+Possible Answers: 
+a) It adds the number 87 to the beginning of the list 'scores'.
+b) It adds the number 87 to the end of the list 'scores'.
+c) It changes the value of the third element in the list 'scores' to 87.
+d) It creates a new list called 'scores' with the single element 87.
 Key: b

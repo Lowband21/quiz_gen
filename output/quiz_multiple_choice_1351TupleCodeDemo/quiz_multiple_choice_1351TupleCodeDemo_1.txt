@@ -1,9 +1,7 @@
-Question: Which of the following is an example of accessing the first element of a tuple?
-
-Possible Answers:
-a) ECS[0]
-b) ECS[1]
-c) ECS[2]
-d) ECS[3]
-
-Key: a
+Question: How can a function return a tuple as a way of returning two values at once in Python?
+Possible Answers: 
+a) By separating the two values with a comma
+b) By using the return keyword followed by the two values separated by a comma
+c) By using the return keyword followed by the two values enclosed in parentheses
+d) All of the above
+Key: d

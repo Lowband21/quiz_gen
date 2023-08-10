@@ -1,9 +1,7 @@
-Question: What is the purpose of using nested for loops in programming?
-
-Possible Answers:
-a) To output multiple lines of text to the terminal
-b) To create flexible code that can easily be modified
-c) To repeat a block of code multiple times
-d) To count the number of rows and columns in a rectangle
-
-Key: c
+Question: What is the purpose of using nested for loops in a program?
+Possible Answers: 
+a) To make the program more complex and difficult to understand
+b) To repeat a specific block of code multiple times
+c) To increase the running time of the program
+d) To reduce the memory usage of the program
+Key: b

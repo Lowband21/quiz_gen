@@ -1,9 +1,7 @@
-Question: What is an external node in a tree?
-
-Possible Answers:
-a) A node that has no parent
-b) A node that has no children
-c) A node that has both a parent and children
-d) A node that is the root of the tree
-
-Key: b
+Question: What is the difference between an internal node and an external node in a tree data structure?
+Possible Answers: 
+a) An internal node has children, while an external node does not
+b) An external node has children, while an internal node does not
+c) Both internal and external nodes have children
+d) Neither internal nor external nodes have children
+Key: a

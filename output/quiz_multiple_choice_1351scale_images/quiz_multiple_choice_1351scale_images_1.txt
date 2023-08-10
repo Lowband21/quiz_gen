@@ -1,9 +1,7 @@
 Question: What happens to the center point of a shape when it is scaled?
-
-Possible Answers:
-a) It remains the same
-b) It moves to the left and down
-c) It moves to the right and up
-d) It moves randomly
-
-Key: c
+Possible Answers: 
+a) The center point remains the same.
+b) The center point is moved to the right and up.
+c) The center point is moved to the left and down.
+d) The center point disappears.
+Key: b

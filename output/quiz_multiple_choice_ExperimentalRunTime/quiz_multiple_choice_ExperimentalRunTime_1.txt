@@ -1,9 +1,7 @@
-Question: Why is it important to time how long it takes for a function or method to run?
-
-Possible Answers:
-a) To determine the number of elements in a data structure
-b) To calculate the elapsed time between function calls
-c) To understand the relationship between data structure size and algorithm execution time
-d) To measure the accuracy of the time function in the time module
-
-Key: c
+Question: Why is it important to measure the amount of time it takes for a function or method to execute in programming?
+Possible Answers: 
+a) To understand how much data our algorithms can reasonably handle
+b) To determine when we need to redesign our code
+c) To understand the relationship between the size of the data structure and the time an algorithm takes
+d) All of the above
+Key: d

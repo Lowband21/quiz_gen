@@ -46,9 +46,9 @@ pub fn preprocess_content(content: &str) -> String {
 
 
 pub fn generate_question(openai: &OpenAI, prompt: &str) -> Result<String, Box<dyn Error>> {
-    let mut model = "gpt-3.5-turbo".to_string();
+    let mut model = "gpt-4".to_string();
     if prompt.split_whitespace().count() > 4097 {
-        model = "gpt-3.5-turbo-16k".to_string();
+        model = "gpt-4".to_string();
     }
 
     let api_parameters = ChatBody {
@@ -84,7 +84,6 @@ pub fn generate_question(openai: &OpenAI, prompt: &str) -> Result<String, Box<dy
                 // Log the API call
                 log_api_call(prompt, &serde_json::to_string(&api_parameters).unwrap());
 
-                /*
                 if question.contains("the text")
                     || question.contains("the code")
                     || question.contains("given text")
@@ -93,7 +92,6 @@ pub fn generate_question(openai: &OpenAI, prompt: &str) -> Result<String, Box<dy
                     println!("Question is being filtered: {}", question);
                     continue;
                 }
-                */
 
                 return Ok(question);
             }

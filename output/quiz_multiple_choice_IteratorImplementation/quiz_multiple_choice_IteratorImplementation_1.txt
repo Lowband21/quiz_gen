@@ -1,9 +1,7 @@
-Question: What is the purpose of the double underscore iter method in Python?
-
-Possible Answers:
-a) It sets up the current location for an iterator in an iteration.
-b) It returns the value of the next element in an iteration.
-c) It instantiates the iterator object.
-d) It raises a stop iteration exception when the end of the loop is reached.
-
-Key: c
+Question: What is the primary purpose of the __iter__ method in Python?
+Possible Answers: 
+a) To initialize variables
+b) To create an iterator object
+c) To handle exceptions
+d) To perform calculations
+Key: b

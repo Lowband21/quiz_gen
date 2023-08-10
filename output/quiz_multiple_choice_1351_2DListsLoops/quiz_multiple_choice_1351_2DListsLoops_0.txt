@@ -1,9 +1,7 @@
-Question: How can you create a 2D list using a nested for loop in Python?
-
-Possible Answers:
-a) By using a list literal
-b) By using list comprehension
-c) By using a while loop
-d) By using a dictionary
-
-Key: b
+Question: What is the purpose of using a nested for loop when creating a 2D list in Python?
+Possible Answers: 
+a) To create a list with a single element
+b) To create a list with multiple elements, but only one row
+c) To create a list with multiple rows and multiple elements in each row
+d) To create a list with multiple rows, but only one element in each row
+Key: c

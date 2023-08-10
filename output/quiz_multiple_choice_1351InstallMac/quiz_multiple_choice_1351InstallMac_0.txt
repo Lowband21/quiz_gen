@@ -1,9 +1,7 @@
-Question: What is the purpose of downloading Python software?
-
-Possible Answers:
-a) To edit and run Python programs
-b) To download Visual Studio Code
-c) To create a new folder for organizing files
-d) To update the shell profile
-
-Key: a
+Question: What is the purpose of the Python software that is downloaded for the class?
+Possible Answers: 
+a) To execute programs written in Java
+b) To run or execute programs written in Python
+c) To write programs in C++
+d) To debug programs written in JavaScript
+Key: b

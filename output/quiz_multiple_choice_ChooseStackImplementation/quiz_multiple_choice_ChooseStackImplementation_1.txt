@@ -1,9 +1,7 @@
-Question: What is the order of growth for pushing elements onto a stack implemented with an array, where the top of the stack is stored at the first index of the array?
-
-Possible Answers:
+Question: What is the order of growth for pushing and popping elements when implementing a stack with an array, where the top of the stack is stored at the first index of the array?
+Possible Answers: 
 a) O(1)
 b) O(N)
-c) O(log N)
-d) O(N^2)
-
+c) O(N^2)
+d) O(log N)
 Key: b

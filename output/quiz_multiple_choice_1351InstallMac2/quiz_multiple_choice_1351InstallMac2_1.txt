@@ -1,9 +1,7 @@
-Question: What is the purpose of downloading Python software?
-
-Possible Answers:
-a) To edit Python programs
-b) To run or execute Python programs
-c) To debug Python programs
-d) To organize Python programs
-
-Key: b
+Question: What is the purpose of downloading Python and VS Code for the class?
+Possible Answers: 
+a) To have the ability to run or execute programs that have been written in Python and to edit, run, and debug them all within the same program.
+b) To be able to view and edit Python programs but not to run them.
+c) To download and install various Python extensions.
+d) To only run Python programs but not to edit them.
+Key: a

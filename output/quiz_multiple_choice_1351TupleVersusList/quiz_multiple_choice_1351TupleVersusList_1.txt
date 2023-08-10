@@ -1,9 +1,7 @@
-Question: Which of the following is a key difference between tuples and lists in Python?
-
-Possible Answers:
-a) Tuples are ordered, while lists are not.
-b) Tuples can be sliced, while lists cannot.
-c) Tuples are immutable, while lists are mutable.
-d) Tuples are more efficient to iterate through than lists.
-
+Question: What is a key difference between tuples and lists in Python and when might you use one over the other?
+Possible Answers: 
+a) Tuples and lists are the same, there is no difference.
+b) Tuples are mutable and lists are immutable, use tuples when you need your data to change.
+c) Lists are mutable and tuples are immutable, use tuples when you need your data to be unchangeable.
+d) Lists are defined using parentheses and tuples use square brackets, use lists when you need to slice your data.
 Key: c

@@ -1,9 +1,7 @@
-Question: What is the alternative method to string.index that returns a negative 1 if the substring is not found in the string?
-
-Possible Answers:
-a) string.count
-b) string.replace
-c) string.rstrip
-d) string.find
-
-Key: d
+Question: What is the difference between the string methods .index and .find in Python?
+Possible Answers: 
+a) .index returns the first index where a substring is found, while .find returns the last index where a substring is found.
+b) .index returns the first index where a substring is found, while .find returns the number of times a substring is found.
+c) .index returns the first index where a substring is found, but raises an exception if the substring is not found, while .find returns -1 if the substring is not found.
+d) There is no difference between .index and .find.
+Key: c

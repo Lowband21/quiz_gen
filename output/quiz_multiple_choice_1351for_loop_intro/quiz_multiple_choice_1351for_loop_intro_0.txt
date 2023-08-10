@@ -1,9 +1,7 @@
-Question: What is the syntax for a for loop in Python?
-
-Possible Answers:
-a) for i in range(n):
-b) for i in range as an example 7:
-c) for i in range:
-d) for i in range as an example 7 colon
-
+Question: What is the function of a 'for' loop in Python?
+Possible Answers: 
+a) To repeat a block of code a specific number of times
+b) To generate random numbers
+c) To import a package
+d) To display a window for an indefinite period of time
 Key: a

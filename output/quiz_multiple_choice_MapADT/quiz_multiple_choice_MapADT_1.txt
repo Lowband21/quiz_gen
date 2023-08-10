@@ -1,9 +1,7 @@
-Question: What is the purpose of a MapADT?
-
-Possible Answers:
-a) To store data in pairs of key-value items
-b) To implement an interface for interacting with data
-c) To search for items in a data structure
-d) To count occurrences of words in a file
-
-Key: a
+Question: What is the primary function of the 'put' method in the MapADT?
+Possible Answers: 
+a) It finds the size of the map.
+b) It removes items from the map.
+c) It adds a key-value pair to the map or updates the value of an existing key.
+d) It returns an iterable with all key-value items stored in the map.
+Key: c

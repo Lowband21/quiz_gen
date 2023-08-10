@@ -1,9 +1,7 @@
-Question: What is the main advantage of using doubly linked lists over singly linked lists?
-
-Possible Answers:
-a) Doubly linked lists allow for traversal in both forward and reverse directions.
-b) Doubly linked lists have a more efficient memory representation.
-c) Doubly linked lists can store a wider range of data types.
-d) Doubly linked lists have faster insertion and deletion operations.
-
-Key: a
+Question: What is the main difference between singly linked lists and doubly linked lists?
+Possible Answers: 
+a) Singly linked lists can be traversed in both directions, while doubly linked lists can only be traversed in one direction.
+b) Singly linked lists have nodes with references to the next node, while doubly linked lists have nodes with references to both the next and the previous node.
+c) Singly linked lists have a reference to the last node in the list, while doubly linked lists have a reference to the first node in the list.
+d) Singly linked lists use sentinel nodes, while doubly linked lists do not.
+Key: b

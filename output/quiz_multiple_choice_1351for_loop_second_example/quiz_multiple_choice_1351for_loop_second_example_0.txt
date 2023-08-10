@@ -1,9 +1,7 @@
-Question: In Python, what is the purpose of using a for loop in the context of the given code?
-
-Possible Answers:
-a) To generate random values for the X and Y positions of the squares
-b) To repeat a block of code a specific number of times
-c) To create 50 squares in random positions
-d) To indent code lines in VS Code
-
+Question: What is the function of the 'tab' and 'shift+tab' in VS Code while working with blocks of code?
+Possible Answers: 
+a) 'Tab' deletes the code and 'shift+tab' restores it.
+b) 'Tab' indents the code and 'shift+tab' unindents it.
+c) 'Tab' runs the code and 'shift+tab' stops it.
+d) 'Tab' saves the code and 'shift+tab' opens it.
 Key: b

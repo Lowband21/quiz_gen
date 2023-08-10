@@ -1,9 +1,7 @@
-Question: What is the purpose of clearing the background in an animation loop?
-
-Possible Answers:
-a) To erase the previous frame
-b) To display the new image
-c) To update for the next frame
-d) To create the illusion of movement
-
-Key: a
+Question: What is the purpose of clearing the background in each frame while creating an animation in Python using duDraw?
+Possible Answers: 
+a) To change the color of the background
+b) To erase the previous frame and avoid a streak of circles 
+c) To increase the speed of the animation
+d) To move the circle to a new position
+Key: b

@@ -1,9 +1,7 @@
-Question: What is the purpose of downloading Python software mentioned in the text?
-
-Possible Answers:
-a) To edit Python programs with added support
-b) To run and execute programs written in Python
-c) To debug Python programs within the same program
-d) To provide an Integrated Development Environment (IDE) for Python programming
-
+Question: What is the function of the software Python in the context of this class?
+Possible Answers: 
+a) It is used to create slides for presentations
+b) It is used to run or execute programs that students write
+c) It is used for data analysis only
+d) It is used to communicate with other students in the class
 Key: b

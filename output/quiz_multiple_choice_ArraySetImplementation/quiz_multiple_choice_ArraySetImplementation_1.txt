@@ -1,9 +1,7 @@
-Question: Which method is used to add an element to the ArraySet class?
-
-Possible Answers:
-a) contains
-b) discard
-c) add
-d) remove
-
-Key: c
+Question: What is the main purpose of using the 'discard' method in a set ADT?
+Possible Answers: 
+a) To add an element to the set
+b) To remove the first occurrence of an element from the set
+c) To check if an element is in the set
+d) To return an iterator to the set
+Key: b

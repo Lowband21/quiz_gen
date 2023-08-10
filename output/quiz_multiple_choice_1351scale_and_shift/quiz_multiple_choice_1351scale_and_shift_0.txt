@@ -1,7 +1,7 @@
-Question: In the given text, the author demonstrates combining which two transformations?
+Question: What are the two transformations mentioned in the text and how are they applied to the x and y coordinates of a shape?
 Possible Answers: 
-a) Shifting and scaling
-b) Rotating and reflecting
-c) Translating and shearing
-d) Stretching and skewing
-Key: a
+a) Shifting and rotating: Shifting is done by adding to the x and y coordinates, and rotating is done by changing the angle of the shape.
+b) Scaling and rotating: Scaling is done by multiplying the x and y coordinates by a factor, and rotating is done by changing the angle of the shape.
+c) Shifting and scaling: Shifting is done by adding to the x and y coordinates, and scaling is done by multiplying the x and y coordinates by a factor.
+d) Rotating and skewing: Rotating is done by changing the angle of the shape, and skewing is done by changing the x and y coordinates.
+Key: c

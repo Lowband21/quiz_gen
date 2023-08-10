@@ -1,9 +1,7 @@
-Question: In the given code, what change did the author make to the velocity variable in order to make the circle bounce when it reaches the right edge of the canvas?
-
-Possible Answers:
-a) Changed the velocity to -0.01
-b) Changed the velocity to 0.01
-c) Multiplied the velocity by -1
-d) Divided the velocity by -1
-
-Key: a
+Question: What change should be made to the code to make a circle appear to bounce when its right edge touches the right edge of the canvas?
+Possible Answers: 
+a) Change the velocity to 0.01
+b) Change the velocity to negative 0.01
+c) Change the velocity to the negative of whatever it was
+d) Change the x center to the right edge of the canvas
+Key: c
