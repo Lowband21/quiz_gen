@@ -53,7 +53,7 @@ fn gpt_coherence_score(
         }
     ];
     let api_parameters = ChatBody {
-        model: "gpt-4".to_string(),
+        model: "gpt-3.5-turbo-16k".to_string(),
         messages: chat_messages,
         max_tokens: Some(500),
         temperature: Some(0.2),
@@ -122,15 +122,35 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let auth = Auth::from_env().unwrap();
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let rubric = "
-    For each item, you will rank 0-10, with 0 being the lowest and 10 being the highest:
-    
-    Relevance (0-10): Does the question relate to the general topic more than the specifics of the prompt?
-    
-    Complexity (0-10): Does the question encourage thoughtful reflection or merely factual recall?
-    
-    Clarity (0-10): Is the question clear, specific, and free of ambiguity?
-    
-    Creativity (0-10): Does the question offer a fresh perspective on the topic, inspiring creative thought?
+## **Relevance (0-10):**
+**Definition:** How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.
+### Example:
+Topic: Algorithms.
+Good Question (Score 9): \"Why is the Big O notation important when evaluating algorithms?\"
+Irrelevant Question (Score 2): \"Who was the 15th employee hired by Google?\"
+
+## **Complexity (0-10):**
+**Definition:** Evaluates the depth of cognitive engagement the question demands. A complex question should tap into higher-order thinking skills such as analysis, synthesis, and evaluation, rather than just memory recall.
+### Example:
+Topic: Object-Oriented Programming (OOP).
+Simple Question (Score 3): \"What does OOP stand for?\"
+Complex Question (Score 9): \"How might encapsulation in OOP lead to more maintainable and scalable software, and what are potential pitfalls if it's not utilized properly?\"
+
+## **Clarity (0-10):**
+**Definition:** Assesses the question's understandability and preciseness. A clear question should be straightforward, not open to multiple interpretations, and should not confuse the respondent.
+
+### Example:
+Topic: Data Structures.
+Clear Question (Score 9): \"How does a hash table resolve collisions?\"
+Ambiguous Question (Score 2): \"Can you explain that thing with tables and matching stuff?\"
+
+## **Creativity (0-10):**
+**Definition:** Measures the originality of the question and its ability to provoke unconventional thought. A creative question will often approach a familiar topic from a novel angle or combine concepts in an unexpected way.
+
+### Example:
+Topic: Artificial Intelligence.
+Standard Question (Score 4): \"What is the Turing Test?\"
+Creative Question (Score 9): \"If a neural network, a decision tree, and a support vector machine were characters in a story, how might their personalities differ based on their algorithmic behaviors and learning methodologies?\"
 
     "; // Replace with your actual rubric.
     conn.execute(
@@ -147,10 +167,10 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let mut failures = 0;
     let mut count = 0;
 
+    let mut high_score = 20;
     for filename in filenames {
         let quiz_tuples = read_quiz_questions_by_filename(conn, filename.as_str())?;
 
-        let mut high_score = 10;
         println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
         for quiz in &quiz_tuples {
             let score = if manual {
