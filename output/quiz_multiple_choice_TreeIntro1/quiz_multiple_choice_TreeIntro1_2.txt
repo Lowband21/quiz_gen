@@ -1,9 +1,9 @@
-1. Question: Which of the following is a correct definition of an internal node in a tree?
+Question: What is an internal node in a tree?
 
 Possible Answers:
-a) An internal node is a node that has no children.
-b) An internal node is a node that has at least one child.
-c) An internal node is a node that has no parent.
-d) An internal node is a node that has no siblings.
+a) A node that has no children
+b) A node that has at least one child
+c) A node that is the root of the tree
+d) A node that is a leaf node
 
 Key: b

@@ -1,7 +1,9 @@
-1. Question: What is the definition of tree height?
-Possible Answers: 
-a) The number of ancestors of a node, not including itself.
-b) The maximum depth of all nodes in a tree.
-c) The height of a subtree rooted at a specific node.
-d) The maximum number of children among all the nodes in a tree.
+Question: What is the difference between node depth and tree height?
+
+Possible Answers:
+a) Node depth is the maximum depth of all nodes in a tree, while tree height is the number of ancestors of a node.
+b) Node depth is the number of ancestors of a node, while tree height is the maximum depth of all nodes in a tree.
+c) Node depth is the number of children a node has, while tree height is the maximum number of children among all nodes.
+d) Node depth is the number of siblings a node has, while tree height is the maximum number of siblings among all nodes.
+
 Key: b

@@ -1,9 +1,9 @@
-1. Question: What is the easiest way to implement a binary tree?
+Question: What is the purpose of the isInternal method in the TreeNode class?
 
 Possible Answers:
-a) Represent the nodes as objects with links to a parent node and two child nodes.
-b) Use an array to store the values of the nodes.
-c) Use a linked list to connect the nodes.
-d) Implement a stack data structure to represent the tree.
+a) To determine if a node is a leaf node
+b) To compute the depth of a node
+c) To compute the height of a node
+d) To determine if a node has children
 
-Key: a
+Key: d

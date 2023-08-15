@@ -1,7 +1,9 @@
-1. Question: What is the branching factor of a binary tree?
+Question: What is the easiest way to implement a binary tree?
+
 Possible Answers:
-a) 1
-b) 2
-c) 3
-d) 4
-Key: b
+a) Using an array to store the nodes
+b) Using a linked list to store the nodes
+c) Using objects that include links to a parent node and two child nodes
+d) Using a stack to store the nodes
+
+Key: c

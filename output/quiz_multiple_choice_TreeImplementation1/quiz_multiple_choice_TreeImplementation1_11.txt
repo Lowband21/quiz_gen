@@ -1,0 +1,9 @@
+Question: What is the purpose of the isInternal method in the TreeNode class?
+
+Possible Answers:
+a) To determine if a node is a leaf node
+b) To compute the depth of a node
+c) To compute the height of a node
+d) To determine if a node has at least one child
+
+Key: d

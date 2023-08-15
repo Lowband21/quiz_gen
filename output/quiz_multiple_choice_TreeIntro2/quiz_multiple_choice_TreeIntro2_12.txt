@@ -1,0 +1,9 @@
+Question: What is the definition of tree height?
+
+Possible Answers:
+a) The number of ancestors of a node, not including itself.
+b) The maximum depth of all nodes in a tree.
+c) The height of a subtree rooted at a specific node.
+d) The maximum number of children among all nodes in a tree.
+
+Key: b

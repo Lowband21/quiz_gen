@@ -1,0 +1,9 @@
+Question: What is the purpose of the constructor in the BinaryTree class?
+
+Possible Answers:
+a) To initialize the instance variables and set the root node to None
+b) To initialize the instance variables and set the size of the tree to zero
+c) To create a new instance of the BinaryTree class
+d) To create a new instance of the TreeNode class
+
+Key: a

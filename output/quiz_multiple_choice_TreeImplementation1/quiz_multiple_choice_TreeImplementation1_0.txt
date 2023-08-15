@@ -1,9 +1,9 @@
 Question: What is the easiest way to implement a binary tree?
 
 Possible Answers:
-a) Using arrays to store the nodes
-b) Using linked nodes with references to the parent and child nodes
-c) Using a stack data structure
-d) Using a queue data structure
+a) Using an array to store the nodes
+b) Using a linked list to store the nodes
+c) Using objects with links to parent and child nodes
+d) Using a stack to store the nodes
 
-Key: b
+Key: c

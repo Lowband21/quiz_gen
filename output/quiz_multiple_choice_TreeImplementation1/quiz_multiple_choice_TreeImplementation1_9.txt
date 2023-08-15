@@ -1,9 +1,9 @@
-1. Question: What is the purpose of the TreeNode class in implementing a binary tree?
+Question: What is the easiest way to implement a binary tree?
 
 Possible Answers:
-a) To store the value of each node in the tree
-b) To define the structure of a tree node, including links to the parent and child nodes
-c) To determine whether a node is a leaf node or not
-d) To compute the depth and height of each node
+a) Using an array to store the nodes
+b) Using a linked list to store the nodes
+c) Using objects that include links to a parent node and two child nodes
+d) Using a stack to store the nodes
 
-Key: b
+Key: c

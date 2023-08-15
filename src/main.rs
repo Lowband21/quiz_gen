@@ -1,6 +1,6 @@
 //use eval::similarity::similarity;
 use quiz::quiz::quiz;
-use quiz::quiz_parser::{parse_quiz_file, QuizQuestion, filter_and_parse};
+use quiz::quiz_parser::{filter_and_parse, parse_quiz_file, QuizQuestion};
 
 use gen::explanation_gen::generate_explanations;
 use gen::quiz_gen::*;
@@ -461,9 +461,7 @@ fn main() {
             }
         }
         "filter" => {
-            filter_and_parse(2);
-
-
+            filter_and_parse(2).unwrap();
         }
         _ => {
             panic!("Invalid operation mode selected");
@@ -527,7 +525,10 @@ fn parse_files_and_output(selected_files: Vec<String>, _input_dir: &str, output_
     }
 }
 
-fn run_quiz(selected_files: Vec<String>, _quiz_dir: &str) -> Result<(), Box<dyn std::error::Error>> {
+fn run_quiz(
+    selected_files: Vec<String>,
+    _quiz_dir: &str,
+) -> Result<(), Box<dyn std::error::Error>> {
     for i in selected_files {
         println!("{:?}", i);
         //let quiz_file_path = Path::new(quiz_dir).join(i);
