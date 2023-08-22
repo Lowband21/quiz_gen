@@ -164,24 +164,17 @@ fn store_score(
 fn store_evaluation_score(
     conn: &Connection,
     id: i32,
-    hr_relevance: i32,
-    hr_complexity: i32,
-    hr_clarity: i32,
-    hr_creativity: i32,
-    hr_feedback_pot: i32,
-    hr_breadth: i32,
     gr_relevance: i32,
     gr_complexity: i32,
     gr_clarity: i32,
     gr_creativity: i32,
     gr_feedback_pot: i32,
     gr_breadth: i32,
-    hr_score: i32,
     gr_score: i32,
 ) -> Result<(), Box<dyn Error>> {
     conn.execute(
-        "INSERT INTO evaluations (id, hr_relevance, hr_complexity, hr_clarity, hr_creativity, hr_feedback_pot, hr_breadth, gr_relevance, gr_complexity, gr_clarity, gr_creativity, gr_feedback_pot, gr_breadth, hr_score, gr_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15)",
-        params![id, hr_relevance, hr_complexity, hr_clarity, hr_creativity, hr_feedback_pot, hr_breadth, gr_relevance, gr_complexity, gr_clarity, gr_creativity, gr_feedback_pot, gr_breadth, hr_score, gr_score],
+        "UPDATE evaluations SET gr_relevance = ?2, gr_complexity = ?3, gr_clarity = ?4, gr_creativity = ?5, gr_feedback_pot = ?6, gr_breadth = ?7, gr_score = ?8 WHERE id = ?1",
+        params![id, gr_relevance, gr_complexity, gr_clarity, gr_creativity, gr_feedback_pot, gr_breadth, gr_score],
     )?;
     Ok(())
 }
@@ -286,61 +279,50 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
         println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
         // Inside your quiz_tuples loop
         for quiz in &quiz_tuples {
-            let manual = false;
-            let mut hr = "".to_string();
+            // Removed the manual flag and hr initialization
             let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
-            if manual {
-                hr = manual_evaluation(&quiz, &rubric)?;
-            } else {
-                hr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
-            }
 
             //println!("Eval: {:#?}", score);
             let gr_score = gr.split("\n").last().unwrap();
-            let hr_score = hr.split("\n").last().unwrap();
 
             let re = Regex::new(r"(\d+)").unwrap();
-            let mut hr_scores: Vec<i32> = re
-                .find_iter(hr_score)
-                .map(|m| m.as_str().parse::<i32>())
-                .filter_map(Result::ok)
-                .collect();
+
+            // Commented out the hr_scores processing
+            // let mut hr_scores: Vec<i32> = re
+            //     .find_iter(hr_score)
+            //     .map(|m| m.as_str().parse::<i32>())
+            //     .filter_map(Result::ok)
+            //     .collect();
             let mut gr_scores: Vec<i32> = re
                 .find_iter(gr_score)
                 .map(|m| m.as_str().parse::<i32>())
                 .filter_map(Result::ok)
                 .collect();
 
-            // Set default values for breadth and feedback potential if not found
-            while hr_scores.len() < 6 {
-                hr_scores.push(0);
-            }
+            // Commented out the hr_scores default values
+            // while hr_scores.len() < 6 {
+            //     hr_scores.push(0);
+            // }
             while gr_scores.len() < 6 {
                 gr_scores.push(0);
             }
 
-            if hr_scores.len() == 6 && gr_scores.len() == 6 {
-                let hr_total_score: i32 = hr_scores.iter().sum();
+            if gr_scores.len() == 6 {
+                // Removed hr_total_score as it's not needed
                 let gr_total_score: i32 = gr_scores.iter().sum();
 
-                store_evaluation_score(
-                    &conn,
-                    quiz.0,
-                    hr_scores[0],
-                    hr_scores[1],
-                    hr_scores[2],
-                    hr_scores[3],
-                    hr_scores[4], // Breadth
-                    hr_scores[5], // Feedback Potential
-                    gr_scores[0],
-                    gr_scores[1],
-                    gr_scores[2],
-                    gr_scores[3],
-                    gr_scores[4], // Breadth
-                    gr_scores[5], // Feedback Potential
-                    hr_total_score,
-                    gr_total_score,
-                )?;
+                // Removed hr_scores from store_evaluation_score function
+                //store_evaluation_score(
+                //    &conn,
+                //    quiz.0,
+                //    gr_scores[0],
+                //    gr_scores[1],
+                //    gr_scores[2],
+                //    gr_scores[3],
+                //    gr_scores[4], // Breadth
+                //    gr_scores[5], // Feedback Potential
+                //    gr_total_score,
+                //)?;
                 /*
                 if total_score > high_score {
                     high_score = total_score;
@@ -362,7 +344,9 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
                     gr_total_score,
                 )
                 .unwrap();
-                println!("Human total Score: {}", hr_total_score);
+
+                // Commented out the human total score print
+                // println!("Human total Score: {}", hr_total_score);
                 println!("GPT total Score: {}", gr_total_score);
                 count += 1;
             } else {
@@ -370,8 +354,8 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
                 failures += 1;
             }
         }
+        println!("Finished with {} failures out of {}", failures, count);
     }
-    println!("Finished with {} failures out of {}", failures, count);
     Ok(())
 }
 
