@@ -96,7 +96,7 @@ fn gpt_coherence_score(
         Message {
             role: Role::System,
             //content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Your output should be strictly limited to the form \"%d-%d-%d-%d\". Where each digit represents a unique rating corresponding to the rubric. This is the question \"{}\"", rubric, question),
-            content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d-%d-%d-%d-%d-%d\". Where each digit represents a unique rating corresponding to the rubric. This is the question prompt pair \"{}\"\"{}\"", rubric, question, prompt),
+            content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d-%d-%d-%d-%d-%d\". Where each number represents a unique rating 1-10, with 10 being the higest, corresponding to the rubric. This is the question prompt pair \"{}\"\"{}\"", rubric, question, prompt),
         }
     ];
     let api_parameters = ChatBody {
