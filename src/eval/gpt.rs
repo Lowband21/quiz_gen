@@ -149,14 +149,13 @@ fn store_score(
     relevance: i32,
     complexity: i32,
     clarity: i32,
-    creativity: i32,
     breadth: i32,
     feedback_pot: i32,
     total_score: i32,
 ) -> Result<(), Box<dyn Error>> {
     conn.execute(
-        "INSERT OR REPLACE INTO results (id, relevance, complexity, clarity, creativity, breadth, feedback_pot, total_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8)",
-        params![id, relevance, complexity, clarity, creativity, breadth, feedback_pot, total_score],
+        "INSERT OR REPLACE INTO results (id, relevance, complexity, clarity, breadth, feedback_pot, total_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
+        params![id, relevance, complexity, clarity, breadth, feedback_pot, total_score],
     )?;
     Ok(())
 }
@@ -191,48 +190,39 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let rubric = "
     ## **Relevance (0-10):**
-    **Definition:** How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.
+    **Definition:** \"How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.\"
     ### Example:
-    Topic: Algorithms.
-    Good Question (Score 9): \"Why is the Big O notation important when evaluating algorithms?\"
-    Irrelevant Question (Score 2): \"Who was the 15th employee hired by Google?\"
+    Topic: Renewable Energy.
+    Good Question (Score 9): \"Why is solar energy considered a sustainable power source?\"
+    Irrelevant Question (Score 2): \"Who was the 15th employee hired by a famous solar panel company?\"
     
     ## **Complexity (0-10):**
-    **Definition:** Evaluates the depth of cognitive engagement the question demands. A complex question should tap into higher-order thinking skills such as analysis, synthesis, and evaluation, rather than just memory recall.
+    **Definition:** \"Evaluates the depth of cognitive engagement the question demands. A complex question should tap into higher-order thinking skills such as analysis, synthesis, and evaluation, rather than just memory recall.\"
     ### Example:
-    Topic: Object-Oriented Programming (OOP).
-    Simple Question (Score 3): \"What does OOP stand for?\"
-    Complex Question (Score 9): \"How might encapsulation in OOP lead to more maintainable and scalable software, and what are potential pitfalls if it's not utilized properly?\"
+    Topic: Renewable Energy.
+    Simple Question (Score 3): \"What is wind energy?\"
+    Complex Question (Score 9): \"How can the integration of wind and solar energy lead to a more stable renewable energy grid, and what challenges might arise in achieving this integration?\"
     
     ## **Clarity (0-10):**
-    **Definition:** Assesses the question's understandability and preciseness. A clear question should be straightforward, not open to multiple interpretations, and should not confuse the respondent.
-    
+    **Definition:** \"Assesses the question's understandability and preciseness. A clear question should be straightforward, not open to multiple interpretations, and should not confuse the respondent.\"
     ### Example:
-    Topic: Data Structures.
-    Clear Question (Score 9): \"How does a hash table resolve collisions?\"
-    Ambiguous Question (Score 2): \"Can you explain that thing with tables and matching stuff?\"
+    Topic: Renewable Energy.
+    Clear Question (Score 9): \"How does a hydroelectric dam generate power?\"
+    Ambiguous Question (Score 2): \"Can you explain that thing with water and getting energy?\"
     
-    ## **Creativity (0-10):**
-    **Definition:** Measures the originality of the question and its ability to provoke unconventional thought. A creative question will often approach a familiar topic from a novel angle or combine concepts in an unexpected way.
-    
-    ### Example:
-    Topic: Artificial Intelligence.
-    Standard Question (Score 4): \"What is the Turing Test?\"
-    Creative Question (Score 9): \"If a neural network, a decision tree, and a support vector machine were characters in a story, how might their personalities differ based on their algorithmic behaviors and learning methodologies?\"
-
     ## **Breadth (0-10):**
-    **Definition:** Assesses the range or scope of the question in terms of content covered. A question with good breadth should not be too narrow that it feels nitpicky nor too broad that it feels vague or overwhelming.
+    **Definition:** \"Assesses the range or scope of the question in terms of content covered. A question with good breadth should not be too narrow that it feels nitpicky nor too broad that it feels vague or overwhelming.\"
     ### Example:
-    Topic: History of Computers.
-    Narrow Question (Score 3): \"On what exact date was the first punch card created?\"
-    Broad Question (Score 9): \"Trace the evolution of data storage from punch cards to solid-state drives, highlighting key technological advancements.\"
+    Topic: Renewable Energy.
+    Narrow Question (Score 3): \"What is the exact wattage produced by a specific solar panel model?\"
+    Broad Question (Score 9): \"Discuss the evolution of renewable energy sources from traditional windmills to modern solar farms, highlighting key technological advancements.\"
     
     ## **Feedback Potential (0-10):**
-    **Definition:** Evaluates how effectively a question can be used to diagnose misunderstandings or knowledge gaps. A question with high feedback potential will provide insights into the respondent's thought process or areas of weakness, facilitating targeted feedback..
+    **Definition:** \"Evaluates how effectively a question can be used to diagnose misunderstandings or knowledge gaps. A question with high feedback potential will provide insights into the respondent's thought process or areas of weakness, facilitating targeted feedback.\"
     ### Example:
-    Topic: Thermodynamics.
-    Low Feedback (Score 3): \"Is the first law of thermodynamics about conservation of energy?\"
-    High Feedback (Score 9): \"Describe a scenario where the first law of thermodynamics is violated, and explain why such a scenario is considered impossible.\"
+    Topic: Renewable Energy.
+    Low Feedback (Score 3): \"Is solar power derived from the sun?\"
+    High Feedback (Score 9): \"Describe a scenario where using solar energy might not be the most efficient choice and explain the factors contributing to its inefficiency.\"
     ";
     conn.execute(
         "CREATE TABLE IF NOT EXISTS results (
@@ -303,11 +293,11 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
             // while hr_scores.len() < 6 {
             //     hr_scores.push(0);
             // }
-            while gr_scores.len() < 6 {
+            while gr_scores.len() < 5 {
                 gr_scores.push(0);
             }
 
-            if gr_scores.len() == 6 {
+            if gr_scores.len() == 5 {
                 // Removed hr_total_score as it's not needed
                 let gr_total_score: i32 = gr_scores.iter().sum();
 
@@ -340,7 +330,6 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
                     gr_scores[2],
                     gr_scores[3],
                     gr_scores[4],
-                    gr_scores[5],
                     gr_total_score,
                 )
                 .unwrap();
