@@ -1,14 +1,9 @@
-use openai_api_rust::chat::*;
-use openai_api_rust::*;
 use rand::prelude::SliceRandom;
 use rand::Rng;
 use rusqlite::{Connection, Result};
 use std::error::Error;
 use std::fmt;
 use std::io::{self, Write};
-use std::sync::mpsc;
-use std::thread;
-use std::time::Duration;
 
 pub type QuizTuple = (i32, String, String);
 
@@ -38,20 +33,36 @@ impl Error for MyError {
 }
 
 fn handle_error(error: Box<dyn Error>) -> Box<dyn Error> {
-    Box::new(MyError::new(error.description()))
+    Box::new(MyError::new(error.to_string().as_str()))
 }
 
 fn manual_evaluation(quiz: &QuizTuple, rubric: &str) -> Result<String, Box<dyn Error>> {
-    println!(
-        "Evaluate the following prompt-question pair based on the rubric below:\n{}\nPrompt: {}\nQuestion: {}",
-        rubric,
-        quiz.1,
-        quiz.2
-    );
-    print!("Enter your evaluation (format: %d-%d-%d-%d): ");
+    // Clear any potential clutter from the terminal.
+    println!("\n\n");
+
+    // Descriptive header.
+    println!("=== MANUAL EVALUATION ===\n");
+
+    // Show the user the rubric.
+    println!("Rubric:");
+    println!("------------------------");
+    println!("{}\n", rubric);
+
+    // Display the prompt-question pair.
+    println!("Please evaluate the following prompt-question pair:\n");
+    println!("Prompt: {}", quiz.1);
+    println!("Question: {}\n", quiz.2);
+
+    // Get user input with a friendly prompt.
+    println!("Enter your evaluation in the format (e.g., 1-2-3-4-5):");
+    print!("> ");
     io::stdout().flush()?;
+
     let mut input = String::new();
     io::stdin().read_line(&mut input)?;
+
+    println!("\nThank you for your evaluation.");
+
     Ok(input.trim().to_string())
 }
 
@@ -85,64 +96,6 @@ fn read_quiz_questions_by_filename(
     Ok(quiz_tuples)
 }
 
-fn gpt_coherence_score(
-    openai: &OpenAI,
-    prompt: &str,
-    question: &str,
-    rubric: &str,
-    model: String,
-) -> Result<String, Box<dyn Error>> {
-    let chat_messages = vec![
-        Message {
-            role: Role::System,
-            //content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Your output should be strictly limited to the form \"%d-%d-%d-%d\". Where each digit represents a unique rating corresponding to the rubric. This is the question \"{}\"", rubric, question),
-            content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d-%d-%d-%d-%d-%d\". Where each number represents a unique rating 1-10, with 10 being the higest, corresponding to the rubric. This is the question prompt pair \"{}\"\"{}\"", rubric, question, prompt),
-        }
-    ];
-    let api_parameters = ChatBody {
-        model,
-        messages: chat_messages,
-        max_tokens: Some(500),
-        temperature: Some(0.0),
-        top_p: Some(1.0),
-        n: None,
-        stream: None,
-        stop: None,
-        presence_penalty: None,
-        frequency_penalty: None,
-        logit_bias: None,
-        user: None,
-    };
-    let mut tries = 0;
-    loop {
-        let response = openai.chat_completion_create(&api_parameters);
-        match response {
-            Ok(res) => {
-                let score = res.choices[0].message.as_ref().unwrap().content.clone();
-
-                if tries >= 10 {
-                    return Ok(score);
-                }
-                /*
-                if score.len() > 1000 {
-                    println!("Response greater than 10 characters: {}", score);
-                    tries += 1;
-                    continue;
-                } else {
-                }
-                */
-                return Ok(score);
-            }
-            Err(e) => {
-                tries += 1;
-                thread::sleep(Duration::from_secs(10));
-                println!("Error: {}. Trying again...", e);
-                continue;
-            }
-        }
-    }
-}
-
 fn store_score(
     conn: &Connection,
     id: i32,
@@ -160,24 +113,6 @@ fn store_score(
     Ok(())
 }
 
-fn store_evaluation_score(
-    conn: &Connection,
-    id: i32,
-    gr_relevance: i32,
-    gr_complexity: i32,
-    gr_clarity: i32,
-    gr_creativity: i32,
-    gr_feedback_pot: i32,
-    gr_breadth: i32,
-    gr_score: i32,
-) -> Result<(), Box<dyn Error>> {
-    conn.execute(
-        "UPDATE evaluations SET gr_relevance = ?2, gr_complexity = ?3, gr_clarity = ?4, gr_creativity = ?5, gr_feedback_pot = ?6, gr_breadth = ?7, gr_score = ?8 WHERE id = ?1",
-        params![id, gr_relevance, gr_complexity, gr_clarity, gr_creativity, gr_feedback_pot, gr_breadth, gr_score],
-    )?;
-    Ok(())
-}
-
 use rusqlite::params;
 
 use regex::Regex;
@@ -186,8 +121,6 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let conn = create_connection()?;
     create_evaluations_table(&conn)?;
     //let manual = true;
-    let auth = Auth::from_env().unwrap();
-    let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let rubric = "
     ## **Relevance (0-10):**
     **Definition:** \"How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.\"
@@ -230,7 +163,6 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
         relevance INTEGER NOT NULL,
         complexity INTEGER NOT NULL,
         clarity INTEGER NOT NULL,
-        creativity INTEGER NOT NULL,
         breadth INTEGER NOT NULL,
         feedback_pot INTEGER NOT NULL,
         total_score INTEGER NOT NULL
@@ -270,36 +202,42 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
         // Inside your quiz_tuples loop
         for quiz in &quiz_tuples {
             // Removed the manual flag and hr initialization
-            let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
+            //let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
+            let hr = manual_evaluation(&quiz, &rubric).unwrap();
 
             //println!("Eval: {:#?}", score);
-            let gr_score = gr.split("\n").last().unwrap();
+            //let gr_score = gr.split("\n").last().unwrap();
+            let hr_score = hr.split("\n").last().unwrap();
 
             let re = Regex::new(r"(\d+)").unwrap();
 
             // Commented out the hr_scores processing
-            // let mut hr_scores: Vec<i32> = re
-            //     .find_iter(hr_score)
-            //     .map(|m| m.as_str().parse::<i32>())
-            //     .filter_map(Result::ok)
-            //     .collect();
+            let mut hr_scores: Vec<i32> = re
+                .find_iter(hr_score)
+                .map(|m| m.as_str().parse::<i32>())
+                .filter_map(Result::ok)
+                .collect();
+            /*
             let mut gr_scores: Vec<i32> = re
                 .find_iter(gr_score)
                 .map(|m| m.as_str().parse::<i32>())
                 .filter_map(Result::ok)
                 .collect();
+            */
 
             // Commented out the hr_scores default values
-            // while hr_scores.len() < 6 {
-            //     hr_scores.push(0);
-            // }
+            while hr_scores.len() < 5 {
+                hr_scores.push(0);
+            }
+            /*
             while gr_scores.len() < 5 {
                 gr_scores.push(0);
             }
+            */
 
-            if gr_scores.len() == 5 {
+            if hr_scores.len() == 5 {
                 // Removed hr_total_score as it's not needed
-                let gr_total_score: i32 = gr_scores.iter().sum();
+                let hr_total_score: i32 = hr_scores.iter().sum();
 
                 // Removed hr_scores from store_evaluation_score function
                 //store_evaluation_score(
@@ -325,18 +263,18 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
                 store_score(
                     &conn,
                     quiz.0,
-                    gr_scores[0],
-                    gr_scores[1],
-                    gr_scores[2],
-                    gr_scores[3],
-                    gr_scores[4],
-                    gr_total_score,
+                    hr_scores[0],
+                    hr_scores[1],
+                    hr_scores[2],
+                    hr_scores[3],
+                    hr_scores[4],
+                    hr_total_score,
                 )
                 .unwrap();
 
                 // Commented out the human total score print
                 // println!("Human total Score: {}", hr_total_score);
-                println!("GPT total Score: {}", gr_total_score);
+                println!("Total Score: {}", hr_total_score);
                 count += 1;
             } else {
                 println!("Failed to extract score");
