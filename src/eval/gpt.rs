@@ -38,7 +38,7 @@ impl Error for MyError {
 }
 
 fn handle_error(error: Box<dyn Error>) -> Box<dyn Error> {
-    Box::new(MyError::new(error.description()))
+    Box::new(MyError::new(error.to_string().as_str()))
 }
 
 fn manual_evaluation(quiz: &QuizTuple, rubric: &str) -> Result<String, Box<dyn Error>> {
@@ -87,16 +87,15 @@ fn read_quiz_questions_by_filename(
 
 fn gpt_coherence_score(
     openai: &OpenAI,
-    prompt: &str,
-    question: &str,
+    problem_name: &str,
+    feedback: &str,
     rubric: &str,
     model: String,
 ) -> Result<String, Box<dyn Error>> {
     let chat_messages = vec![
         Message {
             role: Role::System,
-            //content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Your output should be strictly limited to the form \"%d-%d-%d-%d\". Where each digit represents a unique rating corresponding to the rubric. This is the question \"{}\"", rubric, question),
-            content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d-%d-%d-%d-%d-%d\". Where each number represents a unique rating 1-10, with 10 being the higest, corresponding to the rubric. This is the question prompt pair \"{}\"\"{}\"", rubric, question, prompt),
+            content: format!("Your job is to evaluate the quality of the following feedback based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d\". Where the single number represents a unique rating from 1-5, with 5 being the higest, corresponding to the rubric. This is the feedback and problem name pair \"{}\"\"{}\"", rubric, feedback, problem_name),
         }
     ];
     let api_parameters = ChatBody {
@@ -123,14 +122,6 @@ fn gpt_coherence_score(
                 if tries >= 10 {
                     return Ok(score);
                 }
-                /*
-                if score.len() > 1000 {
-                    println!("Response greater than 10 characters: {}", score);
-                    tries += 1;
-                    continue;
-                } else {
-                }
-                */
                 return Ok(score);
             }
             Err(e) => {
@@ -146,229 +137,192 @@ fn gpt_coherence_score(
 fn store_score(
     conn: &Connection,
     id: i32,
-    relevance: i32,
-    complexity: i32,
-    clarity: i32,
-    breadth: i32,
-    feedback_pot: i32,
+    thinklet_id: i32,
     total_score: i32,
+    explanation: &String,
 ) -> Result<(), Box<dyn Error>> {
     conn.execute(
-        "INSERT OR REPLACE INTO results (id, relevance, complexity, clarity, breadth, feedback_pot, total_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-        params![id, relevance, complexity, clarity, breadth, feedback_pot, total_score],
+        "INSERT OR REPLACE INTO alt_eval_results (id, thinklet_id, total_score, explanation) VALUES (?1, ?2, ?3, ?4)",
+        params![id, thinklet_id, total_score, explanation],
     )?;
     Ok(())
 }
 
-fn store_evaluation_score(
-    conn: &Connection,
+struct Feedback {
     id: i32,
-    gr_relevance: i32,
-    gr_complexity: i32,
-    gr_clarity: i32,
-    gr_creativity: i32,
-    gr_feedback_pot: i32,
-    gr_breadth: i32,
-    gr_score: i32,
-) -> Result<(), Box<dyn Error>> {
-    conn.execute(
-        "UPDATE evaluations SET gr_relevance = ?2, gr_complexity = ?3, gr_clarity = ?4, gr_creativity = ?5, gr_feedback_pot = ?6, gr_breadth = ?7, gr_score = ?8 WHERE id = ?1",
-        params![id, gr_relevance, gr_complexity, gr_clarity, gr_creativity, gr_feedback_pot, gr_breadth, gr_score],
-    )?;
-    Ok(())
+    thinklet_id: i32,
+    problem_name: String,
+    annotation_text: String,
 }
 
+fn read_feedback() -> Vec<Feedback> {
+    // Create a CSV reader
+    let mut rdr = csv::Reader::from_path("Feedback.csv").expect("Unable to open file");
+
+    let mut result = Vec::new();
+
+    // Iterate over records
+    for record in rdr.records() {
+        let record = record.expect("Error reading record");
+
+        let feedback = Feedback {
+            id: record[0].parse::<i32>().expect("Error parsing id"),
+            thinklet_id: record[1].parse::<i32>().expect("Error parsing thinklet_id"),
+            problem_name: record[2].to_string(),
+            annotation_text: record[6].to_string(),
+        };
+
+        result.push(feedback);
+    }
+
+    result
+}
 use rusqlite::params;
 
 use regex::Regex;
 
-pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
+pub fn run() -> Result<(), Box<dyn Error>> {
     let conn = create_connection()?;
-    create_evaluations_table(&conn)?;
     //let manual = true;
     let auth = Auth::from_env().unwrap();
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
     let rubric = "
-    ## **Relevance (0-10):**
-    **Definition:** \"How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Good Question (Score 9): \"Why is solar energy considered a sustainable power source?\"
-    Irrelevant Question (Score 2): \"Who was the 15th employee hired by a famous solar panel company?\"
-    
-    ## **Complexity (0-10):**
-    **Definition:** \"Evaluates the depth of cognitive engagement the question demands. A complex question should tap into higher-order thinking skills such as analysis, synthesis, and evaluation, rather than just memory recall.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Simple Question (Score 3): \"What is wind energy?\"
-    Complex Question (Score 9): \"How can the integration of wind and solar energy lead to a more stable renewable energy grid, and what challenges might arise in achieving this integration?\"
-    
-    ## **Clarity (0-10):**
-    **Definition:** \"Assesses the question's understandability and preciseness. A clear question should be straightforward, not open to multiple interpretations, and should not confuse the respondent.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Clear Question (Score 9): \"How does a hydroelectric dam generate power?\"
-    Ambiguous Question (Score 2): \"Can you explain that thing with water and getting energy?\"
-    
-    ## **Breadth (0-10):**
-    **Definition:** \"Assesses the range or scope of the question in terms of content covered. A question with good breadth should not be too narrow that it feels nitpicky nor too broad that it feels vague or overwhelming.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Narrow Question (Score 3): \"What is the exact wattage produced by a specific solar panel model?\"
-    Broad Question (Score 9): \"Discuss the evolution of renewable energy sources from traditional windmills to modern solar farms, highlighting key technological advancements.\"
-    
-    ## **Feedback Potential (0-10):**
-    **Definition:** \"Evaluates how effectively a question can be used to diagnose misunderstandings or knowledge gaps. A question with high feedback potential will provide insights into the respondent's thought process or areas of weakness, facilitating targeted feedback.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Low Feedback (Score 3): \"Is solar power derived from the sun?\"
-    High Feedback (Score 9): \"Describe a scenario where using solar energy might not be the most efficient choice and explain the factors contributing to its inefficiency.\"
+## **Tier 1 - Least Robust:**
+**Definition:** \"Annotations categorized as Tier 1 are the least specific and do not provide constructive feedback for the author. They are generic and can be applied to any thinklet. Authors do not attempt to connect to the work in the thinklet.\"
+### Example:
+Annotation: 
+Example 1: \"Good job explaining it (#219299)\" 
+Example 2: \"I like the way you how you organize it (#216124)\"
+Example 3: \"it was good (#217438)\"
+
+## **Tier 2 - Somewhat Robust:**
+**Definition:** \"Annotations categorized as Tier 2 are lacking in specific details. They provide little or no elaboration aside from the mathematics. Authors may attempt to connect to the work in the thinklet, but the connection is vague and not clearly explained.\"
+### Example:
+Example 1: \"I hadn't thought of the way you found the answer. Although while you were explaining it, it became clear. (#216655)\"
+Example 2: \"I hadn't thought of the way you found the answer. Although while you were explaining it, it became clear. <3 (#217906)\"
+Example 3: \"I like the way you sorted the data. I also like the way you showed your work clearly so it wouldn't be confusing. (#218212)\"
+
+## **Tier 3 - Robust:**
+**Definition:** \"Annotations categorized as Tier 3 begin to elaborate on a specific piece of the thinklet or problem related to the problem-solving process. Authors may attempt to connect to the work in the thinklet, with specificity.\"
+### Example:
+Example 1: \"I like the way you showed your work step by step, but the question asks what was the total amount of money he lost or gained by the end of the day. (#217908)\"
+Example 2: \"I agree with your answer but maybe next time make the numbers that are supposed to be negative negative in the equation to make it more clear. (#217899)\"
+Example 3: \"I respectfully disagree with your answer. I think you might have messed up a step in the subtraction part. (#216643)\"
+
+## **Tier 4 - More Robust:**
+**Definition:** \"Annotations categorized as Tier 4 elaborate on a specific piece of the thinklet or problem related to the problem-solving process. Authors may connect to the work in the thinklet, with specificity but lack recommendations for next steps.\"
+### Example:
+Example 1: \"I like the way you added all the deposits first then subtracted the withdrawals. I didn't think of that. (#216645)\"
+Example 2: \"My strategy is like yours because I put the information in almost the exact same way. I think I just switched the places of the two withdrawals. (#216652)\"
+Example 3: \"I like the way you added the positive numbers together then subtracted the negatives to make the equation simpler. (#216647)\"
+
+## **Tier 5 - Most Robust:**
+**Definition:** \"Annotations categorized as Tier 5 elaborate on a specific piece of the thinklet or problem related to the problem-solving process. Authors provide helpful feedback, and peer-to-peer learning is evident.\"
+### Example:
+Score 1: \"I respectfully disagree with you on the last pieces of your math as you had added a positive with a negative. While you should have added -30 with the -83 and gotten -113, then subtracted that with the positive 76 and gotten -37. (#216197)\"
+Score 2: \"Hi. First, that is how you find the median, not the mean. So first, you have to find the mean, add all of the numbers, and then divide it by how many numbers there are. Then once you found the mean, you estimate... (#218215)\"
     ";
     conn.execute(
-        "CREATE TABLE IF NOT EXISTS results (
+        "CREATE TABLE IF NOT EXISTS alt_eval_results (
         id INTEGER PRIMARY KEY,
-        relevance INTEGER NOT NULL,
-        complexity INTEGER NOT NULL,
-        clarity INTEGER NOT NULL,
-        creativity INTEGER NOT NULL,
-        breadth INTEGER NOT NULL,
-        feedback_pot INTEGER NOT NULL,
-        total_score INTEGER NOT NULL
+        thinklet_id INTEGER NOT NULL,
+        total_score INTEGER NOT NULL,
+        explanation STRING NOT NULL
      )",
         [],
     )?;
     let mut failures = 0;
     let mut count = 0;
 
-    // Randomize filenames
+    // Randomize feedback
     let mut rng = rand::thread_rng();
-    let mut filenames = filenames.clone();
-    filenames.shuffle(&mut rng);
+    let mut feedback_vec = read_feedback();
+    let feedback_len = feedback_vec.len();
+    feedback_vec.shuffle(&mut rng);
 
-    for filename in filenames {
-        let mut quiz_tuples = match read_quiz_questions_by_filename(&conn, filename.as_str()) {
-            Ok(tuples) => tuples,
-            Err(e) => {
-                println!(
-                    "Failed to read quiz questions from file {}: {}",
-                    filename, e
-                );
-                continue;
-            }
-        };
+    println!("Evaluating {} prompt response pairs.", feedback_len);
 
-        // Randomize quiz tuples and possibly duplicate some of them
-        quiz_tuples.shuffle(&mut rng);
+    // Track the start time
+    let start_time = std::time::Instant::now();
+
+    for (index, feedback) in feedback_vec.iter().enumerate() {
+        /*
         if rng.gen_range(0..2) == 1 {
             if let Some(random_tuple) = quiz_tuples.choose(&mut rng) {
                 quiz_tuples.push(random_tuple.clone());
             }
         }
+        */
 
-        //let mut high_score = 10;
-        println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
-        // Inside your quiz_tuples loop
-        for quiz in &quiz_tuples {
-            // Removed the manual flag and hr initialization
-            let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
+        let gr = gpt_coherence_score(
+            &openai,
+            feedback.problem_name.as_str(),
+            feedback.annotation_text.as_str(),
+            rubric,
+            "gpt-4".to_string(),
+        )?;
 
-            //println!("Eval: {:#?}", score);
-            let gr_score = gr.split("\n").last().unwrap();
+        let gr_score = gr.split("\n").last().unwrap();
 
-            let re = Regex::new(r"(\d+)").unwrap();
+        let re = Regex::new(r"(\d+)").unwrap();
 
-            // Commented out the hr_scores processing
-            // let mut hr_scores: Vec<i32> = re
-            //     .find_iter(hr_score)
-            //     .map(|m| m.as_str().parse::<i32>())
-            //     .filter_map(Result::ok)
-            //     .collect();
-            let mut gr_scores: Vec<i32> = re
-                .find_iter(gr_score)
-                .map(|m| m.as_str().parse::<i32>())
-                .filter_map(Result::ok)
-                .collect();
+        let all_matches: Vec<i32> = re
+            .find_iter(gr_score)
+            .map(|m| m.as_str().parse::<i32>())
+            .filter_map(Result::ok)
+            .collect();
 
-            // Commented out the hr_scores default values
-            // while hr_scores.len() < 6 {
-            //     hr_scores.push(0);
-            // }
-            while gr_scores.len() < 5 {
-                gr_scores.push(0);
-            }
-
-            if gr_scores.len() == 5 {
-                // Removed hr_total_score as it's not needed
-                let gr_total_score: i32 = gr_scores.iter().sum();
-
-                // Removed hr_scores from store_evaluation_score function
-                //store_evaluation_score(
-                //    &conn,
-                //    quiz.0,
-                //    gr_scores[0],
-                //    gr_scores[1],
-                //    gr_scores[2],
-                //    gr_scores[3],
-                //    gr_scores[4], // Breadth
-                //    gr_scores[5], // Feedback Potential
-                //    gr_total_score,
-                //)?;
-                /*
-                if total_score > high_score {
-                    high_score = total_score;
-
-                    println!("High scoring question: {}", &quiz.2);
-                    //println!("High scoring prompt: {}", &quiz.1);
-                }
-                */
-
-                store_score(
-                    &conn,
-                    quiz.0,
-                    gr_scores[0],
-                    gr_scores[1],
-                    gr_scores[2],
-                    gr_scores[3],
-                    gr_scores[4],
-                    gr_total_score,
-                )
-                .unwrap();
-
-                // Commented out the human total score print
-                // println!("Human total Score: {}", hr_total_score);
-                println!("GPT total Score: {}", gr_total_score);
-                count += 1;
-            } else {
-                println!("Failed to extract score");
-                failures += 1;
-            }
+        let mut gr_scores = Vec::new();
+        if let Some(&last_num) = all_matches.last() {
+            gr_scores.push(last_num);
         }
-        println!("Finished with {} failures out of {}", failures, count);
-    }
-    Ok(())
-}
 
-fn create_evaluations_table(conn: &Connection) -> Result<(), Box<dyn Error>> {
-    conn.execute(
-        "CREATE TABLE IF NOT EXISTS evaluations (
-            id INTEGER,
-            hr_relevance INTEGER NOT NULL,
-            hr_complexity INTEGER NOT NULL,
-            hr_clarity INTEGER NOT NULL,
-            hr_creativity INTEGER NOT NULL,
-            hr_breadth INTEGER NOT NULL,
-            hr_feedback_pot INTEGER NOT NULL,
-            gr_relevance INTEGER NOT NULL,
-            gr_complexity INTEGER NOT NULL,
-            gr_clarity INTEGER NOT NULL,
-            gr_creativity INTEGER NOT NULL,
-            gr_breadth INTEGER NOT NULL,
-            gr_feedback_pot INTEGER NOT NULL,
-            hr_score INTEGER NOT NULL,
-            gr_score INTEGER NOT NULL
-         )",
-        [],
-    )?;
+        while gr_scores.len() < 1 {
+            gr_scores.push(0);
+        }
+
+        if gr_scores.len() == 1 {
+            let gr_total_score: i32 = gr_scores.iter().sum();
+
+            store_score(
+                &conn,
+                feedback.id,
+                feedback.thinklet_id,
+                gr_total_score,
+                &gr,
+            )
+            .unwrap();
+
+            println!("GPT total Score: {}\nExplanation: {}", gr_total_score, gr);
+            count += 1;
+        } else {
+            println!("Failed to extract score from: {:?}", gr);
+            failures += 1;
+        } // After processing each feedback or after every nth feedback, print progress and ETA
+        if index % 1 == 0 && index > 0 {
+            // adjust this to control how often you want to print
+            let elapsed = start_time.elapsed();
+            let progress = (index + 1) as f64 / feedback_len as f64;
+            let elapsed_secs = elapsed.as_secs_f64(); // Convert Duration to seconds (as f64)
+            let estimated_total_time_secs = elapsed_secs / progress;
+            let estimated_time_remaining_secs = estimated_total_time_secs - elapsed_secs;
+            let estimated_time_remaining =
+                std::time::Duration::from_secs_f64(estimated_time_remaining_secs);
+
+            let hours = estimated_time_remaining.as_secs() / 3600;
+            let minutes = (estimated_time_remaining.as_secs() % 3600) / 60;
+            let seconds = estimated_time_remaining.as_secs() % 60;
+
+            println!(
+                "Progress: {:.2}% | Estimated Time Remaining: {:02}h {:02}m {:02}s",
+                progress * 100.0,
+                hours,
+                minutes,
+                seconds
+            );
+        }
+    }
+    println!("Finished with {} failures out of {}", failures, count);
     Ok(())
 }
 

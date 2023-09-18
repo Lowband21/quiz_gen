@@ -221,23 +221,8 @@ fn main() {
             //eval::common_words::run();
             //eval::similarity::similarity();
             //eval::stat::run();
-            let filenames_question = Question::multi_select("filenames")
-                .message("Select the filenames associated with the questions to be evaluated:")
-                .choices(
-                    get_unique_filenames(&Connection::open("quiz_questions.db").unwrap()).unwrap(),
-                )
-                .build();
 
-            let filenames_answer = &requestty::prompt_one(filenames_question).unwrap();
-
-            let filenames: Vec<String> = filenames_answer
-                .as_list_items()
-                .unwrap()
-                .into_iter()
-                .map(|item| item.text.clone())
-                .collect();
-
-            eval::gpt::run(filenames).unwrap();
+            eval::gpt::run().unwrap();
         }
         "transcription" => {
             let gpu_or_cpu = Question::select("difficulty_level")
@@ -434,6 +419,7 @@ fn main() {
                 ),
             ];
 
+            /*
             for (category, result) in categories.iter().zip(category_results.iter()) {
                 let (avg, min, max, median) = result;
 
@@ -459,6 +445,7 @@ fn main() {
                         .unwrap_or_else(|| panic!("Could not calculate median {} score", category))
                 );
             }
+            */
         }
         "filter" => {
             filter_and_parse(2).unwrap();
