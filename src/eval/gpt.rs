@@ -90,16 +90,17 @@ fn gpt_coherence_score(
     feedback: &str,
     rubric: &str,
     model: String,
-) -> Result<String, Box<dyn Error>> {
-    let chat_messages = vec![
-        Message {
-            role: Role::System,
-            content: format!("Your job is to evaluate the quality of the following feedback based on this rubric: {}. Provide a score of the form \"%d\". Where the single number represents a unique rating from 1-5, with 5 being the higest, corresponding to the rubric. This is the feedback \"{}\"", rubric, feedback),
-        }
-    ];
+    mut chat_messages: Vec<Message>, // Add this parameter
+) -> Result<(String, Vec<Message>), Box<dyn Error>> {
+    // Update return type
+    chat_messages.push(Message {
+        role: Role::User,
+        content: feedback.to_string(),
+    });
+
     let api_parameters = ChatBody {
         model,
-        messages: chat_messages,
+        messages: chat_messages.clone(),
         max_tokens: Some(500),
         temperature: Some(0.0),
         top_p: Some(1.0),
@@ -111,17 +112,22 @@ fn gpt_coherence_score(
         logit_bias: None,
         user: None,
     };
+
     let mut tries = 0;
     loop {
         let response = openai.chat_completion_create(&api_parameters);
         match response {
             Ok(res) => {
                 let score = res.choices[0].message.as_ref().unwrap().content.clone();
+                chat_messages.push(Message {
+                    role: Role::Assistant,
+                    content: score.clone(),
+                });
 
                 if tries >= 10 {
-                    return Ok(score);
+                    return Ok((score, chat_messages));
                 }
-                return Ok(score);
+                return Ok((score, chat_messages));
             }
             Err(e) => {
                 tries += 1;
@@ -217,6 +223,13 @@ Example 3: \"I like the way you added the positive numbers together then subtrac
 Score 1: \"I respectfully disagree with you on the last pieces of your math as you had added a positive with a negative. While you should have added -30 with the -83 and gotten -113, then subtracted that with the positive 76 and gotten -37. (#216197)\"
 Score 2: \"Hi. First, that is how you find the median, not the mean. So first, you have to find the mean, add all of the numbers, and then divide it by how many numbers there are. Then once you found the mean, you estimate... (#218215)\"
     ";
+
+    let initial_chat_messages = vec![
+    Message {
+        role: Role::System,
+        content: format!("Your job is to evaluate the quality of the following feedback based on this rubric: {}. Provide a score of the form \"%d\". Where the single number represents a unique rating from 1-5, with 5 being the higest, corresponding to the rubric.", rubric),
+    }
+];
     conn.execute(
         "CREATE TABLE IF NOT EXISTS alt_eval_results (
         id INTEGER PRIMARY KEY,
@@ -239,6 +252,8 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
     // Track the start time
     let start_time = std::time::Instant::now();
 
+    let mut chat_messages = initial_chat_messages;
+
     for (index, feedback) in feedback_vec.iter().enumerate() {
         /*
         if rng.gen_range(0..2) == 1 {
@@ -248,12 +263,17 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
         }
         */
 
-        let gr = gpt_coherence_score(
+        let (gr, new_chat_messages) = gpt_coherence_score(
             &openai,
             feedback.annotation_text.as_str(),
             rubric,
             "gpt-4".to_string(),
+            chat_messages.clone(),
         )?;
+        chat_messages = new_chat_messages;
+        for message in chat_messages.clone() {
+            println!("{:?}", message);
+        }
 
         let gr_score = gr.split("\n").last().unwrap();
 
