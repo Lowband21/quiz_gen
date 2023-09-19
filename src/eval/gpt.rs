@@ -87,7 +87,6 @@ fn read_quiz_questions_by_filename(
 
 fn gpt_coherence_score(
     openai: &OpenAI,
-    problem_name: &str,
     feedback: &str,
     rubric: &str,
     model: String,
@@ -95,7 +94,7 @@ fn gpt_coherence_score(
     let chat_messages = vec![
         Message {
             role: Role::System,
-            content: format!("Your job is to evaluate the quality of the following feedback based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d\". Where the single number represents a unique rating from 1-5, with 5 being the higest, corresponding to the rubric. This is the feedback and problem name pair \"{}\"\"{}\"", rubric, feedback, problem_name),
+            content: format!("Your job is to evaluate the quality of the following feedback based on this rubric: {}. Provide a score of the form \"%d\". Where the single number represents a unique rating from 1-5, with 5 being the higest, corresponding to the rubric. This is the feedback \"{}\"", rubric, feedback),
         }
     ];
     let api_parameters = ChatBody {
@@ -137,27 +136,25 @@ fn gpt_coherence_score(
 fn store_score(
     conn: &Connection,
     id: i32,
-    thinklet_id: i32,
     total_score: i32,
     explanation: &String,
 ) -> Result<(), Box<dyn Error>> {
     conn.execute(
-        "INSERT OR REPLACE INTO alt_eval_results (id, thinklet_id, total_score, explanation) VALUES (?1, ?2, ?3, ?4)",
-        params![id, thinklet_id, total_score, explanation],
+        "INSERT OR REPLACE INTO alt_eval_results (id, total_score, explanation) VALUES (?1, ?2, ?3)",
+        params![id, total_score, explanation],
     )?;
     Ok(())
 }
 
 struct Feedback {
     id: i32,
-    thinklet_id: i32,
-    problem_name: String,
     annotation_text: String,
 }
 
 fn read_feedback() -> Vec<Feedback> {
     // Create a CSV reader
-    let mut rdr = csv::Reader::from_path("Feedback.csv").expect("Unable to open file");
+    let mut rdr =
+        csv::Reader::from_path("AnnotationsProofConcept_ID.csv").expect("Unable to open file");
 
     let mut result = Vec::new();
 
@@ -167,9 +164,7 @@ fn read_feedback() -> Vec<Feedback> {
 
         let feedback = Feedback {
             id: record[0].parse::<i32>().expect("Error parsing id"),
-            thinklet_id: record[1].parse::<i32>().expect("Error parsing thinklet_id"),
-            problem_name: record[2].to_string(),
-            annotation_text: record[6].to_string(),
+            annotation_text: record[1].to_string(),
         };
 
         result.push(feedback);
@@ -225,7 +220,6 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
     conn.execute(
         "CREATE TABLE IF NOT EXISTS alt_eval_results (
         id INTEGER PRIMARY KEY,
-        thinklet_id INTEGER NOT NULL,
         total_score INTEGER NOT NULL,
         explanation STRING NOT NULL
      )",
@@ -256,7 +250,6 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
 
         let gr = gpt_coherence_score(
             &openai,
-            feedback.problem_name.as_str(),
             feedback.annotation_text.as_str(),
             rubric,
             "gpt-4".to_string(),
@@ -284,14 +277,7 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
         if gr_scores.len() == 1 {
             let gr_total_score: i32 = gr_scores.iter().sum();
 
-            store_score(
-                &conn,
-                feedback.id,
-                feedback.thinklet_id,
-                gr_total_score,
-                &gr,
-            )
-            .unwrap();
+            store_score(&conn, feedback.id, gr_total_score, &gr).unwrap();
 
             println!("GPT total Score: {}\nExplanation: {}", gr_total_score, gr);
             count += 1;
