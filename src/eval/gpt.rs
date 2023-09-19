@@ -125,8 +125,8 @@ fn gpt_coherence_score(
             }
             Err(e) => {
                 tries += 1;
+                println!("Error: {}. Trying again in 10 seconds...", e);
                 thread::sleep(Duration::from_secs(10));
-                println!("Error: {}. Trying again...", e);
                 continue;
             }
         }
@@ -295,17 +295,41 @@ Score 2: \"Hi. First, that is how you find the median, not the mean. So first, y
             let estimated_time_remaining =
                 std::time::Duration::from_secs_f64(estimated_time_remaining_secs);
 
-            let hours = estimated_time_remaining.as_secs() / 3600;
-            let minutes = (estimated_time_remaining.as_secs() % 3600) / 60;
-            let seconds = estimated_time_remaining.as_secs() % 60;
+            // Format estimated time remaining
+            let hours_remaining = estimated_time_remaining.as_secs() / 3600;
+            let minutes_remaining = (estimated_time_remaining.as_secs() % 3600) / 60;
+            let seconds_remaining = estimated_time_remaining.as_secs() % 60;
+
+            // Format total estimated time
+            let estimated_total_time =
+                std::time::Duration::from_secs_f64(estimated_total_time_secs);
+            let hours_total = estimated_total_time.as_secs() / 3600;
+            let minutes_total = (estimated_total_time.as_secs() % 3600) / 60;
+            let seconds_total = estimated_total_time.as_secs() % 60;
+
+            // Create a progress bar
+            let bar_length = 50; // 50 characters
+            let progress_position = (progress * bar_length as f64).round() as usize;
+            let progress_bar: String = format!(
+                "[{}>{}]",
+                "=".repeat(progress_position),
+                " ".repeat(bar_length - progress_position)
+            );
 
             println!(
-                "Progress: {:.2}% | Estimated Time Remaining: {:02}h {:02}m {:02}s",
-                progress * 100.0,
-                hours,
-                minutes,
-                seconds
-            );
+        "{} Progress: {:.2}% | Elapsed: {:02}h {:02}m {:02}s | Estimated Time Remaining: {:02}h {:02}m {:02}s | Estimated Total Completion Time: {:02}h {:02}m {:02}s",
+        progress_bar,
+        progress * 100.0,
+        elapsed.as_secs() / 3600,
+        (elapsed.as_secs() % 3600) / 60,
+        elapsed.as_secs() % 60,
+        hours_remaining,
+        minutes_remaining,
+        seconds_remaining,
+        hours_total,
+        minutes_total,
+        seconds_total
+    );
         }
     }
     println!("Finished with {} failures out of {}", failures, count);
