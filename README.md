@@ -14,6 +14,7 @@ To run QuizGen, you need to have the following software installed on your machin
 - PyTorch (torch)
   - Note: While PyTorch is automatically installed during the setup process, you might encounter issues on some systems
 - clang
+- cmake
 
 ## Installation
 

@@ -41,6 +41,42 @@ fn handle_error(error: Box<dyn Error>) -> Box<dyn Error> {
     Box::new(MyError::new(error.description()))
 }
 
+use serde::Deserialize;
+use std::fs;
+
+// Define structs to represent the Rubric data from the JSON
+#[derive(Deserialize)]
+struct Rubric {
+    title: String,
+    date_assessed: String,
+    assessed_by: String,
+    sections: Vec<Section>,
+}
+
+#[derive(Deserialize)]
+struct Section {
+    section_id: String,
+    title: String,
+    questions: Vec<Question>,
+}
+
+#[derive(Deserialize, Clone)]
+struct Question {
+    question_id: String,
+    task: String,
+    score: String,
+    action_yes: Option<String>,
+    action_no: Option<String>,
+    comments: String,
+}
+
+// Function to load the rubric from a JSON file
+fn load_rubric_from_file(path: &str) -> Result<Rubric, Box<dyn Error>> {
+    let data = fs::read_to_string(path)?;
+    let rubric: Rubric = serde_json::from_str(&data)?;
+    Ok(rubric)
+}
+
 fn manual_evaluation(quiz: &QuizTuple, rubric: &str) -> Result<String, Box<dyn Error>> {
     println!(
         "Evaluate the following prompt-question pair based on the rubric below:\n{}\nPrompt: {}\nQuestion: {}",
@@ -87,60 +123,108 @@ fn read_quiz_questions_by_filename(
 
 fn gpt_coherence_score(
     openai: &OpenAI,
-    prompt: &str,
     question: &str,
-    rubric: &str,
+    rubric: &Rubric, // Change this to a Rubric reference
     model: String,
-) -> Result<String, Box<dyn Error>> {
-    let chat_messages = vec![
-        Message {
-            role: Role::System,
-            //content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Your output should be strictly limited to the form \"%d-%d-%d-%d\". Where each digit represents a unique rating corresponding to the rubric. This is the question \"{}\"", rubric, question),
-            content: format!("Your job is to evaluate the quality of the following responses based on this rubric: {}. Explain your reasoning in detail followed by a score of the form \"%d-%d-%d-%d-%d-%d\". Where each number represents a unique rating 1-10, with 10 being the higest, corresponding to the rubric. This is the question prompt pair \"{}\"\"{}\"", rubric, question, prompt),
-        }
-    ];
-    let api_parameters = ChatBody {
-        model,
-        messages: chat_messages,
-        max_tokens: Some(500),
-        temperature: Some(0.0),
-        top_p: Some(1.0),
-        n: None,
-        stream: None,
-        stop: None,
-        presence_penalty: None,
-        frequency_penalty: None,
-        logit_bias: None,
-        user: None,
-    };
-    let mut tries = 0;
-    loop {
-        let response = openai.chat_completion_create(&api_parameters);
-        match response {
-            Ok(res) => {
-                let score = res.choices[0].message.as_ref().unwrap().content.clone();
+    mut chat_messages: Vec<Message>,
+) -> Result<(i32, Vec<Message>), Box<dyn Error>> {
+    chat_messages.push(Message {
+        role: Role::System,
+        content: format!("Your job is to evaluate the quality of the following question ({}) based on the yes/no questions asked to you:", question.to_string()),
+    });
+    // Starting with the first question in the rubric
+    let mut current_question_id = rubric.sections[0].questions[0].question_id.clone();
 
-                if tries >= 10 {
-                    return Ok(score);
+    // Will store the final score and feedback
+    let mut final_score = 0;
+
+    while let Some(question) = find_question_by_id(&rubric, &current_question_id) {
+        // Using the question's task as a prompt for GPT
+        chat_messages.push(Message {
+            role: Role::User,
+            content: format!(
+                "This is the question being asked about the question being evaluated, respond with a yes or no: {}",
+                question.task.clone()
+            ),
+        });
+
+        let api_parameters = ChatBody {
+            model: model.clone(),
+            messages: chat_messages.clone(),
+            max_tokens: Some(500),
+            temperature: Some(0.0),
+            top_p: Some(1.0),
+            n: None,
+            stream: None,
+            stop: None,
+            presence_penalty: None,
+            frequency_penalty: None,
+            logit_bias: None,
+            user: None,
+        };
+
+        let mut tries = 0;
+        loop {
+            let response = openai.chat_completion_create(&api_parameters);
+            match response {
+                Ok(res) => {
+                    let response = res.choices[0].message.as_ref().unwrap().content.clone();
+                    chat_messages.push(Message {
+                        role: Role::Assistant,
+                        content: response.clone(),
+                    });
+                    println!("GPT Response: {} ", response);
+                    println!("GPT Question: {} ", question.task.clone());
+
+                    // Determine next question based on GPT's response
+                    if response.contains("yes") || response.contains("Yes") {
+                        final_score += 1;
+                        current_question_id = question
+                            .action_yes
+                            .as_ref()
+                            .unwrap_or(&String::new())
+                            .clone();
+                    } else {
+                        current_question_id = question
+                            .action_no
+                            .as_ref()
+                            .unwrap_or(&String::new())
+                            .clone();
+                    }
+
+                    // If there's no next question, set the final score and feedback
+                    if current_question_id.is_empty() {
+                        break;
+                    }
                 }
-                /*
-                if score.len() > 1000 {
-                    println!("Response greater than 10 characters: {}", score);
+                Err(e) => {
                     tries += 1;
+                    if tries >= 10 {
+                        final_score = -1;
+                        println!("Error after 10 tries: {}", e);
+                        break;
+                    }
+                    thread::sleep(Duration::from_secs(10));
+                    println!("Error: {}. Trying again...", e);
                     continue;
-                } else {
                 }
-                */
-                return Ok(score);
-            }
-            Err(e) => {
-                tries += 1;
-                thread::sleep(Duration::from_secs(10));
-                println!("Error: {}. Trying again...", e);
-                continue;
             }
         }
     }
+
+    Ok((final_score, chat_messages))
+}
+
+// Helper function to find a question by its ID from the rubric
+fn find_question_by_id(rubric: &Rubric, question_id: &str) -> Option<Question> {
+    for section in &rubric.sections {
+        for question in &section.questions {
+            if &question.question_id == question_id {
+                return Some(question.clone());
+            }
+        }
+    }
+    None
 }
 
 fn store_score(
@@ -185,45 +269,10 @@ use regex::Regex;
 pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
     let conn = create_connection()?;
     create_evaluations_table(&conn)?;
-    //let manual = true;
     let auth = Auth::from_env().unwrap();
     let openai = OpenAI::new(auth, "https://api.openai.com/v1/");
-    let rubric = "
-    ## **Relevance (0-10):**
-    **Definition:** \"How closely does the question align with the overarching topic rather than the nitty-gritty details of the prompt? A highly relevant question should address the core concepts and objectives of the topic.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Good Question (Score 9): \"Why is solar energy considered a sustainable power source?\"
-    Irrelevant Question (Score 2): \"Who was the 15th employee hired by a famous solar panel company?\"
-    
-    ## **Complexity (0-10):**
-    **Definition:** \"Evaluates the depth of cognitive engagement the question demands. A complex question should tap into higher-order thinking skills such as analysis, synthesis, and evaluation, rather than just memory recall.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Simple Question (Score 3): \"What is wind energy?\"
-    Complex Question (Score 9): \"How can the integration of wind and solar energy lead to a more stable renewable energy grid, and what challenges might arise in achieving this integration?\"
-    
-    ## **Clarity (0-10):**
-    **Definition:** \"Assesses the question's understandability and preciseness. A clear question should be straightforward, not open to multiple interpretations, and should not confuse the respondent.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Clear Question (Score 9): \"How does a hydroelectric dam generate power?\"
-    Ambiguous Question (Score 2): \"Can you explain that thing with water and getting energy?\"
-    
-    ## **Breadth (0-10):**
-    **Definition:** \"Assesses the range or scope of the question in terms of content covered. A question with good breadth should not be too narrow that it feels nitpicky nor too broad that it feels vague or overwhelming.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Narrow Question (Score 3): \"What is the exact wattage produced by a specific solar panel model?\"
-    Broad Question (Score 9): \"Discuss the evolution of renewable energy sources from traditional windmills to modern solar farms, highlighting key technological advancements.\"
-    
-    ## **Feedback Potential (0-10):**
-    **Definition:** \"Evaluates how effectively a question can be used to diagnose misunderstandings or knowledge gaps. A question with high feedback potential will provide insights into the respondent's thought process or areas of weakness, facilitating targeted feedback.\"
-    ### Example:
-    Topic: Renewable Energy.
-    Low Feedback (Score 3): \"Is solar power derived from the sun?\"
-    High Feedback (Score 9): \"Describe a scenario where using solar energy might not be the most efficient choice and explain the factors contributing to its inefficiency.\"
-    ";
+    let rubric = load_rubric_from_file("rubric.json")?;
+
     conn.execute(
         "CREATE TABLE IF NOT EXISTS results (
         id INTEGER PRIMARY KEY,
@@ -237,10 +286,7 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
      )",
         [],
     )?;
-    let mut failures = 0;
-    let mut count = 0;
 
-    // Randomize filenames
     let mut rng = rand::thread_rng();
     let mut filenames = filenames.clone();
     filenames.shuffle(&mut rng);
@@ -257,7 +303,6 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
             }
         };
 
-        // Randomize quiz tuples and possibly duplicate some of them
         quiz_tuples.shuffle(&mut rng);
         if rng.gen_range(0..2) == 1 {
             if let Some(random_tuple) = quiz_tuples.choose(&mut rng) {
@@ -265,86 +310,17 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
             }
         }
 
-        //let mut high_score = 10;
         println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
-        // Inside your quiz_tuples loop
         for quiz in &quiz_tuples {
-            // Removed the manual flag and hr initialization
-            let gr = gpt_coherence_score(&openai, &quiz.1, &quiz.2, &rubric, "gpt-4".to_string())?;
+            let (score, _) =
+                gpt_coherence_score(&openai, &quiz.1, &rubric, "gpt-4".to_string(), Vec::new())?;
 
-            //println!("Eval: {:#?}", score);
-            let gr_score = gr.split("\n").last().unwrap();
-
-            let re = Regex::new(r"(\d+)").unwrap();
-
-            // Commented out the hr_scores processing
-            // let mut hr_scores: Vec<i32> = re
-            //     .find_iter(hr_score)
-            //     .map(|m| m.as_str().parse::<i32>())
-            //     .filter_map(Result::ok)
-            //     .collect();
-            let mut gr_scores: Vec<i32> = re
-                .find_iter(gr_score)
-                .map(|m| m.as_str().parse::<i32>())
-                .filter_map(Result::ok)
-                .collect();
-
-            // Commented out the hr_scores default values
-            // while hr_scores.len() < 6 {
-            //     hr_scores.push(0);
-            // }
-            while gr_scores.len() < 5 {
-                gr_scores.push(0);
-            }
-
-            if gr_scores.len() == 5 {
-                // Removed hr_total_score as it's not needed
-                let gr_total_score: i32 = gr_scores.iter().sum();
-
-                // Removed hr_scores from store_evaluation_score function
-                //store_evaluation_score(
-                //    &conn,
-                //    quiz.0,
-                //    gr_scores[0],
-                //    gr_scores[1],
-                //    gr_scores[2],
-                //    gr_scores[3],
-                //    gr_scores[4], // Breadth
-                //    gr_scores[5], // Feedback Potential
-                //    gr_total_score,
-                //)?;
-                /*
-                if total_score > high_score {
-                    high_score = total_score;
-
-                    println!("High scoring question: {}", &quiz.2);
-                    //println!("High scoring prompt: {}", &quiz.1);
-                }
-                */
-
-                store_score(
-                    &conn,
-                    quiz.0,
-                    gr_scores[0],
-                    gr_scores[1],
-                    gr_scores[2],
-                    gr_scores[3],
-                    gr_scores[4],
-                    gr_total_score,
-                )
-                .unwrap();
-
-                // Commented out the human total score print
-                // println!("Human total Score: {}", hr_total_score);
-                println!("GPT total Score: {}", gr_total_score);
-                count += 1;
-            } else {
-                println!("Failed to extract score");
-                failures += 1;
-            }
+            // Process the score returned by the model. You might want to update the database with the score or do some other operations.
+            // As of now, I'm just printing it, but you can modify this as needed.
+            println!("Score for quiz {}: {}", quiz.0, score);
         }
-        println!("Finished with {} failures out of {}", failures, count);
     }
+
     Ok(())
 }
 

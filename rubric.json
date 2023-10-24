@@ -1,0 +1,162 @@
+{
+    "title": "Enhanced Quiz Question Evaluation",
+    "date_assessed": "[dd/mm/yyyy]",
+    "assessed_by": "[name of assessor]",
+    "sections": [
+        {
+            "section_id": "A",
+            "title": "Relevance",
+            "questions": [
+                {
+                    "question_id": "A.1",
+                    "task": "Is the question topic aligned with the course/module objectives?",
+                    "score": "",
+                    "action_yes": "A.1.1",
+                    "action_no": "B.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "A.1.1",
+                    "task": "Does the question address the core concepts?",
+                    "score": "",
+                    "action_yes": "A.1.2",
+                    "action_no": "A.1.3",
+                    "comments": ""
+                },
+                {
+                    "question_id": "A.1.2",
+                    "task": "Does the question avoid unnecessary details?",
+                    "score": "",
+                    "action_yes": "B.1",
+                    "action_no": "B.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "A.1.3",
+                    "task": "Is the question linked to the overarching topic?",
+                    "score": "",
+                    "action_yes": "B.1",
+                    "action_no": "B.1",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "section_id": "B",
+            "title": "Complexity",
+            "questions": [
+                {
+                    "question_id": "B.1",
+                    "task": "Does the question stimulate higher-order thinking?",
+                    "score": "",
+                    "action_yes": "B.1.1",
+                    "action_no": "C.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "B.1.1",
+                    "task": "Is the question beyond mere recall of facts?",
+                    "score": "",
+                    "action_yes": "B.1.2",
+                    "action_no": "B.1.3",
+                    "comments": ""
+                },
+                {
+                    "question_id": "B.1.2",
+                    "task": "Does the question involve application of knowledge?",
+                    "score": "",
+                    "action_yes": "C.1",
+                    "action_no": "C.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "B.1.3",
+                    "task": "Does the question prompt synthesis or analysis?",
+                    "score": "",
+                    "action_yes": "C.1",
+                    "action_no": "C.1",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "section_id": "C",
+            "title": "Clarity",
+            "questions": [
+                {
+                    "question_id": "C.1",
+                    "task": "Is the question wording clear and precise?",
+                    "score": "",
+                    "action_yes": "C.1.1",
+                    "action_no": "D.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "C.1.1",
+                    "task": "Are multiple choice options balanced?",
+                    "score": "",
+                    "action_yes": "C.1.2",
+                    "action_no": "D.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "C.1.2",
+                    "task": "Is the question free from leading or tricky wording?",
+                    "score": "",
+                    "action_yes": "D.1",
+                    "action_no": "D.1",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "section_id": "D",
+            "title": "Breadth",
+            "questions": [
+                {
+                    "question_id": "D.1",
+                    "task": "Does the question cover an appropriate range of content?",
+                    "score": "",
+                    "action_yes": "D.1.1",
+                    "action_no": "E.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "D.1.1",
+                    "task": "Is the question's scope relevant to the learning objectives?",
+                    "score": "",
+                    "action_yes": "D.1.2",
+                    "action_no": "E.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "D.1.2",
+                    "task": "If scenario-based, is the scenario content-specific?",
+                    "score": "",
+                    "action_yes": "E.1",
+                    "action_no": "E.1",
+                    "comments": ""
+                }
+            ]
+        },
+        {
+            "section_id": "E",
+            "title": "Feedback Potential",
+            "questions": [
+                {
+                    "question_id": "E.1",
+                    "task": "Can the question diagnose misconceptions?",
+                    "score": "",
+                    "action_yes": "E.1.1",
+                    "comments": ""
+                },
+                {
+                    "question_id": "E.1.1",
+                    "task": "Does the question's feedback provide clarity on the correct answer?",
+                    "score": "",
+                    "comments": ""
+                }
+            ]
+        }
+    ]
+}
