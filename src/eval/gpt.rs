@@ -3,6 +3,7 @@ use openai_api_rust::*;
 use rand::prelude::SliceRandom;
 use rand::Rng;
 use rusqlite::{Connection, Result};
+use std::collections::HashMap;
 use std::error::Error;
 use std::fmt;
 use std::io::{self, Write};
@@ -127,16 +128,21 @@ fn gpt_coherence_score(
     rubric: &Rubric, // Change this to a Rubric reference
     model: String,
     mut chat_messages: Vec<Message>,
-) -> Result<(i32, Vec<Message>), Box<dyn Error>> {
+) -> Result<(i32, HashMap<String, i32>, Vec<Message>), Box<dyn Error>> {
     chat_messages.push(Message {
         role: Role::System,
         content: format!("Your job is to evaluate the quality of the following question ({}) based on the yes/no questions asked to you:", question.to_string()),
     });
+    println!(
+        "Evaluating the following question: {}",
+        question.to_string()
+    );
     // Starting with the first question in the rubric
     let mut current_question_id = rubric.sections[0].questions[0].question_id.clone();
 
     // Will store the final score and feedback
-    let mut final_score = 0;
+    let mut total_score = 0;
+    let mut scores: HashMap<String, i32> = HashMap::new();
 
     while let Some(question) = find_question_by_id(&rubric, &current_question_id) {
         // Using the question's task as a prompt for GPT
@@ -166,6 +172,8 @@ fn gpt_coherence_score(
         let mut tries = 0;
         loop {
             let response = openai.chat_completion_create(&api_parameters);
+            // Inside the gpt_coherence_score loop
+
             match response {
                 Ok(res) => {
                     let response = res.choices[0].message.as_ref().unwrap().content.clone();
@@ -173,23 +181,31 @@ fn gpt_coherence_score(
                         role: Role::Assistant,
                         content: response.clone(),
                     });
-                    println!("GPT Response: {} ", response);
                     println!("GPT Question: {} ", question.task.clone());
+                    println!("GPT Response: {} ", response);
+
+                    thread::sleep(Duration::from_secs(2));
 
                     // Determine next question based on GPT's response
                     if response.contains("yes") || response.contains("Yes") {
-                        final_score += 1;
+                        scores.insert(question.question_id.clone(), 1); // or your logic for scoring
+                        total_score += 1;
                         current_question_id = question
                             .action_yes
                             .as_ref()
                             .unwrap_or(&String::new())
                             .clone();
+                        //println!("Set question_id to {}", current_question_id);
+                        break;
                     } else {
+                        scores.insert(question.question_id.clone(), 0);
                         current_question_id = question
                             .action_no
                             .as_ref()
                             .unwrap_or(&String::new())
                             .clone();
+                        //println!("Set question_id to {}", current_question_id);
+                        break;
                     }
 
                     // If there's no next question, set the final score and feedback
@@ -200,7 +216,6 @@ fn gpt_coherence_score(
                 Err(e) => {
                     tries += 1;
                     if tries >= 10 {
-                        final_score = -1;
                         println!("Error after 10 tries: {}", e);
                         break;
                     }
@@ -212,7 +227,7 @@ fn gpt_coherence_score(
         }
     }
 
-    Ok((final_score, chat_messages))
+    Ok((total_score, scores, chat_messages))
 }
 
 // Helper function to find a question by its ID from the rubric
@@ -230,16 +245,50 @@ fn find_question_by_id(rubric: &Rubric, question_id: &str) -> Option<Question> {
 fn store_score(
     conn: &Connection,
     id: i32,
-    relevance: i32,
-    complexity: i32,
-    clarity: i32,
-    breadth: i32,
-    feedback_pot: i32,
+    scores: &HashMap<String, i32>, // Use a HashMap to store scores for each sub-question
     total_score: i32,
 ) -> Result<(), Box<dyn Error>> {
     conn.execute(
-        "INSERT OR REPLACE INTO results (id, relevance, complexity, clarity, breadth, feedback_pot, total_score) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7)",
-        params![id, relevance, complexity, clarity, breadth, feedback_pot, total_score],
+        "INSERT INTO evaluations (
+            id,
+            A_1_score,
+            A_1_1_score,
+            A_1_2_score,
+            A_1_3_score,
+            B_1_score,
+            B_1_1_score,
+            B_1_2_score,
+            B_1_3_score,
+            C_1_score,
+            C_1_1_score,
+            C_1_2_score,
+            D_1_score,
+            D_1_1_score,
+            D_1_2_score,
+            E_1_score,
+            E_1_1_score,
+            total_score
+        ) VALUES (?1, ?2, ?3, ?4, ?5, ?6, ?7, ?8, ?9, ?10, ?11, ?12, ?13, ?14, ?15, ?16, ?17, ?18)",
+        params![
+            id,
+            scores.get("A.1").unwrap_or(&0),
+            scores.get("A.1.1").unwrap_or(&0),
+            scores.get("A.1.2").unwrap_or(&0),
+            scores.get("A.1.3").unwrap_or(&0),
+            scores.get("B.1").unwrap_or(&0),
+            scores.get("B.1.1").unwrap_or(&0),
+            scores.get("B.1.2").unwrap_or(&0),
+            scores.get("B.1.3").unwrap_or(&0),
+            scores.get("C.1").unwrap_or(&0),
+            scores.get("C.1.1").unwrap_or(&0),
+            scores.get("C.1.2").unwrap_or(&0),
+            scores.get("D.1").unwrap_or(&0),
+            scores.get("D.1.1").unwrap_or(&0),
+            scores.get("D.1.2").unwrap_or(&0),
+            scores.get("E.1").unwrap_or(&0),
+            scores.get("E.1.1").unwrap_or(&0),
+            total_score,
+        ],
     )?;
     Ok(())
 }
@@ -312,12 +361,13 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
 
         println!("Evaluating {} prompt response pairs.", quiz_tuples.len());
         for quiz in &quiz_tuples {
-            let (score, _) =
-                gpt_coherence_score(&openai, &quiz.1, &rubric, "gpt-4".to_string(), Vec::new())?;
+            let (total_score, scores, _) =
+                gpt_coherence_score(&openai, &quiz.2, &rubric, "gpt-4".to_string(), Vec::new())?;
+            store_score(&conn, quiz.0, &scores, total_score)?;
 
             // Process the score returned by the model. You might want to update the database with the score or do some other operations.
             // As of now, I'm just printing it, but you can modify this as needed.
-            println!("Score for quiz {}: {}", quiz.0, score);
+            println!("Score for quiz {}: {:#?}", quiz.0, scores);
         }
     }
 
@@ -327,21 +377,24 @@ pub fn run(filenames: Vec<String>) -> Result<(), Box<dyn Error>> {
 fn create_evaluations_table(conn: &Connection) -> Result<(), Box<dyn Error>> {
     conn.execute(
         "CREATE TABLE IF NOT EXISTS evaluations (
-            id INTEGER,
-            hr_relevance INTEGER NOT NULL,
-            hr_complexity INTEGER NOT NULL,
-            hr_clarity INTEGER NOT NULL,
-            hr_creativity INTEGER NOT NULL,
-            hr_breadth INTEGER NOT NULL,
-            hr_feedback_pot INTEGER NOT NULL,
-            gr_relevance INTEGER NOT NULL,
-            gr_complexity INTEGER NOT NULL,
-            gr_clarity INTEGER NOT NULL,
-            gr_creativity INTEGER NOT NULL,
-            gr_breadth INTEGER NOT NULL,
-            gr_feedback_pot INTEGER NOT NULL,
-            hr_score INTEGER NOT NULL,
-            gr_score INTEGER NOT NULL
+            id INTEGER PRIMARY KEY,
+            A_1_score INTEGER,
+            A_1_1_score INTEGER,
+            A_1_2_score INTEGER,
+            A_1_3_score INTEGER,
+            B_1_score INTEGER,
+            B_1_1_score INTEGER,
+            B_1_2_score INTEGER,
+            B_1_3_score INTEGER,
+            C_1_score INTEGER,
+            C_1_1_score INTEGER,
+            C_1_2_score INTEGER,
+            D_1_score INTEGER,
+            D_1_1_score INTEGER,
+            D_1_2_score INTEGER,
+            E_1_score INTEGER,
+            E_1_1_score INTEGER,
+            total_score INTEGER NOT NULL
          )",
         [],
     )?;
